@@ -1,0 +1,37 @@
+/* 기본 달력 스타일 */
+.calendar {
+    position: absolute;
+    top: 100px; /* 원하는 위치에 맞춰 수정 */
+    left: 200px;
+    width: 400px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 10;
+  }
+  
+  .day-line, .date-line {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .date {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .date:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .month-year {
+    text-align: center;
+    font-weight: bold;
+  }
+  
