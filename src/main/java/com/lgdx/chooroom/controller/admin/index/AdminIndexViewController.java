@@ -1,4 +1,4 @@
-package com.lgdx.chooroom.controller.adminindex;
+package com.lgdx.chooroom.controller.admin.index;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
