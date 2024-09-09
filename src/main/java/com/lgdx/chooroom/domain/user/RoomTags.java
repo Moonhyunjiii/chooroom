@@ -14,7 +14,7 @@ public class RoomTags {
     private String tagId;
 
     @Column(name="R_NUM")
-    private String rNun;
+    private String rNum;
 
     @Column(name="TAG_NAME")
     private String tagName;
@@ -27,12 +27,12 @@ public class RoomTags {
         this.tagId = tagId;
     }
 
-    public String getrNun() {
-        return rNun;
+    public String getrNum() {
+        return rNum;
     }
 
-    public void setrNun(String rNun) {
-        this.rNun = rNun;
+    public void setrNum(String rNum) {
+        this.rNum = rNum;
     }
 
     public String getTagName() {
@@ -47,7 +47,7 @@ public class RoomTags {
     public String toString() {
         return "RoomTags{" +
                 "tagId='" + tagId + '\'' +
-                ", rNun='" + rNun + '\'' +
+                ", rNum='" + rNum + '\'' +
                 ", tagName='" + tagName + '\'' +
                 '}';
     }
