@@ -1,6 +1,13 @@
 .container,
 .container * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
 }
 .container {
   padding: 0px 40px 0px 40px;
@@ -8,9 +15,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 1440px;
-  max-width: 1200px;
+  height: auto;
+  max-width: auto;
   position: relative;
+  overflow-y: auto; /* 화면이 넘칠 경우 스크롤 */
 }
 .main {
   display: flex;
@@ -25,9 +33,11 @@
 .line-banner {
   background: #909090;
   flex-shrink: 0;
-  width: 1120px;
+  width: 100%;
+  max-width: 1120px;
   height: 35px;
   position: relative;
+  padding-top: 3.125%; 
   overflow: hidden;
 }
 .lg {
@@ -260,6 +270,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .tag {
   border-radius: 999px;
   border-style: solid;
@@ -275,6 +286,13 @@
   position: absolute;
   left: 35px;
   top: 85px;
+  cursor: pointer;
+}
+/* 선택된 상태 */
+.tag.active, .tag2.active, .tag3.active, .tag4.active, .tag5.active, .tag6.active {
+  background-color: #0085be; /* 선택된 상태 배경색 */
+  color: #ffffff; /* 선택된 상태 텍스트 색상 */
+  border-color: #0085be; /* 선택된 상태 테두리 색상 */
 }
 .div5 {
   color: #000000;
@@ -301,6 +319,7 @@
   position: absolute;
   left: 173px;
   top: 85px;
+  cursor: pointer;
 }
 .tag3 {
   border-radius: 999px;
@@ -317,6 +336,7 @@
   position: absolute;
   left: 330px;
   top: 85px;
+  cursor: pointer;
 }
 .tag4 {
   border-radius: 999px;
@@ -333,6 +353,7 @@
   position: absolute;
   left: 516px;
   top: 85px;
+  cursor: pointer;
 }
 .tag5 {
   border-radius: 999px;
@@ -349,6 +370,7 @@
   position: absolute;
   left: 702px;
   top: 85px;
+  cursor: pointer;
 }
 .dolby-atomos {
   color: #000000;
@@ -375,13 +397,15 @@
   position: absolute;
   left: 933px;
   top: 85px;
+  cursor: pointer;
 }
 .fliter2 {
   flex-shrink: 0;
   width: 1120px;
-  height: 54px;
+  height: 300px;
   position: relative;
   overflow: hidden;
+  align-items: flex-start; /* 왼쪽 상단에서부터 시작 */
 }
 .line {
   background: #ebebeb;
@@ -407,7 +431,7 @@
   display: flex;
   flex-direction: row;
   gap: 25px;
-  align-items: center;
+  align-items: top;
   justify-content: flex-start;
   flex-shrink: 0;
   position: relative;
@@ -419,6 +443,7 @@
   align-items: center;
   justify-content: flex-start;
   flex-shrink: 0;
+  white-space: nowrap; 
   position: relative;
 }
 .name {
@@ -559,26 +584,30 @@
   color: #000000;
   text-align: center;
   font-family: "NotoSansKr-Regular", sans-serif;
-  font-size: 20px;
+  font-size: 13px;
   line-height: 26px;
   letter-spacing: -0.0012em;
   font-weight: 400;
   position: absolute;
   left: 1009px;
   top: 163px;
+  
+  /* 크기 조정 */
+  width: 80px;  /* 원하는 너비로 조정 */
+  height: 50px;  /* 원하는 높이로 조정 */
+  
+  /* 둥근 모서리 */
+  border-radius: 25px;
+  
+  /* 버튼 스타일 추가 */
+  background-color: #f0f0f0;  /* 버튼 배경색 */
+  border: 1px solid #ccc;  /* 테두리 추가 */
+  
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.rectangle-47 {
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px;
-  width: 91px;
-  height: 34px;
-  position: absolute;
-  left: 1000px;
-  top: 159px;
+  
+  cursor: pointer; /* 버튼처럼 보이게 포인터 추가 */
 }
 .div11 {
   color: #afafaf;
@@ -765,4 +794,185 @@
   position: absolute;
   left: 20px;
   top: 18px;
+}
+
+/* 기본 room 스타일 */
+.room {
+  display: flex;
+  flex-direction: column; /* 세로로 정렬 */
+  cursor: pointer; /* 클릭 가능 마우스 커서 */
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.5s ease; /* 크기와 배경색 변경 애니메이션 */
+  overflow: hidden; /* 컨텐츠가 넘치면 숨김 */
+  background-color: #ffffff;
+  height:300px; /* 기본 높이 설정 */
+  position: relative; /* 상대 위치 지정 */
+  margin-top: 50px;
+}
+
+/* 클릭 시 room이 2배 크기로 확장 */
+.room.open {
+  height: 600px; /* 클릭 시 높이를 2배로 확장 */
+  background-color: #f0f0f0; /* 확장 시 배경색 변화 */
+}
+
+/* 숨겨진 방 정보 (기본적으로 숨김 처리) */
+.room-details {
+  display: none;
+  flex-direction: row; /* 가로로 방 번호 정렬 */
+  justify-content: space-around; /* 각 방 번호를 균일하게 정렬 */
+  opacity: 0; /* 숨겨진 상태에서 투명도 0 */
+  max-height: 0; /* 높이를 0으로 설정해 숨김 */
+  transition: all 0.5s ease; /* 애니메이션: 높이 및 투명도 변화 */
+  overflow: hidden; /* 넘치는 컨텐츠는 숨김 */
+  margin-top: 10px; /* room 요소와 겹치지 않도록 여*/
+}
+
+/* 방 정보가 열렸을 때 */
+.room-details.open {
+  display: block;
+  opacity: 1; /* 투명도를 1로 설정해 표시 */
+  max-height: 800px; /* 방 번호 표시 영역의 최대 높이 설정 */
+  padding: 300px; /* 열렸을 때 padding 추가 */
+}
+
+/* 상세 방 여기부터~ */
+
+/* 방 번호 선택 영역 스타일 */
+.room-selection {
+  display: flex;
+  flex-direction: row; /* 방 번호를 가로로 배치 */
+  justify-content: flex-start; /* 좌측 정렬 */
+  align-items: flex-start; /* 좌측 정렬 */
+  width: 100%; /* 가로로 꽉 차게 */
+  padding: 10px 0; /* 상하 padding 추가 */
+}
+
+.group-21, .group-23 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.group-20 {
+  margin-top: 10px;
+}
+
+.rectangle-50, .rectangle-502 {
+  background: #d9d9d9;
+  width: 100px;
+  height: 100px;
+}
+
+.div16, .div18 {
+  background-color: #484848;
+  color: white;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.div16:hover, .div18:hover {
+  background-color: #333;
+}
+
+
+/* 드롭다운 기본 상태: 숨김 */
+.dropdown {
+  display: none;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 150px; /* 원하는 너비 */
+
+  /* 드롭다운이 아래로 나오도록 설정 */
+  position: absolute;
+  top: 100%;  /* 부모 요소 바로 아래에 위치 */
+  left: 0;    /* 부모 요소와 수평으로 일치 */
+  z-index: 10;
+}
+
+/* 드롭다운 항목 */
+.dropdown li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown li:hover {
+  background-color: #f0f0f0;
+}
+
+
+/* 반응형 웹 디자인 적용 
+@media (max-width: 1200px) {
+  .filter-list {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column; 
+    padding: 10px;
+  }
+
+  .filter-list {
+    flex: 1 1 100%; 
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-list {
+    padding: 5px;
+    font-size: 14px; 
+  }
+
+  .dropdown li {
+    padding: 5px; 
+  }
+}*/
+
+
+/* 모달 기본 스타일 */
+.modal {
+  display: none; /* 기본적으로 숨김 */
+  position: fixed; /* 화면 고정 */
+  z-index: 1000; /* 가장 위에 표시 */
+  left: 0;
+  top: 0;
+  width: 100%; /* 화면 전체를 덮음 */
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* 반투명 배경 */
+}
+
+/* 모달 컨텐츠 */
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto; /* 화면 가운데 정렬 */
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  text-align: center;
+}
+
+/* 닫기 버튼 */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
 }
