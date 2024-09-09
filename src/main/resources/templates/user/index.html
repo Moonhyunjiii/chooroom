@@ -1,195 +1,426 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/user/vars.css" />
     <link rel="stylesheet" href="css/user/style.css" />
-    <style>
-        a,
-        button,
-        input,
-        select,
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-          border: none;
-          text-decoration: none;
-          background: none;
-
-          -webkit-font-smoothing: antialiased;
-        }
-
-        menu,
-        ol,
-        ul {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-        }
-    </style>
-    <title>Document</title>
-</head>
-<body>
-<div class="container">
-    <div class="main">
+    <link rel="stylesheet" href="css/user/var.css" />
+    <link rel="stylesheet" href="css/user/calendar.css" />
+    <script src="js/user/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>LG 클린 서비스 제공 호텔</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="main">
+        <!-- 상단 배너 -->
         <div class="line-banner">
-            <div class="lg">LG 클린 서비스 제공 호텔</div>
+          <div class="lg">LG 클린 서비스 제공 호텔</div>
         </div>
-        <div class="banner">
-            <div class="div">우리 클린 서비스 관련 이미지</div>
-            <div class="rectangle-4"></div>
-            <div class="div2">호텔 선택</div>
-            <div class="div3">원하시는 호텔을 선택하세요.</div>
-            <div class="check-in">Check In</div>
-            <div class="add-dates">Add Dates</div>
-            <div class="check-out">
-                Check Out
-                <br />
-            </div>
-            <div class="add-dates2">
-                Add Dates
-                <br />
-            </div>
-            <div class="guests">Guests</div>
-            <div class="add-guests">Add Guests</div>
-            <div class="round-search">
-                <div class="ellipse-1"></div>
-                <img class="fe-search" src="fe-search0.svg" />
-            </div>
-            <div class="line-1"></div>
-            <div class="line-3"></div>
-            <div class="line-2"></div>
+
+  <div class="banner">
+    <div class="div">우리 클린 서비스 관련 이미지</div>
+    <div class="rectangle-4"></div>
+    <div class="div2">호텔 선택</div>
+    <div class="div3">원하시는 호텔을 선택하세요.</div>
+  
+    <!-- Check In과 Check Out을 위한 데이트피커 필드 추가 -->
+    <div class="date-box">
+      <div class="check-in">
+        <input id="checkin-date" type="text" placeholder="Check In" class="datepicker" readonly onclick="toggleCalendar()">
+      </div>
+    </div>
+  
+    <div class="date-box">
+      <div class="check-out">
+        <input id="checkout-date" type="text" placeholder="Check Out" class="datepicker" readonly>
+      </div>
+    </div>
+    
+    <div class="guests">Guests</div>
+    <div class="add-guests">Add Guests</div>
+  
+    <div class="round-search">
+      <div class="ellipse-1"></div>
+      <img class="fe-search" src="fe-search0.svg" alt="search" />
+    </div>
+  </div>
+  
+  <!-- 달력 섹션 (기본적으로 숨김 처리) -->
+  <div class="calendar" id="calendar" style="display:none;">
+    <div class="frame-201">
+      <div class="start-date">Check in date</div>
+      <img class="arrow-right" src="arrow-right0.svg" />
+      <div class="end-date">Check out date</div>
+    </div>
+    <div class="line-22"></div>
+    <div class="frame-211">
+      <div class="calendar-single-light">
+        <div class="month-year-line">
+          <img class="chevron-left" src="chevron-left0.svg" />
+          <div class="month-year">Month year</div>
+          <img class="chevron-right" src="chevron-right0.svg" />
         </div>
-        <div class="fliter">
-            <div class="div4">내가 원하는 컨디션의 방을 선택해요</div>
-            <div class="tag">
-                <div class="div5">#위생 정수기</div>
-            </div>
-            <div class="tag2">
-                <div class="div5">#고급 의류 케어</div>
-            </div>
-            <div class="tag3">
-                <div class="div5">#프리미엄 신발 관리</div>
-            </div>
-            <div class="tag4">
-                <div class="div5">#프리미엄 안마 의자</div>
-            </div>
-            <div class="tag5">
-                <div class="dolby-atomos">#Dolby Atomos 시네마 룸</div>
-            </div>
-            <div class="tag6">
-                <div class="div5">#프리미엄 청정 룸</div>
-            </div>
+        <div class="line-21"></div>
+        <div class="day-date">
+          <!-- 달력 날짜 구조 -->
+          <div class="day-line">
+            <div class="day"><div class="day2">Sun</div></div>
+            <div class="day"><div class="day2">Mon</div></div>
+            <div class="day"><div class="day2">Tue</div></div>
+            <div class="day"><div class="day2">Wed</div></div>
+            <div class="day"><div class="day2">Thu</div></div>
+            <div class="day"><div class="day2">Fri</div></div>
+            <div class="day"><div class="day2">Sat</div></div>
+          </div>
+          <div class="date-line">
+            <!-- 날짜 표시 영역 -->
+            <div class="date"><div class="_1">1</div></div>
+            <div class="date"><div class="_1">2</div></div>
+            <div class="date"><div class="_1">3</div></div>
+            <!-- 나머지 날짜 -->
+          </div>
         </div>
-        <div class="fliter2">
-            <div class="line"></div>
-            <div class="frame-26085744">
-                <div class="filter">
-                    <div class="filter-list">
-                        <div class="name">
-                            <div class="div6">뷰</div>
-                        </div>
-                    </div>
-                    <div class="filter-list">
-                        <div class="name2">
-                            <div class="div7">침대</div>
-                        </div>
-                    </div>
-                    <div class="name2">
-                        <div class="div7">가격</div>
-                    </div>
-                    <div class="filter-list2">
-                        <div class="div8">기타 필터</div>
-                    </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- 필터 섹션 -->
+      <!-- 필터 섹션 -->
+      <div class="fliter">
+        <div class="div4">내가 원하는 컨디션의 방을 선택해요</div>
+        
+        <!-- 위생 정수기 태그 -->
+        <div class="tag" onclick="toggleSelection(this)">
+          <div class="div5" th:text="${ROOM_TAG[0].TAG_NAME}"></div>
+        </div>
+        
+        <!-- 고급 의류 케어 태그 -->
+        <div class="tag2" onclick="toggleSelection(this)">
+          <div class="div5" th:text="${ROOM_TAG[1].TAG_NAME}"></div>
+        </div>
+        
+        <!-- 프리미엄 신발 관리 태그 -->
+        <div class="tag3" onclick="toggleSelection(this)">
+          <div class="div5" th:text="${ROOM_TAG[2].TAG_NAME}"></div>
+        </div>
+        
+        <!-- 프리미엄 안마 의자 태그 -->
+        <div class="tag4" onclick="toggleSelection(this)">
+          <div class="div5" th:text="${ROOM_TAG[3].TAG_NAME}"></div>
+        </div>
+        
+        <!-- Dolby Atomos 시네마 룸 태그 -->
+        <div class="tag5" onclick="toggleSelection(this)">
+          <div class="div5" th:text="${ROOM_TAG[4].TAG_NAME}"></div>
+        </div>
+        
+        <!-- 프리미엄 청정 룸 태그 -->
+        <div class="tag6" onclick="toggleSelection(this)">
+          <div class="div5" th:text="${ROOM_TAG[5].TAG_NAME}"></div>
+        </div>
+      </div>
+
+      <!-- 필터2 섹션 -->
+      <div class="fliter2">
+        <div class="line"></div>
+        <div class="frame-26085744">
+          <div class="filter">
+            <!-- 뷰 필터 -->
+            <!-- 뷰 드롭다운 -->
+            <div class="filter-list" onclick="toggleDropdown('view-dropdown')">
+              <div class="name">
+                <div class="div6">뷰</div>
+              </div>
+              <ul id="view-dropdown" class="dropdown">
+                <li th:each="viewType : ${V_TYPE}" th:text="${V_TYPE}">시티뷰</li>
+                <li th:each="viewType : ${V_TYPE}" th:text="${V_TYPE}">오션뷰</li>
+                <li th:each="viewType : ${V_TYPE}" th:text="${V_TYPE}">산 전망</li>
+              </ul>
+            </div>
+
+            <!-- 침대 필터 -->
+            <div class="filter-list" onclick="toggleDropdown('bed-dropdown')">
+              <div class="name">침대</div>
+              <ul id="bed-dropdown" class="dropdown">
+                <li th:each="bedType : ${B_TYPE}" th:text="${B_TYPE}">s</li>
+                <li th:each="bedType : ${B_TYPE}" th:text="${B_TYPE}"></li>
+                <li th:each="bedType : ${B_TYPE}" th:text="${B_TYPE}"></li>
+                <li th:each="bedType : ${B_TYPE}" th:text="${B_TYPE}"></li>
+              </ul>
+            </div>
+
+            <!-- 가격 필터 -->
+            <div class="filter-list" onclick="toggleDropdown('price-dropdown')">
+              <div class="name">가격</div>
+              <ul id="price-dropdown" class="dropdown">
+                <li th:each="priceOrder : ${R_PRICE}" th:text="${R_PRICE}">높은순</li>
+                <li th:each="priceOrder : ${R_PRICE}" th:text="${R_PRICE}">낮은순</li>
+              </ul>
+            </div>
+
+            <!-- 기타 필터 -->
+            <div class="filter-list2" onclick="toggleFilterSize(this)">
+              <div class="div8">기타 필터</div>
+              <ul id="other-dropdown" class="dropdown">
+                <li th:each="otherFilter : ${otherFilters}" th:text="${otherFilter}">미정</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+            <!-- 싱글 룸 섹션 -->
+      <div class="room" onclick="toggleRoomDetails(this)">
+        <div class="room-header">
+          <div class="div9">싱글 룸</div>
+          <!-- 최소 가격을 표시 -->
+          <div class="_100-000" th:text="${#numbers.formatInteger(room.minPrice, 0)} + '원 ~'">80,000원 ~</div>
+          <div class="rectangle-25"></div>
+          <img class="group-6" src="group-60.svg" alt="room image" />
+          <img class="vector-2" src="vector-20.svg" alt="vector" />
+          <div class="div10">객실 보기</div>
+          <div class="rectangle-47"></div>
+          
+          <!-- 소음도 표시 -->
+          <div class="div11">평균 소음도</div>
+          <div class="_19-db">
+            <span>
+              <span class="_19-db-span" th:text="${room.avgNoiseLevel} + 'db'">20db</span>
+              <span class="_19-db-span2">, 매우 조용해요</span>
+            </span>
+          </div>
+          
+          <!-- 방 크기와 침대 정보 -->
+          <div class="_40-m-2" th:text="${room.roomSize} + 'm² | ' + ${room.bedType} + ' 침대 | ' + ${room.viewType}">25m² | 싱글 침대 | 시티뷰</div>
+          <div class="div12" th:text="${room.description}">싱글 룸에 대한 간략한 설명을 작성합니다.</div>
+          
+          <!-- 1박 기준, 남은 객실 수 표시 -->
+          <div class="_1">1박 기준</div>
+          <div class="_2" th:text="'남은 객실 ' + ${room.availableCount}">남은 객실 1</div>
+        </div>
+        
+        <!-- 숨겨진 방의 추가 정보 (필터에 맞는 방이 있는 경우만 표시) -->
+        <div class="room-details">
+          <div th:if="${room.roomDetails != null and !room.roomDetails.isEmpty()}">
+            <div th:each="detail : ${room.roomDetails}" class="room-selection">
+              <div class="group-21">
+                <div class="_201" th:text="${detail.roomNumber}">101호</div>
+                <div class="div15" th:text="${detail.viewType} + ', ' + ${detail.roomStatus}">시티뷰, 고요한 방</div>
+                <div class="group-20">
+                  <div class="rectangle-50"></div>
+                  <div class="div16">선택</div>
                 </div>
+              </div>
             </div>
+          </div>
+          
+          <!-- 필터에 맞는 방이 없을 때 표시 -->
+          <div th:if="${room.roomDetails == null or room.roomDetails.isEmpty()}">
+            <p>필터에 맞는 방이 없습니다.</p>
+          </div>
         </div>
-        <div class="room">
-            <div class="div9">디럭스 룸</div>
-            <div class="_100-000">100,000원 ~</div>
-            <div class="rectangle-25"></div>
-            <img class="group-6" src="group-60.svg" />
-            <img class="vector-2" src="vector-20.svg" />
-            <div class="div10">예약하기</div>
-            <div class="rectangle-47"></div>
-            <div class="div11">평균 소음도</div>
-            <div class="_19-db">
+      </div>
+
+
+      
+      <!-- 디럭스 룸 섹션 -->
+      <div class="room" onclick="toggleRoomDetails(this)">
+        <div class="room-header">
+          <div class="div9">디럭스 룸</div>
+          <!-- 최소 가격을 표시 -->
+          <div class="_100-000" th:text="${#numbers.formatInteger(room.minPrice, 0)} + '원 ~'">200,000원 ~</div>
+          <div class="rectangle-25"></div>
+          <img class="group-6" src="group-60.svg" alt="room image" />
+          <img class="vector-2" src="vector-20.svg" alt="vector" />
+          <div class="div10">객실 보기</div>
+          <div class="rectangle-47"></div>
+          
+          <!-- 소음도 표시 -->
+          <div class="div11">평균 소음도</div>
+          <div class="_19-db">
             <span>
-              <span class="_19-db-span">19db</span>
-              <span class="_19-db-span2">, 굉장히 조용해요</span>
+              <span class="_19-db-span" th:text="${room.avgNoiseLevel} + 'db'">15db</span>
+              <span class="_19-db-span2">, 매우 조용해요</span>
             </span>
-            </div>
-            <div class="_40-m-2">40m^2 | 침실, 샤워부스 | 오션뷰</div>
-            <div class="div12">
-                디럭스 룸에 대한 간략한 설명을 작성합니다.
-                <br />
-                디럭스 룸에 대한 간략한 설명을 작성합니다.
-            </div>
-            <div class="_1">1박 기준</div>
-            <div class="_2">남은 객실 2</div>
+          </div>
+          
+          <!-- 방 크기와 침대 정보 -->
+          <div class="_40-m-2" th:text="${room.roomSize} + 'm² | ' + room.bedType + ' 침대 | ' + room.viewType">
+            25m² | 싱글 침대 | 시티뷰
+          </div>
+        
+          <div class="div12" th:text="${room.description}">디럭스 룸에 대한 간략한 설명을 작성합니다.</div>
+          
+          <!-- 1박 기준, 남은 객실 수 표시 -->
+          <div class="_1">1박 기준</div>
+          <div class="_2" th:text="'남은 객실 ' + ${room.availableCount}">남은 객실 1</div>
         </div>
-        <div class="room">
-            <div class="div9">디럭스 룸</div>
-            <div class="_100-000">100,000원 ~</div>
-            <div class="rectangle-25"></div>
-            <img class="group-62" src="group-61.svg" />
-            <img class="vector-22" src="vector-21.svg" />
-            <div class="div10">예약하기</div>
-            <div class="rectangle-47"></div>
-            <div class="div11">평균 소음도</div>
-            <div class="_19-db">
+        
+        <!-- 숨겨진 방의 추가 정보 (필터에 맞는 방이 있는 경우만 표시) -->
+        <div class="room-details">
+          <div th:if="${room.roomDetails != null and !room.roomDetails.isEmpty()}">
+            <div th:each="detail : ${room.roomDetails}" class="room-selection">
+              <div class="group-21">
+                <div class="_201" th:text="${detail.roomNumber}">301호</div>
+                <div class="div15" th:text="${detail.viewType} + ', ' + ${detail.roomStatus}">오션뷰, 고요한 방</div>
+                <div class="group-20">
+                  <div class="rectangle-50"></div>
+                  <div class="div16">선택</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 필터에 맞는 방이 없을 때 표시 -->
+          <div th:if="${room.roomDetails == null or room.roomDetails.isEmpty()}">
+            <p>필터에 맞는 방이 없습니다.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 스위트 룸 섹션 -->
+      <div class="room" onclick="toggleRoomDetails(this)">
+        <div class="room-header">
+          <div class="div9">스위트 룸</div>
+          <!-- 최소 가격을 표시 -->
+          <div class="_100-000" th:text="${#numbers.formatInteger(room.minPrice, 0)} + '원 ~'">200,000원 ~</div>
+          <div class="rectangle-25"></div>
+          <img class="group-6" src="group-60.svg" alt="room image" />
+          <img class="vector-2" src="vector-20.svg" alt="vector" />
+          <div class="div10">객실 보기</div>
+          <div class="rectangle-47"></div>
+          
+          <!-- 소음도 표시 -->
+          <div class="div11">평균 소음도</div>
+          <div class="_19-db">
             <span>
-              <span class="_19-db-span3">19db</span>
-              <span class="_19-db-span4">, 굉장히 조용해요</span>
+              <span class="_19-db-span" th:text="${room.avgNoiseLevel} + 'db'">15db</span>
+              <span class="_19-db-span2">, 매우 조용해요</span>
             </span>
-            </div>
-            <div class="_40-m-2">40m^2 | 침실, 샤워부스 | 오션뷰</div>
-            <div class="div12">
-                디럭스 룸에 대한 간략한 설명을 작성합니다.
-                <br />
-                디럭스 룸에 대한 간략한 설명을 작성합니다.
-            </div>
-            <div class="_1">1박 기준</div>
-            <div class="_2">남은 객실 2</div>
+          </div>
+          
+          <!-- 방 크기와 침대 정보 -->
+          <div class="_40-m-2" th:text="${room.roomSize} + 'm² | ' + ${room.bedType} + ' 침대 | ' + ${room.viewType}">70m² | 침실, 거실 포함 | 오션뷰</div>
+          <div class="div12" th:text="${room.description}">스위트 룸에 대한 간략한 설명을 작성합니다.</div>
+          
+          <!-- 1박 기준, 남은 객실 수 표시 -->
+          <div class="_1">1박 기준</div>
+          <div class="_2" th:text="'남은 객실 ' + ${room.availableCount}">남은 객실 1</div>
         </div>
-        <div class="room">
-            <div class="div9">디럭스 룸</div>
-            <div class="_100-000">100,000원 ~</div>
-            <div class="rectangle-25"></div>
-            <img class="group-63" src="group-62.svg" />
-            <img class="vector-23" src="vector-22.svg" />
-            <div class="div10">예약하기</div>
-            <div class="rectangle-47"></div>
-            <div class="div11">평균 소음도</div>
-            <div class="_19-db">
-            <span>
-              <span class="_19-db-span5">19db</span>
-              <span class="_19-db-span6">, 굉장히 조용해요</span>
-            </span>
+        
+      <!-- 숨겨진 방의 추가 정보 (필터에 맞는 방이 있는 경우만 표시) -->
+      <div class="room-details">
+        <div th:if="${room.roomDetails != null and !room.roomDetails.isEmpty()}">
+          <div th:each="detail : ${room.roomDetails}" class="room-selection">
+            <div class="group-21">
+              <div class="_201" th:text="${detail.roomNumber}">301호</div>
+              <div class="div15" th:text="${detail.viewType} + ', ' + ${detail.roomStatus}">오션뷰, 고요한 방</div>
+              <div class="group-20">
+                <div class="rectangle-50"></div>
+                <div class="div16" onclick="openModal('${detail.roomNumber}')">선택</div>
+              </div>
             </div>
-            <div class="_40-m-2">40m^2 | 침실, 샤워부스 | 오션뷰</div>
-            <div class="div12">
-                디럭스 룸에 대한 간략한 설명을 작성합니다.
-                <br />
-                디럭스 룸에 대한 간략한 설명을 작성합니다.
+          </div>
+        </div>
+      </div>
+
+      <!-- 모달 구조 -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          
+          <!-- 모달 헤더 -->
+          <h2>객실 선택 확인</h2>
+          
+          <!-- 객실 번호 표시 -->
+          <p id="modalRoomNumber"></p>
+          
+          <!-- 모달 바디 내용 -->
+          <div class="modal-body">
+            <img class="group-32" src="group-320.svg" />
+            <div class="rectangle-51"></div>
+            <div class="div2">
+              스위트 룸에 대한 간략한 설명을 작성합니다. 스위트 룸에 대한 간략한 설명을 작성합니다.
+              <br />
+              스위트 룸에 대한 간략한 설명을 작성합니다.
             </div>
-            <div class="_1">1박 기준</div>
-            <div class="_2">남은 객실 2</div>
+
+            <div class="frame-10428">
+              <div class="div3">평균 소음도</div>
+              <div class="_19-db">
+                <span>
+                  <span class="_19-db-span">19db</span>
+                  <span class="_19-db-span2">, 굉장히 조용해요</span>
+                </span>
+              </div>
+              <div class="div4">현재 공기질</div>
+              <div class="_9-m">
+                <span>
+                  <span class="_9-m-span">9M 어쩌구</span>
+                  <span class="_9-m-span2">, 산 속 공기와 같아요.</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 부대시설 및 객실 정보 -->
+          <div class="modal-footer">
+            <div class="div5">
+              - 부대시설 이용 관련 항목 <br />
+              - 부대시설 이용 관련 항목 <br />
+              - 부대시설 이용 관련 항목
+            </div>
+            <div class="div6">
+              - 객실 이용 관련 항목 <br />
+              - 객실 이용 관련 항목 <br />
+              - 객실 이용 관련 항목
+            </div>
+
+            <!-- 확인 버튼 -->
+            <button onclick="confirmSelection()">확인</button>
+          </div>
         </div>
-    </div>
-    <div class="footer">
-        <div class="footer2">
-            Footer (아마 우리 서비스 이름, 이메일 정도 들어갈듯)
-        </div>
-    </div>
+      </div>
+
+
+    
+
+      
+      
+      
+  
+
+  
 </div>
-</body>
+      <!-- 하단 푸터 -->
+      <div class="footer">
+        <div class="footer2">
+          <div class="logo">LOGO</div>
+          <div class="lorem-ipsum-dolor">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </div>
+          <div class="playstore">
+            <div class="rectangle-46"></div>
+            <img class="ion-logo-google-playstore" src="ion-logo-google-playstore0.svg" />
+            <div class="play-store">PlayStore</div>
+          </div>
+          <div class="applestore">
+            <div class="rectangle-472"></div>
+            <div class="apple-store">AppleStore</div>
+            <img class="ion-logo-apple-appstore" src="ion-logo-apple-appstore0.svg" />
+          </div>
+          <div class="contact-info2">CONTACT INFO</div>
+          <div class="phone-1234567890">Phone: 1234567890</div>
+          <div class="email-company-email-com">Email: company@email.com</div>
+          <div class="location-100-smart-street-la-usa">
+            Location: 100 Smart Street, LA, USA
+          </div>
+          <img class="social-media-links" src="social-media-links0.svg" />
+        </div>
+
+  </body>
 </html>
