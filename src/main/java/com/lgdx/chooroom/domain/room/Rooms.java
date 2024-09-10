@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="ROOMS")
-public class Rooms {
+public class  Rooms {
 
     @Id
     @Column(name="R_NUM") private String roomNumber;
