@@ -11,131 +11,130 @@ import jakarta.persistence.Table;
 public class  Rooms {
 
     @Id
-    @Column(name="R_NUM") private String rNum;
-    @Column(name="R_TYPE") private String rType;
-    @Column(name="B_TYPE") private String bType;
-    @Column(name="V_TYPE") private String vType;
-    @Column(name="R_PRICE") private String rPrice;
-    @Column(name="R_DESC") private String rDesc;
-    @Column(name="R_AVLGUEST") private String rAvlguest;
-    @Column(name="R_AVL") private String rAvl;
-    @Column(name="R_STRUCT") private String rStruct;
-    @Column(name="C_STATUS") private String cStatus;
-    @Column(name="CIO_STATUS") private String cioStatus;
-    @Column(name="R_CONTROL") private String rControl;
+    @Column(name="R_NUM") private String roomNumber;
+    @Column(name="R_TYPE") private String roomType;
+    @Column(name="B_TYPE") private String bedType;
+    @Column(name="V_TYPE") private String viewType;
+    @Column(name="R_PRICE") private String roomPrice;
+    @Column(name="R_DESC") private String roomDescription;
+    @Column(name="R_AVLGUEST") private String roomAvlGuest;
+    @Column(name="R_AVL") private String roomReservationAvl;
+    @Column(name="R_STRUCT") private String roomStructure;
+    @Column(name="C_STATUS") private String cleanStatus;
+    @Column(name="CIO_STATUS") private String checkInOutStatus;
+    @Column(name="R_CONTROL") private String roomControl;
 
-
-    public String getrNum() {
-        return rNum;
+    public String getRoomNumber() {
+        return roomNumber;
     }
 
-    public void setrNum(String rNum) {
-        this.rNum = rNum;
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
-    public String getrType() {
-        return rType;
+    public String getRoomType() {
+        return roomType;
     }
 
-    public void setrType(String rType) {
-        this.rType = rType;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
-    public String getbType() {
-        return bType;
+    public String getBedType() {
+        return bedType;
     }
 
-    public void setbType(String bType) {
-        this.bType = bType;
+    public void setBedType(String bedType) {
+        this.bedType = bedType;
     }
 
-    public String getvType() {
-        return vType;
+    public String getViewType() {
+        return viewType;
     }
 
-    public void setvType(String vType) {
-        this.vType = vType;
+    public void setViewType(String viewType) {
+        this.viewType = viewType;
     }
 
-    public String getrPrice() {
-        return rPrice;
+    public String getRoomPrice() {
+        return roomPrice;
     }
 
-    public void setrPrice(String rPrice) {
-        this.rPrice = rPrice;
+    public void setRoomPrice(String roomPrice) {
+        this.roomPrice = roomPrice;
     }
 
-    public String getrDesc() {
-        return rDesc;
+    public String getRoomDescription() {
+        return roomDescription;
     }
 
-    public void setrDesc(String rDesc) {
-        this.rDesc = rDesc;
+    public void setRoomDescription(String roomDescription) {
+        this.roomDescription = roomDescription;
     }
 
-    public String getrAvlguest() {
-        return rAvlguest;
+    public String getRoomAvlGuest() {
+        return roomAvlGuest;
     }
 
-    public void setrAvlguest(String rAvlguest) {
-        this.rAvlguest = rAvlguest;
+    public void setRoomAvlGuest(String roomAvlGuest) {
+        this.roomAvlGuest = roomAvlGuest;
     }
 
-    public String getrAvl() {
-        return rAvl;
+    public String getRoomReservationAvl() {
+        return roomReservationAvl;
     }
 
-    public void setrAvl(String rAvl) {
-        this.rAvl = rAvl;
+    public void setRoomReservationAvl(String roomReservationAvl) {
+        this.roomReservationAvl = roomReservationAvl;
     }
 
-    public String getrStruct() {
-        return rStruct;
+    public String getRoomStructure() {
+        return roomStructure;
     }
 
-    public void setrStruct(String rStruct) {
-        this.rStruct = rStruct;
+    public void setRoomStructure(String roomStructure) {
+        this.roomStructure = roomStructure;
     }
 
-    public String getcStatus() {
-        return cStatus;
+    public String getCleanStatus() {
+        return cleanStatus;
     }
 
-    public void setcStatus(String cStatus) {
-        this.cStatus = cStatus;
+    public void setCleanStatus(String cleanStatus) {
+        this.cleanStatus = cleanStatus;
     }
 
-    public String getCioStatus() {
-        return cioStatus;
+    public String getCheckInOutStatus() {
+        return checkInOutStatus;
     }
 
-    public void setCioStatus(String cioStatus) {
-        this.cioStatus = cioStatus;
+    public void setCheckInOutStatus(String checkInOutStatus) {
+        this.checkInOutStatus = checkInOutStatus;
     }
 
-    public String getrControl() {
-        return rControl;
+    public String getRoomControl() {
+        return roomControl;
     }
 
-    public void setrControl(String rControl) {
-        this.rControl = rControl;
+    public void setRoomControl(String roomControl) {
+        this.roomControl = roomControl;
     }
 
     @Override
     public String toString() {
         return "Rooms{" +
-                "rNum='" + rNum + '\'' +
-                ", rType='" + rType + '\'' +
-                ", bType='" + bType + '\'' +
-                ", vType='" + vType + '\'' +
-                ", rPrice='" + rPrice + '\'' +
-                ", rDesc='" + rDesc + '\'' +
-                ", rAvlguest='" + rAvlguest + '\'' +
-                ", rAvl='" + rAvl + '\'' +
-                ", rStruct='" + rStruct + '\'' +
-                ", cStatus='" + cStatus + '\'' +
-                ", cioStatus='" + cioStatus + '\'' +
-                ", rControl='" + rControl + '\'' +
+                "roomNumber='" + roomNumber + '\'' +
+                ", roomType='" + roomType + '\'' +
+                ", bedType='" + bedType + '\'' +
+                ", viewType='" + viewType + '\'' +
+                ", roomPrice='" + roomPrice + '\'' +
+                ", roomDescription='" + roomDescription + '\'' +
+                ", roomAvlGuest='" + roomAvlGuest + '\'' +
+                ", roomReservationAvl='" + roomReservationAvl + '\'' +
+                ", roomStructure='" + roomStructure + '\'' +
+                ", cleanStatus='" + cleanStatus + '\'' +
+                ", checkInOutStatus='" + checkInOutStatus + '\'' +
+                ", roomControl='" + roomControl + '\'' +
                 '}';
     }
 }
