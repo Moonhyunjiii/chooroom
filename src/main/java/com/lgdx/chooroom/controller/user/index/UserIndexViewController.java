@@ -10,6 +10,5 @@ public class UserIndexViewController {
     public String userIndex() {
         return "user/index";
     }
-
-
+    
 }
