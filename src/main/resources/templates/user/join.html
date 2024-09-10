@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../static/css/user/join.css" />
+
+    <script src="../../static/js/user/join.js"></script>
+    <style>
+        a,
+        button,
+        input,
+        select,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          border: none;
+          text-decoration: none;
+          background: none;
+
+          -webkit-font-smoothing: antialiased;
+        }
+
+        menu,
+        ol,
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+    <div class="main">
+        <form action="/savePreferences" method="post">
+            <!-- 회원가입 버튼 -->
+            <div class="button"> 
+                <button type="submit" class="joinbutton">회원가입</button>
+            </div>
+            
+            <div class="div2">환영합니다, 츄룸 서비스와 함께해요</div>
+            
+            <div class="fullform">
+                <!-- 이름 입력 -->
+                <div class="username">
+                    <input type="text" class="input" th:field="*{customerName}" placeholder="이름을 입력하세요" />
+                    <div class="label">이름</div>
+                </div>
+        
+                <!-- 아이디 입력 -->
+                <div class="userId">
+                    <input type="text" class="input" id="customerId" th:field="*{customerId}" placeholder="아이디를 입력하세요" />
+                    <label class="label2" for="customerId">아이디</label>
+                    
+                    <div class="Idcheck">
+                        <button type="button" class="Idcheckbutton">중복 확인</button>
+                    </div>
+
+                </div>
+        
+                <!-- 비밀번호 입력 -->
+                <div class="password">
+                    <input type="password" class="input" th:field="*{customerPw}" placeholder="비밀번호를 입력하세요" />
+                    <label class="label" for="customerPw">비밀번호</label>
+                </div>
+
+                <!-- 비밀번호 확인 -->
+                <div class="passwordcheck">
+                    <input type="password" class="input" th:field="*{confirmPassword}" placeholder="비밀번호를 다시 입력하세요" />
+                    <label class="label3" for="confirmPassword">비밀번호 확인</label>
+                </div>
+                        
+                <!-- 전화번호 입력 -->
+                <div class="phonenumber">
+                    <input type="tel" class="input" th:field="*{customerCallNumber}" placeholder="전화번호를 입력하세요" />
+                    <label class="label2" for="customerCallNumber">전화번호</label>
+                </div>
+
+                <!-- 이메일 입력 -->
+                <div class="email">
+                    <input type="email" class="input" th:field="*{email}" placeholder="이메일을 입력하세요" />
+                    <label class="label2" for="email">이메일</label>
+                </div>
+
+                <!-- 생년월일 입력 -->
+                <div class="Age">
+                    <input type="text" class="input" th:field="*{customerAge}" placeholder="ex. 1991/08/12" />
+                    <label class="label4" for="customerAge">나이</label>
+                </div>
+            </div>
+        
+            <!-- 방 컨디션 선택 폼 -->
+
+            <div class="wantedconditions">
+                <label>특별히 관리하고 싶은 컨디션을 선택해요:</label>
+                <div>
+                    <input type="checkbox" name="customerAdditionalRequest" value="소음에 민감해요"> 소음에 민감해요
+                </div>
+                <div>
+                    <input type="checkbox" name="customerAdditionalRequest" value="먼지에 민감해요"> 먼지에 민감해요
+                </div>
+                <div>
+                    <input type="checkbox" name="customerAdditionalRequest" value="습기에 민감해요"> 습기에 민감해요
+                </div>
+                <div>
+                    <input type="checkbox" name="customerAdditionalRequest" value="온도에 민감해요"> 온도에 민감해요
+                </div>
+            </div>
+            
+            <div class="allergy">
+                <label>알레르기 정보:</label>
+                <div>
+                    <input type="checkbox" name="healthInfo" value="먼지 알레르기"> 먼지 알레르기
+                </div>
+                <div>
+                    <input type="checkbox" name="healthInfo" value="진드기 알레르기"> 진드기 알레르기
+                </div>
+                <div>
+                    <input type="text" name="otherAllergyInfo" placeholder="기타 알러지 정보 입력" />
+                </div>
+            </div>
+        
+
+        </form>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // 중복 확인 버튼 클릭 시
+        document.querySelector('.Idcheckbutton').addEventListener('click', function () {
+            // 아이디 입력 필드 값 가져오기
+            var customerId = document.getElementById('customerId').value;
+    
+            // 아이디가 입력되었는지 확인
+            if (!customerId) {
+                alert("아이디를 입력하세요.");
+            } else {
+                // 단순한 알림 출력
+                alert("사용 가능한 아이디입니다!");
+            }
+        });
+    });
+</script>
+</body>
+</html>
+
+

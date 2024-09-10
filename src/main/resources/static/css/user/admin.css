@@ -1,0 +1,170 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.container {
+    background: #ffffff;
+    height: 1066.82px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sidebar (회색) */
+.sidebar {
+    background: #d9d9d9;
+    width: 240.04px;
+    height: 970.14px;
+    position: absolute;
+    left: 0px;
+    top: 96.68px;
+}
+
+/* Summary Header Section */
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    background: #d9d9d9;
+    width: calc(100% - 250px); /* Sidebar 공간을 제외한 너비 */
+    height: 200px; /* 높이를 줄임 */
+    position: absolute;
+    left: 250px;
+    top: 0px;
+    padding: 20px; /* 내부 여백 */
+}
+
+.report-box {
+    background: #ffffff;
+    flex: 1;
+    margin: 0 10px; /* 각 보고서 박스 사이의 간격 */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.report-title2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.report-details p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+
+/* Room Sections */
+.room-sections {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 50px; /* summary-header 아래에 딱 붙게 조정 */
+    position: absolute;
+    left: 250px; /* 사이드바 오른쪽으로 시작 */
+    top: 220px; /* 이전의 큰 공백 제거 */
+}
+
+/* Green border: 사용 중 (초록색) */
+.room.green {
+    background: #f4f4f4;
+    border: 2px solid #00cf6c; /* 초록색: 사용 중 */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 32%;
+}
+
+/* Red border: 체크인 예정 (빨간색) */
+.room.red {
+    background: #f4f4f4;
+    border: 2px solid #ff0000; /* 빨간색: 체크인 예정 */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 32%;
+}
+
+/* Blue border: 공실 (파란색) */
+.room.blue {
+    background: #f4f4f4;
+    border: 2px solid #006ccf; /* 파란색: 공실 */
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 32%;
+}
+
+.room-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.room-details,
+.room-status,
+.room-appliance,
+.room-timing {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+/* Header & Footer */
+.header, .footer {
+    background: #d9d9d9;
+    width: 1600.23px;
+    height: 76.68px;
+    position: absolute;
+}
+
+.header {
+    top: 0px;
+}
+
+.footer {
+    top: 1019.04px;
+}
+
+/* Sidebar Section */
+.sidebar-title {
+    color: #000000;
+    text-align: center;
+    font-size: 22.225px;
+    font-weight: 700;
+    position: absolute;
+    left: 6.67px;
+    top: 167.8px;
+    width: 227.81px;
+}
+
+.sidebar-item {
+    color: #000000;
+    text-align: center;
+    font-size: 22.225px;
+    font-weight: 500;
+    position: absolute;
+    left: 6.67px;
+    width: 227.81px;
+}
+
+.sidebar-item:nth-child(2) {
+    top: 233.37px;
+}
+
+.sidebar-item:nth-child(3) {
+    top: 297.82px;
+}
+
+.sidebar-item:nth-child(4) {
+    top: 363.39px;
+}
+
+.sidebar-item:nth-child(5) {
+    top: 428.95px;
+}

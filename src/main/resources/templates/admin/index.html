@@ -1,10 +1,214 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../static/css/user/admin.css" />
 </head>
 <body>
-<h1>관리자 화면 index 입니다.</h1>
+<div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-title"> 대시보드</div>
+        <div class="sidebar-item">객실 제품/ 기기관리</div>
+        <div class="sidebar-item">호텔 기기</div>
+        <!-- <div class="sidebar-item">에너지 관리</div> -->
+        <div class="sidebar-item">객실관리</div>
+    </div>
+
+    <!-- Summary Header Section -->
+    <div class="summary-header">
+        <!-- 다가오는 예약 -->
+        <div class="report-box upcoming-reservation">
+            <p class="report-title2">다가오는 예약</p>
+            <div class="report-details">
+                <!-- 얼리 체크인: 청소 완료된 방 개수 -->
+                <p>얼리 체크인: <span th:text="${earlyCheckinCount}"></span></p>
+                <!-- 일반 체크인: 청소 중인 방 개수 -->
+                <p>일반 체크인: <span th:text="${regularCheckinCount}"></span></p>
+                <!-- 레이트 체크인: 전체 방 수에서 얼리체크인, 일반체크인 제외 -->
+                <p>레이트 체크인 가능 방: <span th:text="${lateCheckinCount}"></span></p>
+
+                <!--
+                Controller
+                @Controller
+                public class RoomController {
+
+                    @Autowired
+                    private ReservationService reservationService;
+
+                    @GetMapping("/rooms")
+                    public String showRooms(Model model) {
+                        // 청소 상태에 따른 방 개수 가져오기
+                        Map<String, Integer> checkinCounts = reservationService.getCheckinStatusCounts();
+
+                        model.addAttribute("earlyCheckinCount", checkinCounts.get("earlyCheckinCount"));
+                        model.addAttribute("regularCheckinCount", checkinCounts.get("regularCheckinCount"));
+                        model.addAttribute("lateCheckinCount", checkinCounts.get("lateCheckinCount"));
+
+                        return "roomView";  // Thymeleaf 템플릿 이름
+                    }
+
+                    @GetMapping("/rooms")
+                    public String showRooms(Model model) {
+                        // 남은 객실 수 가져오기
+                        int availableRoomsCount = reservationService.getAvailableRoomsCount();
+
+                        model.addAttribute("availableRoomsCount", availableRoomsCount);
+
+                        return "roomView";  // Thymeleaf 템플릿 이름
+                    }
+                }
+
+                ReservationService 파일에
+                @Service
+                public class ReservationService {
+
+                    @Autowired
+                    private RoomRepository roomRepository;
+
+                    /**
+                     * 청소 상태에 따른 방 개수 반환 (얼리 체크인, 일반 체크인, 레이트 체크인)
+                     */
+                    public Map<String, Integer> getCheckinStatusCounts() {
+                        List<Room> rooms = roomRepository.findAll(); // 전체 방 목록을 가져옴
+
+                        int earlyCheckinCount = 0;  // 청소 완료된 방
+                        int regularCheckinCount = 0; // 청소 중인 방
+                        int totalRooms = rooms.size(); // 전체 방 수
+
+                        // 방의 청소 상태에 따라 카운트
+                        for (Room room : rooms) {
+                            if (room.getCleanStatus() == 1) {  // 1이면 청소 완료 (얼리 체크인)
+                                earlyCheckinCount++;
+                            } else if (room.getCleanStatus() == 0) {  // 0이면 청소 중 (일반 체크인)
+                                regularCheckinCount++;
+                            }
+                        }
+
+                        // 레이트 체크인: 전체 방 수에서 얼리 체크인과 일반 체크인 방을 뺀 값
+                        int lateCheckinCount = totalRooms - (earlyCheckinCount + regularCheckinCount);
+
+                        Map<String, Integer> checkinCounts = new HashMap<>();
+                        checkinCounts.put("earlyCheckinCount", earlyCheckinCount);
+                        checkinCounts.put("regularCheckinCount", regularCheckinCount);
+                        checkinCounts.put("lateCheckinCount", lateCheckinCount);
+
+                        return checkinCounts;
+
+
+                            /**
+                     * 전체 방 수에서 예약된 방(roomReservationAvl == 1)을 제외한 남은 객실 수 반환
+                     */
+                    public int getAvailableRoomsCount() {
+                        List<Room> rooms = roomRepository.findAll(); // 전체 방 목록을 가져옴
+                        int totalRooms = rooms.size(); // 전체 방 수
+                        int reservedRoomsCount = 0; // 예약된 방 수
+
+                        // 예약된 방의 개수 계산
+                        for (Room room : rooms) {
+                            if (room.getRoomReservationAvl() == 1) {  // 예약된 방 (roomReservationAvl == 1)
+                                reservedRoomsCount++;
+                            }
+                        }
+
+                        // 남은 객실 수 = 전체 방 수 - 예약된 방 수
+                        int availableRoomsCount = totalRooms - reservedRoomsCount;
+                        return availableRoomsCount;
+                    }
+                    }
+                }
+                -->
+
+            </div>
+        </div>
+        <div class="report-box occupancy">
+            <p class="report-title2">객실 사용량</p>
+            <div class="report-details">
+                <p>예약</p>
+                <p>남은 객실 수: 3</p>
+            </div>
+        </div>
+        <div class="report-box cleaning-needed">
+            <p class="report-title2">청소가 필요한 방</p>
+            <div class="report-details">
+                <p>000호실</p>
+                <p>000호실</p>
+            </div>
+        </div>
+        <div class="report-box equipment-issues">
+            <p class="report-title2">방별 기기 문제</p>
+            <div class="report-details">
+                <p>이상: 1</p>
+                <p>고장: 1</p>
+                <p>필터 교체: 2</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Room Sections -->
+    <div class="room-sections">
+
+        <!-- Room 1: Green - 사용 중 -->
+        <div class="box room green">
+            <p class="room-title">1호실</p>
+            <p class="room-details">객실타입</p>
+            <p class="room-details">예약자명 / 예약자 사이트</p>
+            <p class="room-status">방 온도: 정상</p>
+            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
+            <p class="room-timing">체크인 3시 / 체크아웃 9시 (예정)</p>
+        </div>
+
+        <!-- Room 2: Green - 사용 중 -->
+        <div class="box room green">
+            <p class="room-title">2호실</p>
+            <p class="room-details">객실타입</p>
+            <p class="room-details">예약자명 / 예약자 사이트</p>
+            <p class="room-status">방 온도: 정상</p>
+            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
+            <p class="room-timing">체크인 3시 / 체크아웃 9시 (예정)</p>
+        </div>
+
+        <!-- Room 3: Blue - 공실 -->
+        <div class="box room blue">
+            <p class="room-title">3호실</p>
+            <p class="room-details">객실타입</p>
+            <p class="room-status">방 온도: 정상</p>
+            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
+            <p class="room-timing">공실</p>
+        </div>
+
+        <!-- Room 4: Blue - 공실 -->
+        <div class="box room blue">
+            <p class="room-title">4호실</p>
+            <p class="room-details">객실타입</p>
+            <p class="room-status">방 온도: 정상</p>
+            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
+            <p class="room-timing">공실</p>
+        </div>
+
+        <!-- Room 5: Red - 체크인 예정 -->
+        <div class="box room red">
+            <p class="room-title">5호실</p>
+            <p class="room-details">객실타입</p>
+            <p class="room-details">예약자명 / 예약자 사이트</p>
+            <p class="room-status">방 온도: 정상</p>
+            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
+            <p class="room-timing">체크인 3시 / 체크아웃 9시 (예정)</p>
+        </div>
+
+        <!-- Room 6: Red - 체크인 예정 -->
+        <div class="box room red">
+            <p class="room-title">6호실</p>
+            <p class="room-details">객실타입</p>
+            <p class="room-details">예약자명 / 예약자 사이트</p>
+            <p class="room-status">방 온도: 정상</p>
+            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
+            <p class="room-timing">체크인 3시 / 체크아웃 9시 (예정)</p>
+        </div>
+    </div>
+
+</div>
 </body>
 </html>
