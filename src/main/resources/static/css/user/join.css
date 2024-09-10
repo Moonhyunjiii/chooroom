@@ -15,7 +15,7 @@ html, body {
 
 .container {
   padding-top: 0; /* 상단 패딩 초기화 */
-  margin-top: 100px; /* 상단에 800px의 여백 추가 */
+  margin-top: 800px; /* 상단에 800px의 여백 추가 */
   margin-bottom: 0; /* 하단 여백을 줄이기 */
   position: relative;
   padding: 20px;

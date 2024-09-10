@@ -24,10 +24,9 @@ public class UserIndexViewController {
     @PostMapping("/join")
     public String registerUser(@ModelAttribute CustomerAccount customerAccount,
                                @ModelAttribute CustomerRequestHealth customerRequestHealth,
-                               @ModelAttribute CustomerFeedback customerFeedback,
-                               @ModelAttribute Long reservationNumber) {
+                               @ModelAttribute CustomerFeedback customerFeedback) {
         // 서비스 계층으로 회원가입 요청
-        userService.registerUser(customerAccount, customerRequestHealth, customerFeedback, reservationNumber);
+        userService.registerUser(customerAccount, customerRequestHealth, customerFeedback);
         return "redirect:/joinSuccess";  // 회원가입 성공 페이지로 리다이렉트
     }
 
