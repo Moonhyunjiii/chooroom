@@ -1,33 +1,25 @@
 plugins {
+	id 'org.springframework.boot' version '3.1.0' // 최신 버전에 맞게 수정
+	id 'io.spring.dependency-management' version '1.1.0'
 	id 'java'
-	id 'org.springframework.boot' version '3.3.3'
-	id 'io.spring.dependency-management' version '1.1.6'
 }
 
-group = 'com.lgdx'
+group = 'com.lgdx.chooroom'
 version = '0.0.1-SNAPSHOT'
-
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
-}
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
 }
 
-
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc8' // Oracle 의존성 추가
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	// Oracle JDBC driver
-	implementation 'com.oracle.database.jdbc:ojdbc8:19.16.0.0'
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
 }

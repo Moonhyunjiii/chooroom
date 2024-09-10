@@ -1,10 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/user/vars.css" />
+    <link rel="stylesheet" href="css/user/stylereg.css" />
+    <style>
+        a,
+        button,
+        input,
+        select,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          border: none;
+          text-decoration: none;
+          background: none;
+
+          -webkit-font-smoothing: antialiased;
+        }
+
+        menu,
+        ol,
+        ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+    </style>
+    <title>Document</title>
 </head>
 <body>
-$END$
+<div class="container">
+    <div class="main">
+        <div class="register-form">
+            <div class="button">
+                <div class="frame-26085740">
+                    <div class="div">회원가입</div>
+                </div>
+            </div>
+            <div class="div2">환영합니다, 츄룸 서비스와 함께해요</div>
+            <div class="frame-26085754">
+                <div class="input">
+                    <div class="input-box">
+                        <div class="bg-solid"></div>
+                        <div class="bg-border"></div>
+                        <div class="input-name">이름을 입력하세요</div>
+                    </div>
+                    <div class="label">이름</div>
+                </div>
+                <div class="frame-26085753">
+                    <div class="input">
+                        <div class="input-box2">
+                            <div class="bg-solid"></div>
+                            <div class="bg-border2"></div>
+                            <div class="input-name">|</div>
+                        </div>
+                        <div class="label2">아이디</div>
+                    </div>
+                    <div class="button2">
+                        <div class="frame-260857402">
+                            <div class="div">중복 확인</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input">
+                    <div class="input-box">
+                        <div class="bg-solid"></div>
+                        <div class="bg-border"></div>
+                        <div class="input-name">비밀번호를 입력하세요</div>
+                    </div>
+                    <div class="label">비밀번호</div>
+                </div>
+                <div class="input">
+                    <div class="input-box">
+                        <div class="bg-solid"></div>
+                        <div class="bg-border"></div>
+                        <div class="input-name">비밀번호를 입력하세요</div>
+                    </div>
+                    <div class="label3">비밀번호 확인</div>
+                </div>
+                <div class="input2">
+                    <div class="input-box3">
+                        <div class="bg-solid"></div>
+                        <div class="bg-border"></div>
+                        <div class="input-name">전화번호를 입력하세요</div>
+                    </div>
+                    <div class="label2">전화번호</div>
+                </div>
+                <div class="input2">
+                    <div class="input-box3">
+                        <div class="bg-solid"></div>
+                        <div class="bg-border"></div>
+                        <div class="input-name">이메일을 입력하세요</div>
+                    </div>
+                    <div class="label2">이메일</div>
+                </div>
+                <div class="input2">
+                    <div class="input-box3">
+                        <div class="bg-solid"></div>
+                        <div class="bg-border"></div>
+                        <div class="input-name">ex. 1991/08/12</div>
+                    </div>
+                    <div class="label4">생년월일</div>
+                </div>
+            </div>
+            <div class="div3">원하는 방 컨디션을 미리 선택해요</div>
+            <div class="input3">
+                <div class="label5">특별히 관리하고 싶은 컨디션을 선택해요.</div>
+                <div class="frame-26085751">
+                    <div class="frame-26085747">
+                        <div class="checkboxes">
+                            <div class="state-layer">
+                                <div class="container2"></div>
+                                <img class="check-small" src="check-small0.svg" />
+                            </div>
+                        </div>
+                        <div class="label6">소음에 민감해요.</div>
+                    </div>
+                    <div class="frame-26085748">
+                        <div class="checkboxes">
+                            <div class="state-layer">
+                                <div class="container2"></div>
+                                <img class="check-small2" src="check-small1.svg" />
+                            </div>
+                        </div>
+                        <div class="label6">먼지에 민감해요.</div>
+                    </div>
+                    <div class="frame-26085749">
+                        <div class="checkboxes">
+                            <div class="state-layer">
+                                <div class="container3"></div>
+                            </div>
+                        </div>
+                        <div class="label6">습기에 민감해요.</div>
+                    </div>
+                    <div class="frame-26085750">
+                        <div class="checkboxes">
+                            <div class="state-layer">
+                                <div class="container3"></div>
+                            </div>
+                        </div>
+                        <div class="label6">온도에 민감해요.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="input4">
+                <div class="label5">알러지 정보를 입력해요.</div>
+                <div class="frame-26085751">
+                    <div class="frame-26085747">
+                        <div class="checkboxes">
+                            <div class="state-layer">
+                                <div class="container2"></div>
+                                <img class="check-small3" src="check-small2.svg" />
+                            </div>
+                        </div>
+                        <div class="label6">먼지 알레르기</div>
+                    </div>
+                </div>
+                <div class="frame-260857532">
+                    <div class="frame-26085747">
+                        <div class="checkboxes">
+                            <div class="state-layer">
+                                <div class="container2"></div>
+                                <img class="check-small4" src="check-small3.svg" />
+                            </div>
+                        </div>
+                        <div class="label6">진드기 알레르기</div>
+                    </div>
+                </div>
+                <div class="frame-26085752">
+                    <div class="checkboxes">
+                        <div class="state-layer">
+                            <div class="container3"></div>
+                        </div>
+                    </div>
+                    <div class="text-fields">
+                        <img class="vector-8" src="vector-80.svg" />
+                        <div class="label7">기타</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer2">
+            <div class="logo">LOGO</div>
+            <div
+                    class="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do-eiusmod-tempor-incididunt-ut-labore-et-dolore-magna-aliqua"
+            >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua.
+            </div>
+            <div class="playstore">
+                <div class="rectangle-46"></div>
+                <img
+                        class="ion-logo-google-playstore"
+                        src="ion-logo-google-playstore0.svg"
+                />
+                <div class="play-store">PlayStore</div>
+            </div>
+            <div class="applestore">
+                <div class="rectangle-47"></div>
+                <div class="apple-store">AppleStore</div>
+                <img
+                        class="ion-logo-apple-appstore"
+                        src="ion-logo-apple-appstore0.svg"
+                />
+            </div>
+            <div class="contact-info2">CONTACT INFO</div>
+            <div class="phone-1234567890">Phone: 1234567890</div>
+            <div class="email-company-email-com">Email: company@email.com</div>
+            <div class="location-100-smart-street-la-usa">
+                Location: 100 Smart Street, LA, USA
+            </div>
+            <img class="social-media-links" src="social-media-links0.svg" />
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
