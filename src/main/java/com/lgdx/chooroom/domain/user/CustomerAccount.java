@@ -1,11 +1,11 @@
 package com.lgdx.chooroom.domain.user;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jdk.jfr.Enabled;
 
-@Enabled
+@Entity
 @Table(name = "CUSTOMER_ACCOUNT")
 public class CustomerAccount {
 

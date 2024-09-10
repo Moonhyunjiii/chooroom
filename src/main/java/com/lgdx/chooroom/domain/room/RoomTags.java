@@ -10,14 +10,9 @@ import jakarta.persistence.Table;
 public class RoomTags {
 
     @Id
-    @Column(name="TAG_ID")
-    private String tagId;
-
-    @Column(name="R_NUM")
-    private String rNum;
-
-    @Column(name="TAG_NAME")
-    private String tagName;
+    @Column(name="TAG_ID") private String tagId;
+    @Column(name="R_NUM") private String roomNumber;
+    @Column(name="TAG_NAME") private String tagName;
 
     public String getTagId() {
         return tagId;
@@ -27,12 +22,12 @@ public class RoomTags {
         this.tagId = tagId;
     }
 
-    public String getrNum() {
-        return rNum;
+    public String getRoomNumber() {
+        return roomNumber;
     }
 
-    public void setrNum(String rNum) {
-        this.rNum = rNum;
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     public String getTagName() {
@@ -47,7 +42,7 @@ public class RoomTags {
     public String toString() {
         return "RoomTags{" +
                 "tagId='" + tagId + '\'' +
-                ", rNum='" + rNum + '\'' +
+                ", roomNumber='" + roomNumber + '\'' +
                 ", tagName='" + tagName + '\'' +
                 '}';
     }

@@ -10,50 +10,50 @@ import jakarta.persistence.Table;
 public class RoomCondition {
 
     @Id
-    @Column(name="R_NUM") private String rNum;
-    @Column(name="R_CLEAN") private int rClean;
-    @Column(name="R_NOISE") private int rNoise;
-    @Column(name="R_AIRQ") private int rAirq;
+    @Column(name="R_NUM") private String roomNumber;
+    @Column(name="R_CLEAN") private int roomCleaness;
+    @Column(name="R_NOISE") private int roomNoiselevel;
+    @Column(name="R_AIRQ") private int roomAirquality;
 
-    public String getrNum() {
-        return rNum;
+    public String getRoomNumber() {
+        return roomNumber;
     }
 
-    public void setrNum(String rNum) {
-        this.rNum = rNum;
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
-    public int getrClean() {
-        return rClean;
+    public int getRoomCleaness() {
+        return roomCleaness;
     }
 
-    public void setrClean(int rClean) {
-        this.rClean = rClean;
+    public void setRoomCleaness(int roomCleaness) {
+        this.roomCleaness = roomCleaness;
     }
 
-    public int getrNoise() {
-        return rNoise;
+    public int getRoomNoiselevel() {
+        return roomNoiselevel;
     }
 
-    public void setrNoise(int rNoise) {
-        this.rNoise = rNoise;
+    public void setRoomNoiselevel(int roomNoiselevel) {
+        this.roomNoiselevel = roomNoiselevel;
     }
 
-    public int getrAirq() {
-        return rAirq;
+    public int getRoomAirquality() {
+        return roomAirquality;
     }
 
-    public void setrAirq(int rAirq) {
-        this.rAirq = rAirq;
+    public void setRoomAirquality(int roomAirquality) {
+        this.roomAirquality = roomAirquality;
     }
 
     @Override
     public String toString() {
         return "RoomCondition{" +
-                "rNum='" + rNum + '\'' +
-                ", rClean=" + rClean +
-                ", rNoise=" + rNoise +
-                ", rAirq=" + rAirq +
+                "roomNumber='" + roomNumber + '\'' +
+                ", roomCleaness=" + roomCleaness +
+                ", roomNoiselevel=" + roomNoiselevel +
+                ", roomAirquality=" + roomAirquality +
                 '}';
     }
 }

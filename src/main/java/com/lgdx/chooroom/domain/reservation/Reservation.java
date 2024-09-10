@@ -12,70 +12,70 @@ import java.util.Date;
 public class Reservation {
 
     @Id
-    @Column(name="RESERV_ID") private String reservId;
-    @Column(name="CHIN_DATE") private Date chinDate;
-    @Column(name="CHOUT_DATE") private Date choutDate;
-    @Column(name="GUEST_CNT") private int guestCnt;
-    @Column(name="RESERV_DATE") private Date reservDate;
-    @Column(name="CUS_ID") private String cusId;
-    @Column(name="R_NUM") private String rNum;
+    @Column(name="RESERV_ID") private String reservationId;
+    @Column(name="CHIN_DATE") private Date checkinDate;
+    @Column(name="CHOUT_DATE") private Date checkoutDate;
+    @Column(name="GUEST_CNT") private int guestCount;
+    @Column(name="RESERV_DATE") private Date reservationDate;
+    @Column(name="CUS_ID") private String customerId;
+    @Column(name="R_NUM") private String roomNumber;
     @Column(name="PAY_AMOUNT") private int payAmount;
     @Column(name="PAY_DATE") private Date payDate;
 
-    public String getReservId() {
-        return reservId;
+    public String getReservationId() {
+        return reservationId;
     }
 
-    public void setReservId(String reservId) {
-        this.reservId = reservId;
+    public void setReservationId(String reservationId) {
+        this.reservationId = reservationId;
     }
 
-    public Date getChinDate() {
-        return chinDate;
+    public Date getCheckinDate() {
+        return checkinDate;
     }
 
-    public void setChinDate(Date chinDate) {
-        this.chinDate = chinDate;
+    public void setCheckinDate(Date checkinDate) {
+        this.checkinDate = checkinDate;
     }
 
-    public Date getChoutDate() {
-        return choutDate;
+    public Date getCheckoutDate() {
+        return checkoutDate;
     }
 
-    public void setChoutDate(Date choutDate) {
-        this.choutDate = choutDate;
+    public void setCheckoutDate(Date checkoutDate) {
+        this.checkoutDate = checkoutDate;
     }
 
-    public int getGuestCnt() {
-        return guestCnt;
+    public int getGuestCount() {
+        return guestCount;
     }
 
-    public void setGuestCnt(int guestCnt) {
-        this.guestCnt = guestCnt;
+    public void setGuestCount(int guestCount) {
+        this.guestCount = guestCount;
     }
 
-    public Date getReservDate() {
-        return reservDate;
+    public Date getReservationDate() {
+        return reservationDate;
     }
 
-    public void setReservDate(Date reservDate) {
-        this.reservDate = reservDate;
+    public void setReservationDate(Date reservationDate) {
+        this.reservationDate = reservationDate;
     }
 
-    public String getCusId() {
-        return cusId;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCusId(String cusId) {
-        this.cusId = cusId;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
-    public String getrNum() {
-        return rNum;
+    public String getRoomNumber() {
+        return roomNumber;
     }
 
-    public void setrNum(String rNum) {
-        this.rNum = rNum;
+    public void setRoomNumber(String roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     public int getPayAmount() {
@@ -97,13 +97,13 @@ public class Reservation {
     @Override
     public String toString() {
         return "Reservation{" +
-                "reservId='" + reservId + '\'' +
-                ", chinDate=" + chinDate +
-                ", choutDate=" + choutDate +
-                ", guestCnt=" + guestCnt +
-                ", reservDate=" + reservDate +
-                ", cusId='" + cusId + '\'' +
-                ", rNum='" + rNum + '\'' +
+                "reservationId='" + reservationId + '\'' +
+                ", checkinDate=" + checkinDate +
+                ", checkoutDate=" + checkoutDate +
+                ", guestCount=" + guestCount +
+                ", reservationDate=" + reservationDate +
+                ", customerId='" + customerId + '\'' +
+                ", roomNumber='" + roomNumber + '\'' +
                 ", payAmount=" + payAmount +
                 ", payDate=" + payDate +
                 '}';
