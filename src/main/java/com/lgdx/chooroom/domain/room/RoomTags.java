@@ -1,4 +1,4 @@
-package com.lgdx.chooroom.domain.user;
+package com.lgdx.chooroom.domain.room;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
