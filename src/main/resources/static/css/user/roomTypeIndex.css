@@ -1,0 +1,236 @@
+/* 공통 스타일 */
+body {
+  font-family: "NotoSansKr-Regular", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.room {
+  display: grid;
+  grid-template-columns: 3fr 4fr 2fr 1fr;
+  gap: 20px;
+  align-items: start;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  position: relative;
+}
+
+.room-title {
+  grid-column: 1 / -1;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  padding-bottom: 30px;
+}
+
+.room-image {
+  grid-column: 1 / 2;
+  background: #d9d9d9;
+  width: 100%;
+  height: 150px;
+}
+
+.room-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.room-header {
+  grid-column: 2 / 3;
+}
+
+.room-noise {
+  font-size: 16px;
+  color: #afafaf;
+  margin-bottom: 5px;
+}
+
+.noise-level {
+  color: #0085be;
+  font-weight: 600;
+}
+
+.noise-description {
+  color: #afafaf;
+  font-weight: 600;
+}
+
+.room-description {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+/* 방 상태 (1박 기준과 남은 객실) */
+.room-status {
+  grid-column: 3 / 4;
+  text-align: left;
+  font-size: 14px;
+  color: #afafaf;
+  align-self: end;
+}
+
+.night-text {
+  color: #afafaf;
+  font-size: 14px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.remaining-rooms {
+  color: #ff5e5e;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.room-price {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  margin-top: 10px;
+}
+
+/* 예약 버튼 */
+.reserve-btn {
+  grid-column: 4 / 5;
+  align-self: end;
+  padding: 10px 20px;
+  font-size: 14px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.reserve-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* room-details 및 room-list */
+.room-details {
+  display: none;
+  padding: 10px;
+  background-color: #f9f9f9;
+}
+
+.room-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Ensures 4 items per row */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.room-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.room-item-image {
+    width: 100%;
+    height: 150px;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.room-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.room-item-info {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.room-number {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.room-details {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.room-select-btn {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.room-select-btn:hover {
+    background-color: #555;
+}
+
+/* Toggle 버튼 스타일 */
+.toggle-btn {
+  margin-top: 10px;
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  background-color: #0056b3;
+}
+
+/* 반응형 처리 */
+@media screen and (max-width: 1024px) {
+  .room {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .room-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .room-status,
+  .reserve-btn {
+    text-align: center;
+  }
+
+  .reserve-btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .room-list {
+        grid-template-columns: repeat(2, 1fr); /* 2 items per row on smaller screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .room-list {
+        grid-template-columns: 1fr; /* 1 item per row on very small screens */
+    }
+}

@@ -20,12 +20,6 @@ function toggleRoomDetails(element) {
     element.classList.add('open');
   }
 }
-  
-
-function toggleSelection(element) {
-  // 클릭된 요소에 active 클래스를 추가/제거
-  element.classList.toggle('active');
-}
 
 // 필터 드랍다운
 function toggleDropdown(dropdownId) {
