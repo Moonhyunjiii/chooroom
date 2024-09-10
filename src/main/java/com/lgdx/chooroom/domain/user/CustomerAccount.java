@@ -10,23 +10,12 @@ import jakarta.persistence.Table;
 public class CustomerAccount {
 
     @Id
-    @Column(name="CUS_ID")
-    private String customerId;
-
-    @Column(name="CUS_PW")
-    private String customerPw;
-
-    @Column(name="CUS_NAME")
-    private String customerName;
-
-    @Column(name="CUS_AGE")
-    private String customerAge;
-
-    @Column(name="CUS_CALL")
-    private String customerCallNumber;
-
-    @Column(name="CUS_ADD")
-    private String customerAdditionalRequest;
+    @Column(name="CUS_ID") private String customerId;
+    @Column(name="CUS_PW") private String customerPw;
+    @Column(name="CUS_NAME") private String customerName;
+    @Column(name="CUS_AGE") private String customerAge;
+    @Column(name="CUS_CALL") private String customerCallNumber;
+    @Column(name="CUS_ADD") private String customerAdditionalRequest;
 
     public String getCustomerId() {
         return customerId;

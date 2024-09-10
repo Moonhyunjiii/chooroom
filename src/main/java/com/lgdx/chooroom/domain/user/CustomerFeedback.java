@@ -12,17 +12,10 @@ import java.util.Date;
 public class CustomerFeedback {
 
     @Id
-    @Column(name="RESERV_ID")
-    private String reservationId;
-
-    @Column(name="U_RATE")
-    private int userRating;
-
-    @Column(name="FB_CONT")
-    private String feedbackContents;
-
-    @Column(name="R_DATE")
-    private Date reviewDate;
+    @Column(name="RESERV_ID") private String reservationId;
+    @Column(name="U_RATE") private int userRating;
+    @Column(name="FB_CONT") private String feedbackContents;
+    @Column(name="R_DATE") private Date reviewDate;
 
     public String getReservationId() {
         return reservationId;
