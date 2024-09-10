@@ -24,29 +24,29 @@
     <div class="rectangle-4"></div>
     <div class="div2">호텔 선택</div>
     <div class="div3">원하시는 호텔을 선택하세요.</div>
-  
+
     <!-- Check In과 Check Out을 위한 데이트피커 필드 추가 -->
     <div class="date-box">
       <div class="check-in">
         <input id="checkin-date" type="text" placeholder="Check In" class="datepicker" readonly onclick="toggleCalendar()">
       </div>
     </div>
-  
+
     <div class="date-box">
       <div class="check-out">
         <input id="checkout-date" type="text" placeholder="Check Out" class="datepicker" readonly>
       </div>
     </div>
-    
+
     <div class="guests">Guests</div>
     <div class="add-guests">Add Guests</div>
-  
+
     <div class="round-search">
       <div class="ellipse-1"></div>
       <img class="fe-search" src="fe-search0.svg" alt="search" />
     </div>
   </div>
-  
+
   <!-- 달력 섹션 (기본적으로 숨김 처리) -->
   <div class="calendar" id="calendar" style="display:none;">
     <div class="frame-201">
@@ -90,32 +90,32 @@
       <!-- 필터 섹션 -->
       <div class="fliter">
         <div class="div4">내가 원하는 컨디션의 방을 선택해요</div>
-        
+
         <!-- 위생 정수기 태그 -->
         <div class="tag" onclick="toggleSelection(this)">
           <div class="div5" th:text="${ROOM_TAG[0].TAG_NAME}"></div>
         </div>
-        
+
         <!-- 고급 의류 케어 태그 -->
         <div class="tag2" onclick="toggleSelection(this)">
           <div class="div5" th:text="${ROOM_TAG[1].TAG_NAME}"></div>
         </div>
-        
+
         <!-- 프리미엄 신발 관리 태그 -->
         <div class="tag3" onclick="toggleSelection(this)">
           <div class="div5" th:text="${ROOM_TAG[2].TAG_NAME}"></div>
         </div>
-        
+
         <!-- 프리미엄 안마 의자 태그 -->
         <div class="tag4" onclick="toggleSelection(this)">
           <div class="div5" th:text="${ROOM_TAG[3].TAG_NAME}"></div>
         </div>
-        
+
         <!-- Dolby Atomos 시네마 룸 태그 -->
         <div class="tag5" onclick="toggleSelection(this)">
           <div class="div5" th:text="${ROOM_TAG[4].TAG_NAME}"></div>
         </div>
-        
+
         <!-- 프리미엄 청정 룸 태그 -->
         <div class="tag6" onclick="toggleSelection(this)">
           <div class="div5" th:text="${ROOM_TAG[5].TAG_NAME}"></div>
@@ -184,7 +184,7 @@
           <img class="vector-2" src="vector-20.svg" alt="vector" />
           <div class="div10">객실 보기</div>
           <div class="rectangle-47"></div>
-          
+
           <!-- 소음도 표시 -->
           <div class="div11">평균 소음도</div>
           <div class="_19-db">
@@ -193,16 +193,16 @@
               <span class="_19-db-span2">, 매우 조용해요</span>
             </span>
           </div>
-          
+
           <!-- 방 크기와 침대 정보 -->
           <div class="_40-m-2" th:text="${room.roomSize} + 'm² | ' + ${room.bedType} + ' 침대 | ' + ${room.viewType}">25m² | 싱글 침대 | 시티뷰</div>
           <div class="div12" th:text="${room.description}">싱글 룸에 대한 간략한 설명을 작성합니다.</div>
-          
+
           <!-- 1박 기준, 남은 객실 수 표시 -->
           <div class="_1">1박 기준</div>
           <div class="_2" th:text="'남은 객실 ' + ${room.availableCount}">남은 객실 1</div>
         </div>
-        
+
         <!-- 숨겨진 방의 추가 정보 (필터에 맞는 방이 있는 경우만 표시) -->
         <div class="room-details">
           <div th:if="${room.roomDetails != null and !room.roomDetails.isEmpty()}">
@@ -217,7 +217,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- 필터에 맞는 방이 없을 때 표시 -->
           <div th:if="${room.roomDetails == null or room.roomDetails.isEmpty()}">
             <p>필터에 맞는 방이 없습니다.</p>
@@ -226,7 +226,7 @@
       </div>
 
 
-      
+
       <!-- 디럭스 룸 섹션 -->
       <div class="room" onclick="toggleRoomDetails(this)">
         <div class="room-header">
@@ -238,7 +238,7 @@
           <img class="vector-2" src="vector-20.svg" alt="vector" />
           <div class="div10">객실 보기</div>
           <div class="rectangle-47"></div>
-          
+
           <!-- 소음도 표시 -->
           <div class="div11">평균 소음도</div>
           <div class="_19-db">
@@ -247,19 +247,19 @@
               <span class="_19-db-span2">, 매우 조용해요</span>
             </span>
           </div>
-          
+
           <!-- 방 크기와 침대 정보 -->
           <div class="_40-m-2" th:text="${room.roomSize} + 'm² | ' + room.bedType + ' 침대 | ' + room.viewType">
             25m² | 싱글 침대 | 시티뷰
           </div>
-        
+
           <div class="div12" th:text="${room.description}">디럭스 룸에 대한 간략한 설명을 작성합니다.</div>
-          
+
           <!-- 1박 기준, 남은 객실 수 표시 -->
           <div class="_1">1박 기준</div>
           <div class="_2" th:text="'남은 객실 ' + ${room.availableCount}">남은 객실 1</div>
         </div>
-        
+
         <!-- 숨겨진 방의 추가 정보 (필터에 맞는 방이 있는 경우만 표시) -->
         <div class="room-details">
           <div th:if="${room.roomDetails != null and !room.roomDetails.isEmpty()}">
@@ -274,7 +274,7 @@
               </div>
             </div>
           </div>
-          
+
           <!-- 필터에 맞는 방이 없을 때 표시 -->
           <div th:if="${room.roomDetails == null or room.roomDetails.isEmpty()}">
             <p>필터에 맞는 방이 없습니다.</p>
@@ -285,15 +285,15 @@
       <!-- 스위트 룸 섹션 -->
       <div class="room" onclick="toggleRoomDetails(this)">
         <div class="room-header">
-          <div class="div9">스위트 룸</div>
+          <div class="room-type-name">스위트 룸</div>
           <!-- 최소 가격을 표시 -->
-          <div class="_100-000" th:text="${#numbers.formatInteger(room.minPrice, 0)} + '원 ~'">200,000원 ~</div>
+          <div class="room-price" th:text="${#numbers.formatInteger(room.minPrice, 0)} + '원 ~'">200,000원 ~</div>
           <div class="rectangle-25"></div>
-          <img class="group-6" src="group-60.svg" alt="room image" />
+          <img class="room-image" src="group-60.svg" alt="room image" />
           <img class="vector-2" src="vector-20.svg" alt="vector" />
           <div class="div10">객실 보기</div>
           <div class="rectangle-47"></div>
-          
+
           <!-- 소음도 표시 -->
           <div class="div11">평균 소음도</div>
           <div class="_19-db">
@@ -302,16 +302,16 @@
               <span class="_19-db-span2">, 매우 조용해요</span>
             </span>
           </div>
-          
+
           <!-- 방 크기와 침대 정보 -->
           <div class="_40-m-2" th:text="${room.roomSize} + 'm² | ' + ${room.bedType} + ' 침대 | ' + ${room.viewType}">70m² | 침실, 거실 포함 | 오션뷰</div>
           <div class="div12" th:text="${room.description}">스위트 룸에 대한 간략한 설명을 작성합니다.</div>
-          
+
           <!-- 1박 기준, 남은 객실 수 표시 -->
           <div class="_1">1박 기준</div>
           <div class="_2" th:text="'남은 객실 ' + ${room.availableCount}">남은 객실 1</div>
         </div>
-        
+
       <!-- 숨겨진 방의 추가 정보 (필터에 맞는 방이 있는 경우만 표시) -->
       <div class="room-details">
         <div th:if="${room.roomDetails != null and !room.roomDetails.isEmpty()}">
@@ -332,13 +332,13 @@
       <div id="myModal" class="modal">
         <div class="modal-content">
           <span class="close" onclick="closeModal()">&times;</span>
-          
+
           <!-- 모달 헤더 -->
           <h2>객실 선택 확인</h2>
-          
+
           <!-- 객실 번호 표시 -->
           <p id="modalRoomNumber"></p>
-          
+
           <!-- 모달 바디 내용 -->
           <div class="modal-body">
             <img class="group-32" src="group-320.svg" />
@@ -387,14 +387,14 @@
       </div>
 
 
-    
 
-      
-      
-      
-  
 
-  
+
+
+
+
+
+
 </div>
       <!-- 하단 푸터 -->
       <div class="footer">
