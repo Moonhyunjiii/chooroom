@@ -19,15 +19,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // 객실보기 토글 함수
     function toggleRoomList(button) {
-        const roomDetails = button.nextElementSibling;
+        const roomContainer = button.closest('.room-container'); // 가장 가까운 부모인 room-container 찾기
+        const roomDetails = roomContainer.querySelector('.room-details'); // room-details 찾기
+
+        // room-details 요소가 존재하는지 확인
+        if (!roomDetails) {
+            console.error('room-details 요소를 찾을 수 없습니다.');
+            return;
+        }
 
         // 현재 상태에 따라 표시/숨기기 처리
         if (roomDetails.style.display === "none" || roomDetails.style.display === "") {
-            roomDetails.style.display = "block";        // 보이기
-            button.textContent = "객실닫기";         // 버튼 텍스트 변경
+            roomDetails.style.display = "grid";  // 보이기
+            button.textContent = "객실닫기";     // 버튼 텍스트 변경
         } else {
-            roomDetails.style.display = "none";         // 숨기기
-            button.textContent = "객실보기";            // 버튼 텍스트 변경
+            roomDetails.style.display = "none";  // 숨기기
+            button.textContent = "객실보기";     // 버튼 텍스트 변경
         }
     }
 

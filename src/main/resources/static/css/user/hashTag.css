@@ -1,31 +1,33 @@
 /* 해시태그 컨테이너 스타일 */
-.hashtag-container {
-    text-align: center;
+.hashtag-section {
     margin: 20px 0;
+    width: 100%;
 }
 
 .hashtag-title {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 /* 해시태그 리스트 스타일 */
 .hashtag-list {
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
+    padding: 20px;
     flex-wrap: wrap;
     gap: 10px;
 }
 
 /* 해시태그 버튼 스타일 */
 .hashtag {
-    padding: 10px 20px;
+    padding: 5px 10px;
     border: 1px solid #007bff;
     border-radius: 30px;
     background-color: white;
     color: #007bff;
-    font-size: 14px;
+    font-size: 11px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }

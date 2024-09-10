@@ -1,5 +1,5 @@
 .calendar-modal {
-    position: absolute;
+    position: fixed; /* 절대 위치 대신 fixed로 변경 */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -7,7 +7,8 @@
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    width: 400px;
+    width: 100%; /* 유동적인 너비 */
+    max-width: 400px;
 }
 
 .modal-header {
