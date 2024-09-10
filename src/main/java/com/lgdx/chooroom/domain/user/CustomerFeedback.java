@@ -12,57 +12,50 @@ import java.util.Date;
 public class CustomerFeedback {
 
     @Id
-    @Column(name="RESERV_ID")
-    private String reservId;
+    @Column(name="RESERV_ID") private String reservationId;
+    @Column(name="U_RATE") private int userRating;
+    @Column(name="FB_CONT") private String feedbackContents;
+    @Column(name="R_DATE") private Date reviewDate;
 
-    @Column(name="U_RATE")
-    private int uRate;
-
-    @Column(name="FB_CONT")
-    private String fbCont;
-
-    @Column(name="R_DATE")
-    private Date rDate;
-
-    public String getReservId() {
-        return reservId;
+    public String getReservationId() {
+        return reservationId;
     }
 
-    public void setReservId(String reservId) {
-        this.reservId = reservId;
+    public void setReservationId(String reservationId) {
+        this.reservationId = reservationId;
     }
 
-    public int getuRate() {
-        return uRate;
+    public int getUserRating() {
+        return userRating;
     }
 
-    public void setuRate(int uRate) {
-        this.uRate = uRate;
+    public void setUserRating(int userRating) {
+        this.userRating = userRating;
     }
 
-    public String getFbCont() {
-        return fbCont;
+    public String getFeedbackContents() {
+        return feedbackContents;
     }
 
-    public void setFbCont(String fbCont) {
-        this.fbCont = fbCont;
+    public void setFeedbackContents(String feedbackContents) {
+        this.feedbackContents = feedbackContents;
     }
 
-    public Date getrDate() {
-        return rDate;
+    public Date getReviewDate() {
+        return reviewDate;
     }
 
-    public void setrDate(Date rDate) {
-        this.rDate = rDate;
+    public void setReviewDate(Date reviewDate) {
+        this.reviewDate = reviewDate;
     }
 
     @Override
     public String toString() {
         return "CustomerFeedback{" +
-                "reservId='" + reservId + '\'' +
-                ", uRate=" + uRate +
-                ", fbCont='" + fbCont + '\'' +
-                ", rDate=" + rDate +
+                "reservationId='" + reservationId + '\'' +
+                ", userRating=" + userRating +
+                ", feedbackContents='" + feedbackContents + '\'' +
+                ", reviewDate=" + reviewDate +
                 '}';
     }
 }
