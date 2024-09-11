@@ -285,11 +285,11 @@
       <!-- 스위트 룸 섹션 -->
       <div class="room" onclick="toggleRoomDetails(this)">
         <div class="room-header">
-          <div class="div9">스위트 룸</div>
+          <div class="room-type-name">스위트 룸</div>
           <!-- 최소 가격을 표시 -->
-          <div class="_100-000" th:text="${#numbers.formatInteger(room.minPrice, 0)} + '원 ~'">200,000원 ~</div>
+          <div class="room-price" th:text="${#numbers.formatInteger(room.minPrice, 0)} + '원 ~'">200,000원 ~</div>
           <div class="rectangle-25"></div>
-          <img class="group-6" src="group-60.svg" alt="room image" />
+          <img class="room-image" src="group-60.svg" alt="room image" />
           <img class="vector-2" src="vector-20.svg" alt="vector" />
           <div class="div10">객실 보기</div>
           <div class="rectangle-47"></div>
