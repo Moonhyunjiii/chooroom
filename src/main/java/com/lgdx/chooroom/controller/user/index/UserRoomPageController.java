@@ -32,6 +32,9 @@ public class UserRoomPageController {
     @Autowired
     private RoomsRepository roomsRepository;
 
+    @Autowired
+    private CustomerRequestHealthRepository customerRequestHealthRepository;
+
     // 방 번호 및 예약 번호 가져오기
     @GetMapping("/reservation/Reservation/{reservationId}")
     public Map<String, String> getRoomInfo(@PathVariable String reservationId) {
@@ -66,9 +69,10 @@ public class UserRoomPageController {
     @GetMapping("/user/CustomerRequestHealth/{customerId}")
     @ResponseBody
     public Map<String, String> getHealthStatus(@PathVariable String customerId) {
-        Map<String, String> response = new HashMap<>();
-        List<CustomerRequestHealth> customerRequestHealth = CustomerRequestHealthRepository.findByCustomerId(customerId);
 
+
+        Map<String, String> response = new HashMap<>();
+        List<CustomerRequestHealth> customerRequestHealth = customerRequestHealthRepository.findByCustomerId(customerId);
 
         return response;
     }
