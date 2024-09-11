@@ -8,6 +8,6 @@ public class AdminIndexViewController {
 
     @GetMapping("/admin")
     public String adminIndex() {
-        return "admin/index";
+        return "admin/userRoomInfo";
     }
 }

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>예약 확인 페이지</title>
+    <link rel="stylesheet" href="css/user/userRoomInfo.css">
+    <script src="js/user/script.js" defer></script>
+    <div class="navigation-web">
+        <div class="content">
+            <div class="left">
+                <div class="logo">
+                    <div class="div">로고</div>
+                </div>
+                <div class="menu">
+                    <div class="list">
+                        <div class="menu1">
+                            <button>메뉴1</button>
+                        </div>
+                    </div>
+                    <div class="list">
+                        <div class="menu2">
+                            <button> 메뉴2 </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="right">
+            <div class="action">
+                <div class="icon">
+                    <div class="icon-2">
+                        <img class="icon-icons" src="https://img.freepik.com/premium-vector/bell-icon-notification-bell-vector-icon_564974-1243.jpg" />
+                        <div class="interaction">
+                            <div class="interaction2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="button">
+                <div class="frame-26085740">
+                    <button class="login_button">
+                        로그인
+                    </button>
+                </div>
+
+            </div>
+            <div class="divider"></div>
+        </div>
+
+    </div>
+    </div>
+</head>
+<body>
+
+<div class="container">
+    <!-- 왼쪽: 지도 이미지와 호텔 정보 -->
+    <div class="left-section">
+        <div class="frame-10420">
+            <div class="title">내 예약 확인하기</div>
+        </div>
+
+        <div class="frame-10421">
+            <img class="map-image" src="https://www.lottehotel.com/content/dam/lotte-hotel/lotte/busan/accommodation/standard/deluxe-room/180829-3-2000-acc-busan-hotel.jpg.thumb.768.768.jpg" alt="지도 이미지"/>
+            <div class="hotel-info">
+                <div class="hotel-name">INTER CONTINENTAL</div>
+                <br>
+                <br>
+                <div class="room-name">객실명과 예약번호를 불러오고 있어요</div>
+                <div class="customer-name">투숙객 이름</div>
+                <div class="booking-info">디럭스 / A20051105 (결제 대기)</div>
+
+                    <script>
+                        function fetchRoomInfo(roomNumber) {
+                            fetch(`/room/Rooms/${roomNumber}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    document.getElementById("room-name").innerText = `객실명 : ${data.roomNumber}, 예약번호: ${data.reservId}`;
+                                })
+                                .catch(error => console.error('Error:', error));
+                        }
+
+                        // 예시로 방 번호 201호를 불러오기
+                        fetchRoomInfo("D704");
+                    </script>
+            </div>
+
+
+
+        </div>
+
+
+        <!-- "내가 선택한 컨디션이에요"부터 "추가 요청사항 적는 란" -->
+        <div class="frame-10422">
+            <h3>내가 선택한 컨디션이에요.</h3>
+            <div class="condition-list">
+                <div class="condition-item">
+                    <input type="checkbox" id="noise-sensitive" checked />
+                    <label for="noise-sensitive">소음에 민감해요.</label>
+                </div>
+                <div class="condition-item">
+                    <input type="checkbox" id="dust-sensitive" checked />
+                    <label for="dust-sensitive">먼지에 민감해요.</label>
+                </div>
+                <div class="condition-item">
+                    <input type="checkbox" id="dust-allergy" checked />
+                    <label for="dust-allergy">먼지 알레르기</label>
+                </div>
+                <div class="condition-item">
+                    <input type="checkbox" id="mite-allergy" checked />
+                    <label for="mite-allergy">진드기 알레르기</label>
+                </div>
+            </div>
+
+            <div id="room-info">
+                <h3 id="room-number">방 번호 정보를 불러오는 중...</h3>
+                <p id="room-noise">방 설명을 불러오는 중...</p>
+
+                <h3>선택하신 서비스로</h3>
+                <p id="care-info">케어 정보를 불러오는 중...</p>
+
+                <h3>추가 요청사항을 적어주세요.</h3>
+            </div>
+
+            <script>
+                function fetchRoomInfo(roomNumber) {
+                    fetch(`/reservation/Reservation/${roomNumber}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById("room-number").innerText = `${data.roomNumber}호는 이런 방이에요.`;
+                            document.getElementById("room-number").innerText = `예약번호: ${data.reservationId}`;
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+                function fetchRoomDetails(roomNumber) {
+                    fetch(`/room/RoomCondition/${roomNumber}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById("room-noise").innerText = data.noiseDescription;
+                            document.getElementById("care-info").innerText = data.careDescription;
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+                fetchRoomInfo("D704");
+                fetchRoomDetails("D704");
+
+            </script>
+
+            <textarea placeholder="입실 이틀 전까지 요청사항을 적을 수 있습니다."></textarea>
+        </div>
+    </div>
+
+    <!-- 오른쪽: 종합 청정도 영역 -->
+    <div class="right-section">
+        <div class="clean-status">
+            <br>
+            <br>
+            <h3>종합 청정도</h3>
+            <br>
+            <div class="status-good">좋음</div>
+            <br>
+            <br>
+            <div class="status-info">"방이 쾌적하게 관리되고 있어요."</div>
+            <div class="gauges">
+                <div class="gauge-container">
+                    <div class="gauge-label">미세먼지</div>
+                    <br>
+                    <canvas id="dust-circle" width="73" height="73"></canvas>
+                    <script>
+                        function drawProgressCircle(canvasId, endProgress) {
+                            const canvas = document.getElementById(canvasId);
+                            const ctx = canvas.getContext('2d');
+                            const radius = 30;
+                            const centerX = canvas.width / 2;
+                            const centerY = canvas.height / 2;
+
+                            let progress = 0;
+                            const speed = 2;
+
+                            function drawCircle() {
+                                // 배경 원
+                                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                ctx.beginPath();
+                                ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+                                ctx.strokeStyle = '#e0e0e0';
+                                ctx.lineWidth = 5;
+                                ctx.stroke();
+
+                                // 진행 원
+                                ctx.beginPath();
+                                const startAngle = -0.5 * Math.PI;
+                                const endAngle = (2 * Math.PI * (progress / 100)) - 0.5 * Math.PI;
+                                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                                ctx.strokeStyle = '#29ff30';
+                                ctx.lineWidth = 5;
+                                ctx.stroke();
+
+                                ctx.font = "16px Arial";
+                                ctx.fillStyle = "#000";  // 텍스트 색상
+                                ctx.textAlign = "center";
+                                ctx.textBaseline = "middle";
+                                ctx.fillText(`${Math.floor(progress)}㎍/m³`, centerX, centerY);
+
+                                if (progress < endProgress) {
+                                    progress += speed;
+                                    requestAnimationFrame(drawCircle);
+                                }
+                            }
+
+                           drawCircle();
+                           }
+                           drawProgressCircle('dust-circle', 20);
+                    </script>
+                    <br>
+                    <p>좋음</p>
+                </div>
+                <div class="gauge-container">
+
+                    <div class="gauge-label">온도</div>
+                    <br>
+                    <canvas id="temp-circle" width="73" height="73"></canvas>
+                    <script>
+                        function drawProgressCircle(canvasId, endProgress) {
+                            const canvas = document.getElementById(canvasId);
+                            const ctx = canvas.getContext('2d');
+                            const radius = 30;
+                            const centerX = canvas.width / 2;
+                            const centerY = canvas.height / 2;
+
+                            let progress = 0;
+                            const speed = 2;
+
+                            function drawCircle() {
+                                // 배경 원
+                                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                ctx.beginPath();
+                                ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+                                ctx.strokeStyle = '#e0e0e0';
+                                ctx.lineWidth = 5;
+                                ctx.stroke();
+
+                                // 진행 원
+                                ctx.beginPath();
+                                const startAngle = -0.5 * Math.PI;
+                                const endAngle = (2 * Math.PI * (progress / 100)) - 0.5 * Math.PI;
+                                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                                ctx.strokeStyle = '#ff7429';
+                                ctx.lineWidth = 5;
+                                ctx.stroke();
+
+                                ctx.font = "16px Arial";
+                                ctx.fillStyle = "#000";  // 텍스트 색상
+                                ctx.textAlign = "center";
+                                ctx.textBaseline = "middle";
+                                ctx.fillText(`${Math.floor(progress)}°C`, centerX, centerY);
+
+                                if (progress < endProgress) {
+                                    progress += speed;
+                                    requestAnimationFrame(drawCircle);
+                                }
+                            }
+
+                            drawCircle();
+                        }
+                        drawProgressCircle('temp-circle', 25);
+                    </script>
+                    <br>
+                    <p>조금 더워요</p>
+                </div>
+                <div class="gauge-container">
+                    <div class="gauge-label">습도</div>
+                    <br>
+                    <canvas id="humid-circle" width="73" height="73"></canvas>
+                    <script>
+                        function drawProgressCircle(canvasId, endProgress) {
+                            const canvas = document.getElementById(canvasId);
+                            const ctx = canvas.getContext('2d');
+                            const radius = 30;
+                            const centerX = canvas.width / 2;
+                            const centerY = canvas.height / 2;
+
+                            let progress = 0;
+                            const speed = 2;
+
+                            function drawCircle() {
+                                // 배경 원
+                                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                                ctx.beginPath();
+                                ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+                                ctx.strokeStyle = '#e0e0e0';
+                                ctx.lineWidth = 5;
+                                ctx.stroke();
+
+                                // 진행 원
+                                ctx.beginPath();
+                                const startAngle = -0.5 * Math.PI;
+                                const endAngle = (2 * Math.PI * (progress / 100)) - 0.5 * Math.PI;
+                                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                                ctx.strokeStyle = '#298cff';
+                                ctx.lineWidth = 5;
+                                ctx.stroke();
+
+                                ctx.font = "16px Arial";
+                                ctx.fillStyle = "#000";  // 텍스트 색상
+                                ctx.textAlign = "center";
+                                ctx.textBaseline = "middle";
+                                ctx.fillText(`${Math.floor(progress)}%`, centerX, centerY);
+
+                                if (progress < endProgress) {
+                                    progress += speed;
+                                    requestAnimationFrame(drawCircle);
+                                }
+                            }
+
+                            drawCircle();
+                        }
+                        drawProgressCircle('humid-circle', 23);
+                    </script>
+                    <br>
+                    <p>보송해요</p>
+                </div>
+            </div>
+
+            <br><br>
+            <div class="cleaning-status">
+                <div>청소 현황</div>
+                <button>청소 전</button>
+                <br><br><br><br><br>
+                <button>청소 후</button>
+                <script>
+                    function fetchCleaningStatus(roomNumber) {
+                        fetch(`/room/status/${roomNumber}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.cleanStatus === "청소중") {
+                                    document.getElementById("cleaning-start").style.fontWeight = "bold";
+                                    document.getElementById("check-in").disabled = true;
+                                } else {
+                                    document.getElementById("cleaning-end").style.fontWeight = "bold";
+                                    document.getElementById("check-in").disabled = false;
+                                }
+                            })
+                            .catch(error => console.error('Error:', error));
+                    }
+                    setInterval(() => fetchCleaningStatus(roomNumber), 600000);
+                </script>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+<!-- 체크인 하기 버튼 -->
+<div class="frame-10424">
+    <button class="check-in-button">체크인 하기</button>
+</div>
+</html>
