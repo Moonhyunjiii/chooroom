@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--    <link rel="stylesheet" href="../../static/css/user/join.css" />-->
 
-<!--    <script src="../../static/js/user/join.js"></script>-->\
+<!--    <script src="../../static/js/user/join.js"></script>-->
 <script>
     document.addEventListener("DOMContentLoaded", function () {
     // 중복 확인 버튼 클릭 시
@@ -159,6 +159,7 @@ html, body {
   overflow: hidden;
 }
 .username {
+
   flex-shrink: 0;
   width: 480px;
   height: 83px;
@@ -426,7 +427,7 @@ input[type="text"][placeholder="기타 알러지 정보 입력"] {
   right: 37.59%;
   left: 2%;
   bottom: 20.24%;
-  top:50.82%;
+  top:53.82%;
   overflow: hidden;
 }
 .label5 {
@@ -562,7 +563,7 @@ input[type="text"][placeholder="기타 알러지 정보 입력"] {
   right: 37.59%;
   left: 2%;
   bottom: 20.24%;
-  top: 60.48%;
+  top: 63.48%;
   overflow: hidden;
 }
 .check-small3 {
@@ -872,6 +873,171 @@ input[type="text"][placeholder="기타 알러지 정보 입력"] {
           margin: 0;
           padding: 0;
         }
+/* 입력 커서 깜빡깜빡*/
+        /* 이름 입력 필드 */
+        #customerName {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 이름 입력 필드 포커스 */
+        #customerName:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
+
+        #customerId {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 아이디 입력 필드에 포커스가 맞춰졌을 때(입력 중일 때) */
+        #customerId:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
+        /* 비밀번호 입력 필드 */
+        #customerPw {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 비밀번호 입력 필드 포커스 */
+        #customerPw:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+        /* 비밀번호 확인 입력 필드 */
+        #confirmPassword {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 비밀번호 확인 입력 필드 포커스 */
+        #confirmPassword:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
+        /* 전화번호 입력 필드 */
+        #customerCallNumber {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 전화번호 입력 필드 포커스 */
+        #customerCallNumber:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
+        /* 이메일 입력 필드 */
+        #email {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 이메일 입력 필드 포커스 */
+        #email:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
+        /* 생년월일 입력 필드 */
+        #customerAge {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 생년월일 입력 필드 포커스 */
+        #customerAge:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
+
+        /* 공통 입력 필드 스타일 */
+        input[type="text"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="email"] {
+          width: 100%; /* 부모 컨테이너의 너비에 맞춤 */
+          max-width: 480px; /* 최대 너비를 480px로 제한 */
+          height: 50px; /* 모든 입력 필드의 높이를 동일하게 설정 */
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+          box-shadow: none; /* 바깥쪽 그림자 제거 */
+        }
+
+        /* 공통 입력 필드 포커스 스타일 */
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        input[type="tel"]:focus,
+        input[type="email"]:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: none; /* 포커스 시 바깥 테두리 제거 */
+        }
+
+        /* 컨테이너 스타일 - 입력 필드를 포함하는 div 스타일 */
+        .username, .userId, .password, .passwordcheck, .phonenumber, .email, .Age {
+
+          width: 100%;
+          max-width: 600px; /* 모든 컨테이너의 최대 너비를 동일하게 설정 */
+          padding: 10px;
+          box-sizing: border-box;
+          margin-bottom: 15px; /* 아래로 15px의 간격 추가 */
+          border: none; /* 바깥 테두리 제거 */
+        }
+
+        /* 라벨 스타일 */
+        .label {
+          font-size: 14px;
+          font-weight: 500;
+          color: #161c2d;
+          margin-bottom: 15px; /* 입력 필드와 간격을 줌 */
+          line-height: 1.5; /* 레이블 높이를 조정하여 텍스트가 겹치지 않게 함 */
+        }
     </style>
     <title>Document</title>
 </head>
@@ -889,19 +1055,19 @@ input[type="text"][placeholder="기타 알러지 정보 입력"] {
             <div class="fullform">
                 <!-- 이름 입력 -->
                 <div class="username">
-                    <input type="text" class="input" th:field="*{customerName}" placeholder="이름을 입력하세요" />
-                    <div class="label">이름</div>
+                    <label class="label" for="customerName">이름</label>
+                    <input type="text" class="input" id="customerName" th:field="*{customerName}" placeholder="이름을 입력하세요" />
+
                 </div>
-        
+
                 <!-- 아이디 입력 -->
                 <div class="userId">
-                    <input type="text" class="input" id="customerId" th:field="*{customerId}" placeholder="아이디를 입력하세요" />
+                    <input type="text" class="input" id="customerId" placeholder="아이디를 입력하세요" />
                     <label class="label2" for="customerId">아이디</label>
-                    
+
                     <div class="Idcheck">
                         <button type="button" class="Idcheckbutton">중복 확인</button>
                     </div>
-
                 </div>
 
                 <!-- 비밀번호 입력 -->

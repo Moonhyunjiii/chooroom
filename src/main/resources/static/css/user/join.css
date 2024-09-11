@@ -816,3 +816,123 @@ input[type="text"][placeholder="기타 알러지 정보 입력"] {
     visibility: visible;
     opacity: 1;
 }
+
+/* 입력 커서 깜빡깜빡*/
+        /* 이름 입력 필드 */
+        #customerName {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 이름 입력 필드 포커스 */
+        #customerName:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
+
+        #customerId {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 아이디 입력 필드에 포커스가 맞춰졌을 때(입력 중일 때) */
+        #customerId:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
+        /* 비밀번호 입력 필드 */
+        #customerPw {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 비밀번호 입력 필드 포커스 */
+        #customerPw:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+        /* 비밀번호 확인 입력 필드 */
+        #confirmPassword {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 비밀번호 확인 입력 필드 포커스 */
+        #confirmPassword:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
+        /* 전화번호 입력 필드 */
+        #customerCallNumber {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 전화번호 입력 필드 포커스 */
+        #customerCallNumber:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
+        /* 이메일 입력 필드 */
+        #email {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 이메일 입력 필드 포커스 */
+        #email:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
+        /* 생년월일 입력 필드 */
+        #customerAge {
+          width: 100%;
+          padding: 10px;
+          border: 2px solid #ccc; /* 기본 테두리 */
+          border-radius: 5px; /* 모서리를 둥글게 설정 */
+          box-sizing: border-box;
+          font-size: 16px;
+        }
+
+        /* 생년월일 입력 필드 포커스 */
+        #customerAge:focus {
+          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
+          outline: none; /* 기본 outline 제거 */
+          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
+        }
+
