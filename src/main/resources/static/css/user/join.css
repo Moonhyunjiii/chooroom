@@ -1,938 +1,143 @@
-.container,
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #f9f9f9;
-}
-
-.container * {
-  box-sizing: border-box;
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans KR", sans-serif;
+    background-color: #f9f9f9;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
-  padding-top: 0; /* 상단 패딩 초기화 */
-  margin-top: 800px; /* 상단에 800px의 여백 추가 */
-  margin-bottom: 0; /* 하단 여백을 줄이기 */
-  position: relative;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 1200px; /* 기본적으로 최대 1200px까지만 넓어짐 */
-  height: auto;
-  background-color: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  box-sizing: border-box;
-}
-
-.main {
-  overflow: auto;
-  padding: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-  align-items: center;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  width: 1200px;
-  height: 1600px;
-  max-width: 1200px;
-  position: relative;
-  overflow: hidden;
-}
-.register-form {
-  flex-shrink: 0;
-  width: 1160px;
-  height: 1398px;
-  position: relative;
-  overflow: hidden;
-}
-.button {
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: center;
-  justify-content: flex-end;
-  height: 50px;
-  position: absolute;
-  left: calc(50% - 50px);
-  top: 1312px;
-}
-.joinbutton {
-  cursor: pointer;
-  border-style: solid;
-  border-color: #e0e0e2;
-  border-width: 1px;
-  padding: 3px 14px 3px 14px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 99px;
-  height: 50px;
-  position: relative;
-}
-.joinbutton:hover {
-  background-color: #f0f0f0;
-  border-color: #ccc;
-}
-.div {
-  color: var(--neutral-grayscale-neut-0, #27272d);
-  text-align: center;
-  font-family: "PretendardVariable-Medium", sans-serif;
-  font-size: 14px;
-  line-height: 26px;
-  letter-spacing: -0.0012em;
-  font-weight: 500;
-  position: relative;
-}
-.div2 {
-  color: #000000;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 20px;
-  line-height: 26px;
-  letter-spacing: -0.0012em;
-  font-weight: 500;
-  position: absolute;
-  left: calc(50% - 558px);
-  top: calc(50% - 663px);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.fullform {
-
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 601px;
-  position: absolute;
-  left: 22px;
-  top: calc(50% - 597.5px);
-}
-.input {
-  z-index:1;
-  flex-shrink: 0;
-  width: 480px;
-  height: 83px;
-  position: relative;
-  overflow: hidden;
-}
-.username {
-  flex-shrink: 0;
-  width: 480px;
-  height: 83px;
-  position: relative;
-  overflow: hidden;
-}
-.password {
-  flex-shrink: 0;
-  width: 480px;
-  height: 83px;
-  position: relative;
-  overflow: hidden;
-}
-.passwordcheck {
-  flex-shrink: 0;
-  width: 480px;
-  height: 83px;
-  position: relative;
-  overflow: hidden;
-}
-.input-box {
-  width: 100%;
-  height: 50px;
-  position: absolute;
-  right: 0%;
-  left: 0%;
-  top: 33px;
-  overflow: hidden;
-
-  /* 테두리 스타일 추가 */
-  border: 2px solid #ccc; /* 2px 두께의 실선 회색 테두리 */
-  border-radius: 5px; /* 모서리를 둥글게 설정 */
-  box-sizing: border-box; /* 패딩과 테두리를 포함한 전체 크기 계산 */
-
-  /* 배경색 설정 */
-  background-color: white;
-}
-/* 기타 알러지 정보 입력 박스 스타일 */
-input[type="text"][placeholder="기타 알러지 정보 입력"] {
-    width: 100%;       /* 부모 컨테이너의 너비에 맞춤 */
-    height: 80px;      /* 높이를 키워 입력 필드가 커지게 설정 */
-    padding: 10px;     /* 내부 여백 추가 */
-    border: 1px solid #ccc; /* 테두리 스타일 */
-    border-radius: 5px; /* 테두리 둥글게 */
-    font-size: 16px;   /* 텍스트 크기 조정 */
-    box-sizing: border-box; /* 패딩 포함한 전체 크기 계산 */
-}
-
-.bg-solid {
-  z-index: 0;
-  background: #ffffff;
-  border-radius: 8px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  right: 0%;
-  left: 0%;
-  bottom: 0%;
-  top: 0%;
-}
-.bg-border {
-  z-index: 0;
-  border-radius: 8px;
-  border-style: solid;
-  border-color: #e7e9ed;
-  border-width: 1px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  right: 0%;
-  left: 0%;
-  bottom: 0%;
-  top: 0%;
-}
-.input-name {
-  color: #161c2d;
-  text-align: left;
-  font-family: "NotoSansKr-Regular", sans-serif;
-  font-size: 15px;
-  line-height: 26px;
-  letter-spacing: -0.1px;
-  font-weight: 400;
-  opacity: 0.7;
-  position: absolute;
-  right: 20px;
-  left: 18px;
-  bottom: 12px;
-  top: 12px;
-}
-.label {
-  color: #161c2d;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 14px;
-  line-height: 26px;
-  letter-spacing: -0.1px;
-  font-weight: 500;
-  position: absolute;
-  right: 307px;
-  left: 0px;
-  top: 0px;
-}
-.userId {
-  display: flex;
-  flex-direction: row;
-  gap: 19px;
-  align-items: flex-end;
-  justify-content: flex-start;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
-.input-box2 {
-  border: 2px solid #ccc;
-  background: #ffffff;
-  width: 100%;
-  height: 50px;
-  position: absolute;
-  right: 0%;
-  left: 0%;
-  top: 33px;
-  overflow: hidden;
-}
-.bg-border2 {
-  z-index: 0;
-  border-radius: 8px;
-  border-style: solid;
-  border-color: #000000;
-  border-width: 1px;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  right: 0%;
-  left: 0%;
-  bottom: 0%;
-  top: 0%;
-}
-.label2 {
-  color: #161c2d;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 14px;
-  line-height: 26px;
-  letter-spacing: -0.1px;
-  font-weight: 500;
-  position: absolute;
-  right: 441px;
-  left: 0px;
-  top: 0px;
-}
-.Idcheck {
-  display: flex;
-  flex-direction: row;
-  gap: 8px;
-  align-items: center;
-  justify-content: flex-end;
-  flex-shrink: 0;
-  width: 102px;
-  height: 50px;
-  position: relative;
-}
-.Idcheckbutton {
-  border-radius: 8px;
-  border-style: solid;
-  border-color: #e0e0e2;
-  border-width: 1px;
-  padding: 3px 14px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  align-items: center;
-  justify-content: center;
-  width: 102px;
-  height: 50px;
-  cursor: pointer; /* 손 모양 커서로 변경 */
-}
-
-.Idcheckbutton:hover {
-  background-color: #f0f0f0;
-  border-color: #ccc;
-}
-.label3 {
-  color: #161c2d;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 14px;
-  line-height: 26px;
-  letter-spacing: -0.1px;
-  font-weight: 500;
-  position: absolute;
-  right: 279px;
-  left: 0px;
-  top: 0px;
-}
-.input2 {
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 83px;
-  position: relative;
-  overflow: hidden;
-}
-.phonenumber {
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 83px;
-  position: relative;
-  overflow: hidden;
-}
-.email {
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 83px;
-  position: relative;
-  overflow: hidden;
-}
-.Age {
-  align-self: stretch;
-  flex-shrink: 0;
-  height: 83px;
-  position: relative;
-  overflow: hidden;
-}
-.input-box3 {
-  border: 2px solid #ccc;
-  width: 79.87%;
-  height: 50px;
-  position: absolute;
-  right: 20.13%;
-  left: 0%;
-  top: 33px;
-  overflow: hidden;
-}
-.label4 {
-  color: #161c2d;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 14px;
-  line-height: 26px;
-  letter-spacing: -0.1px;
-  font-weight: 500;
-  position: absolute;
-  right: 428px;
-  left: 0px;
-  top: 0px;
-}
-.div3 {
-  color: #000000;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 20px;
-  line-height: 26px;
-  letter-spacing: -0.0012em;
-  font-weight: 500;
-  position: absolute;
-  left: calc(50% - 558px);
-  top: calc(50% - -267px);
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-.wantedconditions {
-  width: 60.52%;
-  height: 10.94%;
-  position: absolute;
-  right: 37.59%;
-  left: 2%;
-  bottom: 20.24%;
-  top:50.82%;
-  overflow: hidden;
-}
-.label5 {
-  color: #161c2d;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 16px;
-  line-height: 26px;
-  letter-spacing: -0.1px;
-  font-weight: 500;
-  position: absolute;
-  right: 246px;
-  left: 0px;
-  top: 0px;
-}
-.frame-26085751 {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  left: 0px;
-  top: 46px;
-}
-.frame-26085747 {
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  align-items: center;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
-.checkboxes {
-  padding: 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-}
-.state-layer {
-  border-radius: 100px;
-  padding: 11px;
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-}
-.container2 {
-  background: #434343;
-  border-radius: 2px;
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  position: relative;
-}
-.check-small {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  left: calc(50% - 12px);
-  top: calc(50% - 12px);
-  overflow: visible;
-}
-.label6 {
-  color: #161c2d;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 14px;
-  line-height: 26px;
-  letter-spacing: -0.1px;
-  font-weight: 500;
-  position: relative;
-}
-.frame-26085748 {
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  align-items: center;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
-.check-small2 {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  left: calc(50% - 12px);
-  top: calc(50% - 12px);
-  overflow: visible;
-}
-.frame-26085749 {
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  align-items: center;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
-.container3 {
-  border-radius: 2px;
-  border-style: solid;
-  border-color: var(--schemes-on-surface-variant, #49454f);
-  border-width: 2px;
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  position: relative;
-}
-.frame-26085750 {
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  align-items: center;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  position: relative;
-}
-.allergy {
-  width: 60.52%;
-  height: 10.94%;
-  position: absolute;
-  right: 37.59%;
-  left: 2%;
-  bottom: 20.24%;
-  top: 60.48%;
-  overflow: hidden;
-}
-.check-small3 {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  left: calc(50% - 12px);
-  top: calc(50% - 12px);
-  overflow: visible;
-}
-.frame-260857532 {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: center;
-  justify-content: flex-start;
-  position: absolute;
-  left: 148px;
-  top: 46px;
-}
-.check-small4 {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  left: calc(50% - 12px);
-  top: calc(50% - 12px);
-  overflow: visible;
-}
-.frame-26085752 {
-  display: flex;
-  flex-direction: row;
-  gap: 0px;
-  align-items: center;
-  justify-content: flex-start;
-  width: 171px;
-  height: 48px;
-  position: absolute;
-  left: 309px;
-  top: 46px;
-}
-.text-fields {
-  flex-shrink: 0;
-  width: 123px;
-  height: 26px;
-  position: relative;
-  overflow: hidden;
-}
-.vector-8 {
-  width: 123px;
-  height: 0px;
-  position: absolute;
-  left: 0px;
-  bottom: 0px;
-  overflow: visible;
-}
-.label7 {
-  color: #bbbbbb;
-  text-align: left;
-  font-family: "NotoSansKr-Regular", sans-serif;
-  font-size: 14px;
-  line-height: 26px;
-  letter-spacing: -0.1px;
-  font-weight: 400;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.footer {
-  padding: 0px 20px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 0px;
-  align-items: center;
-  justify-content: flex-start;
-  flex-shrink: 0;
-  width: 1200px;
-  height: 401px;
-  max-width: 1200px;
-  position: relative;
-  overflow: hidden;
-}
-.footer2 {
-  border-style: solid;
-  border-color: #c3c3c3;
-  border-width: 1px 0px 0px 0px;
-  flex-shrink: 0;
-  width: 1120px;
-  height: 333px;
-  position: relative;
-  overflow: hidden;
-}
-.footer-about {
-  position: absolute;
-  inset: 0;
-}
-.logo {
-  color: #484848;
-  text-align: left;
-  font-family: "NotoSansKr-Black", sans-serif;
-  font-size: 50px;
-  font-weight: 900;
-  position: absolute;
-  left: 0px;
-  top: 37px;
-  width: 166px;
-  height: 56px;
-}
-.lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-sed-do-eiusmod-tempor-incididunt-ut-labore-et-dolore-magna-aliqua {
-  color: #9a9a9a;
-  text-align: left;
-  font-family: "NotoSansKr-Regular", sans-serif;
-  font-size: 15px;
-  line-height: 20px;
-  font-weight: 400;
-  position: absolute;
-  left: 0px;
-  top: 124px;
-  width: 382px;
-  height: 96px;
-}
-.playstore {
-  width: 172px;
-  height: 52px;
-  position: static;
-}
-.rectangle-46 {
-  background: #e0e2e6;
-  border-radius: 6px;
-  width: 172px;
-  height: 52px;
-  position: absolute;
-  left: 0px;
-  top: 227px;
-}
-.ion-logo-google-playstore {
-  width: 22px;
-  height: 22px;
-  position: absolute;
-  left: 29px;
-  top: 242px;
-  overflow: visible;
-}
-.play-store {
-  color: #484848;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  position: absolute;
-  left: 66px;
-  top: 241px;
-  width: 86px;
-  height: 26px;
-}
-.applestore {
-  width: 172px;
-  height: 52px;
-  position: static;
-}
-.rectangle-47 {
-  background: #e0e2e6;
-  border-radius: 6px;
-  width: 172px;
-  height: 52px;
-  position: absolute;
-  left: 185px;
-  top: 227px;
-}
-.apple-store {
-  color: #484848;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  position: absolute;
-  left: 245px;
-  top: 241px;
-  width: 94px;
-  height: 26px;
-}
-.ion-logo-apple-appstore {
-  width: 24px;
-  height: 24px;
-  position: absolute;
-  left: 206px;
-  top: 242px;
-  overflow: visible;
-}
-.contact-info {
-  position: absolute;
-  inset: 0;
-}
-.contact-info2 {
-  color: #484848;
-  text-align: left;
-  font-family: "NotoSansKr-Bold", sans-serif;
-  font-size: 18px;
-  line-height: 20px;
-  font-weight: 700;
-  position: absolute;
-  left: 866px;
-  top: 37px;
-  width: 153px;
-  height: 28px;
-}
-.phone-1234567890 {
-  color: #484848;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 15px;
-  line-height: 20px;
-  font-weight: 500;
-  position: absolute;
-  left: 866px;
-  top: 86px;
-  width: 157px;
-  height: 21px;
-}
-.email-company-email-com {
-  color: #484848;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 15px;
-  line-height: 20px;
-  font-weight: 500;
-  position: absolute;
-  left: 866px;
-  top: 118px;
-  width: 224px;
-  height: 21px;
-}
-.location-100-smart-street-la-usa {
-  color: #484848;
-  text-align: left;
-  font-family: "NotoSansKr-Medium", sans-serif;
-  font-size: 15px;
-  line-height: 20px;
-  font-weight: 500;
-  position: absolute;
-  left: 866px;
-  top: 150px;
-  width: 294px;
-  height: 21px;
-}
-.social-media-links {
-  width: 191px;
-  height: 38px;
-  position: absolute;
-  left: 857px;
-  top: 198px;
-  overflow: visible;
-}
-
-
-  /* 알림 스타일 */
-  .notification {
-    visibility: hidden; /* 처음에는 숨김 */
-    min-width: 250px;
-    background-color: #555;
-    color: #fff;
+    background-color: white;
+    width: 100%;
+    max-width: 1800px; /* 원래 max-width의 2배로 설정 */
+    padding: 120px; /* 세로 크기는 그대로 유지 */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
-    border-radius: 8px;
-    padding: 15px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    top: 30px;
-    transform: translateX(-50%);
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+input[type="text"], input[type="password"], input[type="number"], input[type="tel"], input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
     font-size: 16px;
-    opacity: 0;
-    transition: opacity 0.5s, visibility 0.5s;
 }
 
-/* 알림이 보일 때 적용 */
-.notification.show {
-    visibility: visible;
-    opacity: 1;
+input:focus {
+    border-color: #00aaff;
+    box-shadow: 0 0 5px rgba(0, 170, 255, 0.5);
+    outline: none;
 }
 
-/* 입력 커서 깜빡깜빡*/
-        /* 이름 입력 필드 */
-        #customerName {
-          width: 100%;
-          padding: 10px;
-          border: 2px solid #ccc; /* 기본 테두리 */
-          border-radius: 5px; /* 모서리를 둥글게 설정 */
-          box-sizing: border-box;
-          font-size: 16px;
-        }
+button[type="button"], button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: transparent; /* 배경색 제거 */
 
-        /* 이름 입력 필드 포커스 */
-        #customerName:focus {
-          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
-          outline: none; /* 기본 outline 제거 */
-          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
-        }
+    color: #A50034;
+    border: 2px solid #A50034;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+button[type="button"]:hover, button[type="submit"]:hover {
+    background-color: #A50034; /* 호버 시 배경 색 LG 로고 색 */
+        color: white; /* 호버 시 텍스트 색을 흰색으로 변경 */
+}
 
-        #customerId {
-          width: 100%;
-          padding: 10px;
-          border: 2px solid #ccc; /* 기본 테두리 */
-          border-radius: 5px; /* 모서리를 둥글게 설정 */
-          box-sizing: border-box;
-          font-size: 16px;
-        }
+.wanted-conditions, .allergy {
+    margin-bottom: 20px;
+}
 
-        /* 아이디 입력 필드에 포커스가 맞춰졌을 때(입력 중일 때) */
-        #customerId:focus {
-          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
-          outline: none; /* 기본 outline 제거 */
-          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
-        }
+.wanted-conditions div, .allergy div {
+    margin-bottom: 10px;
+}
 
-        /* 비밀번호 입력 필드 */
-        #customerPw {
-          width: 100%;
-          padding: 10px;
-          border: 2px solid #ccc; /* 기본 테두리 */
-          border-radius: 5px; /* 모서리를 둥글게 설정 */
-          box-sizing: border-box;
-          font-size: 16px;
-        }
+.wanted-conditions label, .allergy label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
 
-        /* 비밀번호 입력 필드 포커스 */
-        #customerPw:focus {
-          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
-          outline: none; /* 기본 outline 제거 */
-          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
-        }
-        /* 비밀번호 확인 입력 필드 */
-        #confirmPassword {
-          width: 100%;
-          padding: 10px;
-          border: 2px solid #ccc; /* 기본 테두리 */
-          border-radius: 5px; /* 모서리를 둥글게 설정 */
-          box-sizing: border-box;
-          font-size: 16px;
-        }
+input[type="checkbox"] {
+    margin-right: 10px;
+}
 
-        /* 비밀번호 확인 입력 필드 포커스 */
-        #confirmPassword:focus {
-          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
-          outline: none; /* 기본 outline 제거 */
-          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
-        }
+.error-message {
+    color: red;
+    text-align: center;
+}
 
-        /* 전화번호 입력 필드 */
-        #customerCallNumber {
-          width: 100%;
-          padding: 10px;
-          border: 2px solid #ccc; /* 기본 테두리 */
-          border-radius: 5px; /* 모서리를 둥글게 설정 */
-          box-sizing: border-box;
-          font-size: 16px;
-        }
+/* 아이디와 중복 검사 버튼을 가로로 정렬 */
+.user-id-container {
+    display: flex;
+    flex-direction: column; /* 레이블을 위로 배치 */
+    gap: 5px; /* 레이블과 입력 필드 간격 */
+    width: 100%; /* 전체 너비에 맞춤 */
+}
 
-        /* 전화번호 입력 필드 포커스 */
-        #customerCallNumber:focus {
-          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
-          outline: none; /* 기본 outline 제거 */
-          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
-        }
+.input-button-group {
+    display: flex;
+    flex-direction: row; /* 입력란과 버튼을 가로로 나열 */
+    gap: 5px; /* 입력란과 버튼 사이 간격 */
+    width: 100%; /* 전체 너비 */
+}
 
-        /* 이메일 입력 필드 */
-        #email {
-          width: 100%;
-          padding: 10px;
-          border: 2px solid #ccc; /* 기본 테두리 */
-          border-radius: 5px; /* 모서리를 둥글게 설정 */
-          box-sizing: border-box;
-          font-size: 16px;
-        }
+.input-button-group input {
+    flex-grow: 2; /* 입력란의 너비를 부모 컨테이너에 맞춤 */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%; /* 입력 필드가 전체 너비를 차지하게 */
+}
 
-        /* 이메일 입력 필드 포커스 */
-        #email:focus {
-          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
-          outline: none; /* 기본 outline 제거 */
-          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
-        }
+.input-button-group button {
+    padding: 5px 10px; /* 버튼의 크기를 적절히 조절 */
+    background-color: #A50034;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-        /* 생년월일 입력 필드 */
-        #customerAge {
-          width: 100%;
-          padding: 10px;
-          border: 2px solid #ccc; /* 기본 테두리 */
-          border-radius: 5px; /* 모서리를 둥글게 설정 */
-          box-sizing: border-box;
-          font-size: 16px;
-        }
+.input-button-group button:hover {
+    background-color: #880029; /* 호버 시 배경 색 변경 */
+}
 
-        /* 생년월일 입력 필드 포커스 */
-        #customerAge:focus {
-          border-color: #00aaff; /* 포커스 상태일 때 테두리 색 변경 */
-          outline: none; /* 기본 outline 제거 */
-          box-shadow: 0 0 5px rgba(0, 170, 255, 0.5); /* 테두리 바깥쪽에 그림자 추가 */
-        }
+/* 체크박스와 텍스트를 한 줄에 배치 */
+.checkbox-container {
+    display: flex;
+    align-items: center; /* 텍스트와 체크박스를 수직으로 가운데 정렬 */
+    margin-bottom: 10px; /* 각 체크박스 간의 간격 */
+}
 
+.checkbox-container label {
+    margin-left: 10px; /* 체크박스와 텍스트 간의 간격 */
+    font-size: 16px; /* 텍스트 크기 */
+}
