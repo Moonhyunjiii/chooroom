@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    const checkUserIdButton = document.getElementById("checkId"); // 'checkUserId'에서 'checkId'로 변경
+    const checkUserIdButton = document.getElementById("checkUserId");
     const userIdInput = document.getElementById("userId");
 
     checkUserIdButton.addEventListener("click", function() {
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         // 서버에 userId를 보내서 중복 여부를 확인
-        fetch(`/api/user/check-id?customerId=${encodeURIComponent(userId)}`)
+        fetch(`/api/user/check-id?customerId=${encodeURIComponent(userId)}`) // 쿼리 파라미터 수정
             .then(response => response.json())
             .then(data => {
                 if (data) {
