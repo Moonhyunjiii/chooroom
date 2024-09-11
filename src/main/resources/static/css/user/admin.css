@@ -140,6 +140,7 @@
   cursor: pointer;
   width: 100%; /* 각 카드가 셀을 꽉 채우게 설정 */
   max-width: 300px; /* 카드의 최대 너비를 설정하여 너무 커지지 않도록 */
+
 }
 /* 카드 눌리는 효과 */
 .room-card:hover {
@@ -164,6 +165,9 @@
 
 .green-border {
   border: 1px solid #09a76e;
+}
+.gray-border {
+  border: 1px solid #cccccc;
 }
 
 /* 방 번호와 타입 */

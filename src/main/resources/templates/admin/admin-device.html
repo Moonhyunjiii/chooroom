@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/admin/admin-device.css">
+</head>
+<body>
+<div class="dashboard-layout">
+    <!--    메뉴바-->
+    <div class="sidebar">
+        <div class="sidebar-item">
+            <img src="icon-dashboard.svg" alt="대시보드 아이콘" />
+            <span>대시보드</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="icon-device-management.svg" alt="기기 관리 아이콘" />
+            <span>객실 기기관리</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="icon-hotel.svg" alt="호텔 기기 아이콘" />
+            <span>호텔 기기</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="icon-energy.svg" alt="에너지 관리 아이콘" />
+            <span>에너지 관리</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="icon-room-management.svg" alt="객실 관리 아이콘" />
+            <span>객실 관리</span>
+        </div>
+    </div>
+
+<!--    디바이스 요약-->
+    <div class="device-container">
+        <div class="device-summary">
+            <!-- 종합 청정도 카드 -->
+            <div class="summary-card">
+                <div class="summary-content">
+                    <div class="icon-section">
+                        <img src="smile-icon.png" alt="아이콘" />
+                    </div>
+                    <div class="info-section">
+                        <h4> 종합청정도 <span class="status"> 좋음 </span></h4>
+                        <div class="details">
+                            <p>미세먼지<span>10μg/m³</span></p>
+                            <p>초미세먼지<span>23μg/m³</span></p>
+                            <p>룸 청소 현황<span>90%</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 기기 운전 현황 카드 -->
+            <div class="summary-card">
+                <div class="summary-content">
+                    <div class="info-section">
+                        <h4>기기 운전 현황</h4>
+                        <div class="usage-details">
+                            <div>이용 중 객실: <span>128/300</span></div>
+                            <div>에어컨: <progress value="100" max="250"></progress> 100/250</div>
+                            <div>냉장고: <progress value="128" max="300"></progress> 128/300</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="summary-card-paral">
+                <!-- 기기 오류 카드 -->
+                <div class="summary-card-p">
+                    <div class="summary-content">
+                        <h4>기기 이상</h4>
+                        <div class="error-count"><span class="highlight">1건</span></div>
+                    </div>
+                </div>
+
+                <!-- 필터 관리 카드 -->
+                <div class="summary-card-p">
+                    <div class="summary-content">
+                        <h4>교체 필요</h4>
+                        <div>10건</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div class="room-device-info-container" id="roomContainer"></div>
+</div>
+
+<script src="/js/admin/admin-device.js"></script>
+</body>
+</html>

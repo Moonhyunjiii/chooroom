@@ -1,0 +1,202 @@
+/* 전체 페이지 레이아웃 */
+    .page-container {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;;
+     width: 100vw;
+     height: 100vh;
+     padding: 20px;
+     box-sizing: border-box; /* 패딩을 포함한 크기 조정 */
+     background: linear-gradient(90deg, rgba(195, 216, 235, 1) 0%, rgba(238, 246, 249, 1) 100%);
+     overflow: hidden; /* 스크롤 제거 */
+    }
+
+    /* 상단 호텔 이름 및 아이콘 */
+    .header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+     margin-bottom: 20px;
+     gap: 10px; /* 호텔 이름과 아이콘 사이의 간격 조정 */
+    }
+
+    .hotel-info {
+     font-size: 1.5rem;
+     color: black;
+     margin-right: 20px; /* 호텔 이름과 아이콘 사이 여백 */
+    }
+
+    .header-icons {
+     display: flex;
+     gap: 15px;
+    }
+
+    /* header 아이콘 스타일 */
+    .header-icons {
+    display: flex;
+    gap: 15px; /* 각 아이콘 사이 간격 */
+    }
+
+    .header-icons svg {
+    pointer-events: auto;  /* SVG는 클릭 가능 */
+    cursor: pointer;       /* 마우스 커서를 손 모양으로 변경 */
+    transition: transform 0.2s ease; /* 클릭 시 반응을 위한 트랜지션 */
+    }
+
+    /* SVG 호버 시 효과 */
+    .header-icons svg:hover {
+    transform: scale(1.1);  /* 마우스 호버 시 약간 확대 */
+    }
+
+    /* SVG 클릭 시 효과 */
+    .header-icons svg:active {
+    transform: scale(0.95); /* 클릭 시 살짝 축소 */
+    }
+
+    .icon {
+     width: 24px;
+     height: 24px;
+    }
+
+    /* 스마트 루틴 섹션 */
+    /* 스마트 루틴 섹션 */
+    .smart-routine-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 60%;                 /* 웹페이지 가로의 60%를 차지 */
+    margin-bottom: 20px;
+    }
+
+    .mode-container {
+    display: flex;              /* 가로로 정렬 */
+    justify-content: space-between; /* 두 박스를 양쪽에 균등하게 배치 */
+    gap: 15px;                  /* 두 박스 사이 간격 */
+    width: 100%;                /* 컨테이너가 100% 가로를 차지 */
+    }
+
+    .mode-box {
+    background-color: white;
+    flex: 1;                    /* 박스가 남은 공간을 균등하게 차지 */
+    padding: 20px;              /* 박스 내부 여백 */
+    border-radius: 10px;        /* 둥근 테두리 */
+    text-align: flex-start;
+    font-size: 1.2rem;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);  /* 박스 그림자 */
+    transition: background-color 0.3s ease;
+    }
+
+    .mode-box:hover {
+    background-color: #eef8f9;  /* 마우스 호버 시 배경색 */
+    cursor: pointer;
+    }
+
+    .mode-box:active {
+    background-color: #d4f0f5;  /* 클릭했을 때 색상 변화 */
+    transform: scale(0.98);     /* 클릭 시 살짝 축소 효과 */
+    }
+    /* 101호 텍스트 섹션 */
+    .room-number {
+    font-size: 1.2rem;
+    color: #8a9197;
+    margin-bottom: 20px;
+    margin-left: 0;            /* 왼쪽 여백을 없애 101호도 왼쪽으로 붙임 */
+    }
+
+    /* 그리드 레이아웃 - 기기 카드 */
+    .device-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    }
+
+    .device-card {
+    background-color: #f8fcfd;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    pointer-events: none; /* 클릭과 이벤트 비활성화 */
+    }
+    /* 파워 아이콘은 여전히 클릭 가능하게 유지 */
+    .power-icon {
+    width: 40px;
+    height: 40px;
+    pointer-events: auto; /* 파워 아이콘은 클릭 가능 */
+    }
+    .device-name {
+    font-size: 1.2rem;
+    }
+
+    /* 에어컨 컨트롤 스타일 */
+    .aircon-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* 버튼 사이 간격 */
+    }
+
+    .arrow-button {
+    background-color: #eef8f9;
+    border: none;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    pointer-events: auto; /* 반드시 클릭 가능하도록 설정 */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* 클릭 시 반응 */
+    }
+
+    .aircon-level {
+    font-size: 1rem;
+    color: #8a9197;
+    }
+
+    /* 버튼 호버 효과 */
+    .arrow-button:hover {
+      background-color: #d4eaf2; /* 호버 시 버튼 배경색 변경 */
+    }
+
+    /* 버튼 클릭 시 효과 */
+    .arrow-button:active {
+      transform: scale(0.95); /* 클릭 시 버튼이 살짝 축소 */
+    }
+
+    /* 공기청정기 미세먼지 표시 */
+    .air-quality {
+    background-color: #eef8f9;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #8a9197;
+    }
+
+    /* 파워 아이콘 스타일 */
+    .power-icon {
+    width: 40px;
+    height: 40px;
+    }
+
+    /* 모든 SVG 클릭 가능하게 설정 */
+    .device-card svg {
+    pointer-events: auto; /* SVG는 클릭 가능 */
+    cursor: pointer;      /* 마우스 커서를 손 모양으로 변경 */
+    transition: transform 0.2s ease; /* 클릭 시 반응을 위한 트랜지션 */
+    }
+
+    /* SVG 호버 시 효과 */
+    .device-card svg:hover {
+    transform: scale(1.1); /* 마우스 호버 시 약간 확대 */
+    }
+
+    /* SVG 클릭 시 효과 */
+    .device-card svg:active {
+    transform: scale(0.95); /* 클릭 시 살짝 축소 */
+    }
+
