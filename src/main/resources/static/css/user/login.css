@@ -1,0 +1,90 @@
+/* 전체 페이지 레이아웃 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* 100% 높이를 설정 */
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center; /* 수직 가운데 정렬 */
+    background-color: #f9f9f9;
+}
+
+.container {
+    width: 100%;
+    max-width: 3600px; /* 기존의 max-width를 1.5배로 설정 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+.main {
+    width: 100%;
+    max-width: 3600px; /* 기존의 max-width를 1.5배로 설정 */
+    padding: 60px; /* 기존 padding의 1.5배 */
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* 그림자 크기도 1.5배 */
+    text-align: center;
+}
+
+h2 {
+    margin-bottom: 30px; /* 기존 margin-bottom의 1.5배 */
+    font-family: "Noto Sans", sans-serif;
+    font-size: 36px; /* 기존 font-size의 1.5배 */
+    color: #333;
+}
+
+/* 입력 그룹 스타일 */
+div {
+    margin-bottom: 30px; /* 기존 margin-bottom의 1.5배 */
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 7.5px; /* 기존 margin-bottom의 1.5배 */
+    font-size: 21px; /* 기존 font-size의 1.5배 */
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 15px; /* 기존 padding의 1.5배 */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 24px; /* 기존 font-size의 1.5배 */
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: #00aaff;
+    outline: none;
+    box-shadow: 0 0 7.5px rgba(0, 170, 255, 0.5); /* 기존 shadow 크기의 1.5배 */
+}
+
+/* 버튼 스타일 */
+button {
+    width: 100%;
+    padding: 15px; /* 기존 padding의 1.5배 */
+    background-color: #A50034;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 24px; /* 기존 font-size의 1.5배 */
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #bbbbbb;
+}
+
+/* 에러 메시지 스타일 */
+p {
+    color: red;
+    margin-top: 15px; /* 기존 margin-top의 1.5배 */
+    font-size: 21px; /* 기존 font-size의 1.5배 */
+    text-align: center;
+}
