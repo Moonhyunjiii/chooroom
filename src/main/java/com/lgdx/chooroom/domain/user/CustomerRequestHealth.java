@@ -12,50 +12,50 @@ import java.util.Date;
 public class CustomerRequestHealth {
 
     @Id
-    @Column(name="H_NO") private int hNo;
-    @Column(name="H_INFO") private String hInfo;
-    @Column(name="H_DATE") private Date hDate;
-    @Column(name="CUS_ID") private String cusId;
+    @Column(name="H_NO") private int healthNumber;
+    @Column(name="H_INFO") private String healthInfo;
+    @Column(name="H_DATE") private Date healthDate;
+    @Column(name="CUS_ID") private String customerId;
 
-    public int gethNo() {
-        return hNo;
+    public int getHealthNumber() {
+        return healthNumber;
     }
 
-    public void sethNo(int hNo) {
-        this.hNo = hNo;
+    public void setHealthNumber(int healthNumber) {
+        this.healthNumber = healthNumber;
     }
 
-    public String gethInfo() {
-        return hInfo;
+    public String getHealthInfo() {
+        return healthInfo;
     }
 
-    public void sethInfo(String hInfo) {
-        this.hInfo = hInfo;
+    public void setHealthInfo(String healthInfo) {
+        this.healthInfo = healthInfo;
     }
 
-    public Date gethDate() {
-        return hDate;
+    public Date getHealthDate() {
+        return healthDate;
     }
 
-    public void sethDate(Date hDate) {
-        this.hDate = hDate;
+    public void setHealthDate(Date healthDate) {
+        this.healthDate = healthDate;
     }
 
-    public String getCusId() {
-        return cusId;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCusId(String cusId) {
-        this.cusId = cusId;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
     @Override
     public String toString() {
         return "CustomerRequestHealth{" +
-                "hNo=" + hNo +
-                ", hInfo='" + hInfo + '\'' +
-                ", hDate=" + hDate +
-                ", cusId='" + cusId + '\'' +
+                "healthNumber=" + healthNumber +
+                ", healthInfo='" + healthInfo + '\'' +
+                ", healthDate=" + healthDate +
+                ", customerId='" + customerId + '\'' +
                 '}';
     }
 }

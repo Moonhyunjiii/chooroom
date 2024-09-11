@@ -4,88 +4,86 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jdk.jfr.Enabled;
 
 @Entity
 @Table(name = "CUSTOMER_ACCOUNT")
 public class CustomerAccount {
 
     @Id
-    @Column(name="CUS_ID")
-    private String cusId;
+    @Column(name="CUS_ID") private String customerId;
+    @Column(name="CUS_PW") private String customerPw;
+    @Column(name="CUS_NAME") private String customerName;
+    @Column(name="CUS_AGE") private String customerAge;
+    @Column(name="CUS_CALL") private String customerCallNumber;
+    @Column(name="CUS_EMAIL") private String customerEmail;
+    @Column(name="CUS_ADD") private String customerAdditionalRequest;
 
-    @Column(name="CUS_PW")
-    private String cusPw;
-
-    @Column(name="CUS_NAME")
-    private String cusName;
-
-    @Column(name="CUS_AGE")
-    private String cusAge;
-
-    @Column(name="CUS_CALL")
-    private String cusCall;
-
-    @Column(name="CUS_ADD")
-    private String cusAdd;
-
-    public String getCusId() {
-        return cusId;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCusId(String cusId) {
-        this.cusId = cusId;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
-    public String getCusPw() {
-        return cusPw;
+    public String getCustomerPw() {
+        return customerPw;
     }
 
-    public void setCusPw(String cusPw) {
-        this.cusPw = cusPw;
+    public void setCustomerPw(String customerPw) {
+        this.customerPw = customerPw;
     }
 
-    public String getCusName() {
-        return cusName;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCusName(String cusName) {
-        this.cusName = cusName;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getCusAge() {
-        return cusAge;
+    public String getCustomerAge() {
+        return customerAge;
     }
 
-    public void setCusAge(String cusAge) {
-        this.cusAge = cusAge;
+    public void setCustomerAge(String customerAge) {
+        this.customerAge = customerAge;
     }
 
-    public String getCusCall() {
-        return cusCall;
+    public String getCustomerCallNumber() {
+        return customerCallNumber;
     }
 
-    public void setCusCall(String cusCall) {
-        this.cusCall = cusCall;
+    public void setCustomerCallNumber(String customerCallNumber) {
+        this.customerCallNumber = customerCallNumber;
     }
 
-    public String getCusAdd() {
-        return cusAdd;
+    public String getCustomerAdditionalRequest() {
+        return customerAdditionalRequest;
     }
 
-    public void setCusAdd(String cusAdd) {
-        this.cusAdd = cusAdd;
+    public void setCustomerAdditionalRequest(String customerAdditionalRequest) {
+        this.customerAdditionalRequest = customerAdditionalRequest;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "cusId='" + cusId + '\'' +
-                ", cusPw='" + cusPw + '\'' +
-                ", cusName='" + cusName + '\'' +
-                ", cusAge='" + cusAge + '\'' +
-                ", cusCall='" + cusCall + '\'' +
-                ", cusAdd='" + cusAdd + '\'' +
+        return "CustomerAccount{" +
+                "customerId='" + customerId + '\'' +
+                ", customerPw='" + customerPw + '\'' +
+                ", customerName='" + customerName + '\'' +
+                ", customerAge='" + customerAge + '\'' +
+                ", customerCallNumber='" + customerCallNumber + '\'' +
+                ", customerEmail='" + customerEmail + '\'' +
+                ", customerAdditionalRequest='" + customerAdditionalRequest + '\'' +
                 '}';
     }
 }

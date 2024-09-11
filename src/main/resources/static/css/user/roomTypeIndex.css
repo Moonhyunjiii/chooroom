@@ -1,0 +1,272 @@
+.room-section {
+    max-width: 100%;
+    width: 100%;
+    background-color: white;
+}
+
+/* .room 스타일 */
+.room {
+    display: grid;
+    grid-template-columns: 3fr 4fr 2fr 1fr;
+    gap: 20px;
+    align-items: start;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+}
+
+/* .room-title, .room-image, .room-header 등 기존 스타일 유지 */
+.room-title {
+    grid-column: 1 / -1;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    padding-bottom: 30px;
+}
+
+.room-image {
+    grid-column: 1 / 2;
+    background: #d9d9d9;
+    width: 100%;
+    height: 150px;
+}
+
+.room-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.room-header {
+    grid-column: 2 / 3;
+    width: 100%;
+}
+
+/* 방 소음 관련 */
+.room-noise {
+    font-size: 16px;
+    color: #afafaf;
+    margin-bottom: 5px;
+}
+
+.noise-level {
+    color: #0085be;
+    font-weight: 600;
+}
+
+.noise-description {
+    color: #afafaf;
+    font-weight: 600;
+}
+
+/* 방 설명 관련 */
+.room-description {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+/* 방 상태 */
+.room-status {
+    width: 100%;
+    grid-column: 3 / 4;
+    text-align: left;
+    font-size: 14px;
+    color: #afafaf;
+    align-self: end;
+}
+
+.night-text {
+    color: #afafaf;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.remaining-rooms {
+    color: #ff5e5e;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.room-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    margin-top: 10px;
+}
+
+/* 예약 버튼 스타일 */
+.reserve-btn {
+    grid-column: 4 / 5;
+    align-self: end;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.reserve-btn:hover {
+    background-color: #f0f0f0;
+}
+
+/* .room-details (수정된 부분) */
+.room-details {
+    display: none;
+    padding: 20px;
+    grid-template-columns: repeat(5, 1fr); /* room-details의 그리드 5열 */
+    gap: 10px;
+    overflow: auto;
+}
+
+/* room-details가 활성화될 때 (보일 때) 그리드 레이아웃 적용 */
+.room-details.active {
+    display: grid; /* 그리드 레이아웃을 활성화할 때 적용 */
+}
+
+/* room-item 내부 이미지 */
+.room-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.room-item-image {
+    width: 100%;
+    height: 150px;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.room-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* room-item 정보 스타일 (수정된 부분) */
+.room-item-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.room-item-info span {
+    padding-right: 10px;
+}
+
+/* room-number와 room-viewAndNoise는 왼쪽 정렬 */
+.room-number {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.room-viewAndNoise {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+    text-align: left;
+}
+
+/* room-select-btn은 오른쪽 정렬 */
+.room-select-btn {
+    margin-left: auto;
+    padding: 5px 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.room-select-btn:hover {
+    background-color: #555;
+}
+
+/* 반응형 처리 */
+/* 1024px 이하에서 각 요소를 세로로 쌓음 */
+@media screen and (max-width: 1024px) {
+    .room {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .room-details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .room-item {
+        justify-content: space-between;
+    }
+
+    .room-item-info {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .room-select-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+/* 768px 이하에서 텍스트 크기 및 버튼 스타일 조정 */
+@media screen and (max-width: 768px) {
+    .room-title {
+        font-size: 16px;
+    }
+
+    .room-noise, .room-description, .room-status {
+        font-size: 12px;
+    }
+
+    .reserve-btn,
+    .room-select-btn {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
+    .room-details {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .room-item {
+        justify-content: space-between;
+    }
+
+    .room-item-info {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .room-select-btn {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
