@@ -1,4 +1,4 @@
-/* 배너 섹션 스타일 */
+/*배너 섹션 스타일*/
 .banner {
     background-color: #f0f0f0;
     padding: 40px 0;
@@ -11,58 +11,78 @@
     text-align: center;
     width: 100%;
     margin: 0 auto;
-    padding: 40px 20px;
     box-sizing: border-box;
-    background-color: #ffffff;
-    /*padding: 20px;*/
-    /*border-radius: 8px;*/
+    background-color: #484848;
+    padding-bottom: 90px;
+    padding-top: 150px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .banner-title {
     font-size: 24px;
     font-weight: bold;
-    margin-bottom: 10px;
-    margin-top: 0px;
+    color: white;
 }
 
-.banner-subtitle {
-    font-size: 16px;
-    margin-bottom: 20px;
+
+/* 디자인을 반영한 스타일 */
+.search-form {
+    background: #ffffff;
+    border-radius: 100px;
+    padding: 15px; /* 패딩을 줄여 사이즈 축소 */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* 간격 축소 */
+    justify-content: space-between;
+    align-items: center;
+    width: 60%; /* 전체 너비를 줄임 */
+    margin: 0 auto; /* 가운데 정렬 */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .input-group {
-    display: inline-block;
-    margin: 0 10px;
+    flex: 1 1 150px; /* 입력 그룹의 최소 크기 줄임 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .input-group label {
-    display: block;
-    font-size: 14px;
+    font-size: 12px;
+    font-weight: 700;
     margin-bottom: 5px;
+    color: black;
 }
 
+/* input 기본 border 제거 */
 .input-group input {
-    width: 150px;
-    padding: 8px 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 14px;
+    padding: 8px;
+    font-size: 12px;
+    color: #484848;
+    border: none; /* 기본 테두리 제거 */
+    border-bottom: 1px solid #ddd; /* 하단에만 테두리 추가 */
+    outline: none; /* 클릭 시 파란 테두리 제거 */
 }
 
 .search-btn {
-    margin-top: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .search-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
+    background-color: #333;
+    color: #fff;
+    width: 60px; /* 버튼의 너비와 높이를 동일하게 설정 */
+    height: 60px;
     border: none;
-    border-radius: 5px;
+    border-radius: 50%; /* 완전한 원형으로 만듦 */
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 텍스트를 중앙에 배치 */
+    font-size: 16px; /* 글자 크기 설정 */
 }
 
 .search-button:hover {
-    background-color: #0056b3;
+    background-color: #555;
 }

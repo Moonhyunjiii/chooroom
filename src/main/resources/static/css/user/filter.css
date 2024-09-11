@@ -1,0 +1,92 @@
+/* 필터 섹션 스타일 */
+.filter-section {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: white;
+}
+
+.divider-line {
+    height: 2px;
+    background-color: #ddd;
+    margin-bottom: 10px;
+}
+
+.filter-wrapper {
+    width: 100%;
+    display: flex;
+    /*justify-content: center; *//* 필터 섹션을 가운데 정렬 */
+}
+
+.filter-container {
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px; /* 필터 카테고리들 간의 간격을 설정 */
+    flex-wrap: nowrap; /* 화면이 작아져도 줄바꿈이 안되도록 설정 */
+/*    overflow-x: auto; *//* 필요 시 좌우 스크롤을 허용 */
+}
+
+.filter-category {
+    position: relative;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.dropdown-list {
+    display: none;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ddd;
+    z-index: 1;
+    width: 150px;
+}
+
+.dropdown-list li {
+    padding: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.dropdown-list li:hover {
+    background-color: #f0f0f0;
+}
+
+/* 필터 제목 스타일 */
+.filter-name {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 반응형 스타일링 */
+@media (max-width: 1024px) {
+    .filter-container {
+        justify-content: space-around; /* 필터들이 화면에 균등하게 분포 */
+    }
+
+    .filter-category {
+        padding: 5px 10px; /* 필터 카테고리의 패딩을 줄여 작은 화면에 맞춤 */
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-name {
+        font-size: 14px; /* 모바일에서 필터 제목의 크기를 줄임 */
+    }
+
+    .filter-category {
+        padding: 5px 5px; /* 필터 카테고리의 패딩을 더 줄임 */
+    }
+
+    .dropdown-list {
+        width: 100px; /* 모바일에서 드롭다운 리스트의 너비를 줄임 */
+    }
+
+    .dropdown-list li {
+        font-size: 12px; /* 모바일에서 드롭다운 리스트 항목의 폰트 크기를 줄임 */
+    }
+}

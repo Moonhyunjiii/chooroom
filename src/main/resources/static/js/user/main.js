@@ -1,3 +1,21 @@
+// 드롭다운 토글 함수 - 글로벌 스코프에 선언
+function toggleDropdown(id) {
+    const dropdown = document.getElementById(id);
+
+    // 드롭다운이 열려 있으면 닫고, 닫혀 있으면 열기
+    if (dropdown.style.display === "block") {
+        dropdown.style.display = "none";
+    } else {
+        // 모든 드롭다운 리스트를 닫음
+        document.querySelectorAll('.dropdown-list').forEach(list => {
+            list.style.display = 'none';
+        });
+
+        // 클릭한 드롭다운만 열기
+        dropdown.style.display = "block";
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     // jQuery UI datepicker 적용
     $(".datepicker").datepicker({
@@ -59,4 +77,20 @@ document.addEventListener("DOMContentLoaded", function() {
             alert('Please fill out all fields.');
         }
     });
+
+    // 클릭 외부 영역 클릭 시 드롭다운 닫기
+    document.addEventListener('click', function(event) {
+        const isClickInside = event.target.closest('.filter-category');
+        if (!isClickInside) {
+            // 드롭다운 리스트를 모두 닫음
+            document.querySelectorAll('.dropdown-list').forEach(list => {
+                list.style.display = 'none';
+            });
+        }
+    });
+
+    document.querySelector('.notification-btn').addEventListener('click', function() {
+        alert('알림이 없습니다.');
+    });
+
 });

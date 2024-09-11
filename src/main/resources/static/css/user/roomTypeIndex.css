@@ -2,10 +2,9 @@
     max-width: 100%;
     width: 100%;
     background-color: white;
-    /*min-width: 320px; !* 최소 너비를 설정해 모바일에서도 적절히 보이도록 *!*/
 }
 
-/* .room 스타일 (기존 스타일 유지) */
+/* .room 스타일 */
 .room {
     display: grid;
     grid-template-columns: 3fr 4fr 2fr 1fr;
@@ -16,7 +15,7 @@
     box-sizing: border-box;
     border-radius: 8px;
     width: 100%;
-    max-width: 1200px;
+    max-width: 100%;
     position: relative;
 }
 
@@ -45,6 +44,7 @@
 
 .room-header {
     grid-column: 2 / 3;
+    width: 100%;
 }
 
 /* 방 소음 관련 */
@@ -74,6 +74,7 @@
 
 /* 방 상태 */
 .room-status {
+    width: 100%;
     grid-column: 3 / 4;
     text-align: left;
     font-size: 14px;
@@ -118,38 +119,30 @@
     background-color: #f0f0f0;
 }
 
-/* .room-details 및 .room-list (수정된 부분) */
+/* .room-details (수정된 부분) */
 .room-details {
     display: none;
     padding: 20px;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr); /* room-details의 그리드 5열 */
     gap: 10px;
     overflow: auto;
-
 }
 
+/* room-details가 활성화될 때 (보일 때) 그리드 레이아웃 적용 */
 .room-details.active {
-    max-height: 500px; /* 예상 높이 */
+    display: grid; /* 그리드 레이아웃을 활성화할 때 적용 */
 }
 
-.room-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
-}
-
+/* room-item 내부 이미지 */
 .room-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     border: 1px solid #ccc;
     padding: 15px;
-    /*border-radius: 8px;*/
     background-color: #f9f9f9;
-    width: 235px; /* 각 아이템의 너비 */
 }
 
-/* room-item 내부 이미지 */
 .room-item-image {
     width: 100%;
     height: 150px;
@@ -166,32 +159,36 @@
     border-radius: 8px;
 }
 
-/* room-item 정보 스타일 */
+/* room-item 정보 스타일 (수정된 부분) */
 .room-item-info {
-    display: flex; /* Flexbox를 사용해 요소를 배치 */
-    justify-content: space-between; /* 요소들 사이에 공간을 균등 배분 */
-    align-items: center; /* 수직 중앙 정렬 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 10px;
-    width: 100%; /* 부모 요소의 너비에 맞춤 */
+    width: 100%;
+}
+
+.room-item-info span {
+    padding-right: 10px;
 }
 
 /* room-number와 room-viewAndNoise는 왼쪽 정렬 */
 .room-number {
     font-size: 18px;
     font-weight: bold;
-    text-align: left; /* 왼쪽 정렬 */
+    text-align: left;
 }
 
 .room-viewAndNoise {
     font-size: 14px;
     color: #666;
     margin-top: 5px;
-    text-align: left; /* 왼쪽 정렬 */
+    text-align: left;
 }
 
 /* room-select-btn은 오른쪽 정렬 */
 .room-select-btn {
-    margin-left: auto; /* 버튼을 오른쪽 끝으로 밀어냄 */
+    margin-left: auto;
     padding: 5px 10px;
     background-color: #333;
     color: #fff;
@@ -204,19 +201,72 @@
     background-color: #555;
 }
 
-
 /* 반응형 처리 */
+/* 1024px 이하에서 각 요소를 세로로 쌓음 */
 @media screen and (max-width: 1024px) {
     .room {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
-    .room-list {
+
+    .room-details {
+        display: grid;
         grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .room-item {
+        justify-content: space-between;
+    }
+
+    .room-item-info {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .room-select-btn {
+        width: 100%;
+        margin-top: 10px;
     }
 }
 
+/* 768px 이하에서 텍스트 크기 및 버튼 스타일 조정 */
 @media screen and (max-width: 768px) {
-    .room-list {
+    .room-title {
+        font-size: 16px;
+    }
+
+    .room-noise, .room-description, .room-status {
+        font-size: 12px;
+    }
+
+    .reserve-btn,
+    .room-select-btn {
+        width: 100%;
+        margin-top: 10px;
+        font-size: 12px;
+    }
+
+    .room-details {
+        display: grid;
         grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .room-item {
+        justify-content: space-between;
+    }
+
+    .room-item-info {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .room-select-btn {
+        width: 100%;
+        margin-top: 10px;
     }
 }
