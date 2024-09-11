@@ -11,10 +11,10 @@ public class RoomCondition {
 
     @Id
     @Column(name="R_NUM") private String roomNumber;
-    @Column(name="R_CLEAN") private int roomCleaness;
+    @Column(name="R_HUMID") private int roomHUMIDITY;
     @Column(name="R_NOISE") private int roomNoiseLevel;
     @Column(name="R_AIRQ") private int roomAirQuality;
-
+    @Column(name="R_TEMP") private int roomTemperature;
     public String getRoomNumber() {
         return roomNumber;
     }
@@ -23,37 +23,46 @@ public class RoomCondition {
         this.roomNumber = roomNumber;
     }
 
-    public int getRoomCleaness() {
-        return roomCleaness;
+    public int getRoomHUMIDITY() {
+        return roomHUMIDITY;
     }
 
-    public void setRoomCleaness(int roomCleaness) {
-        this.roomCleaness = roomCleaness;
+    public void setRoomHUMIDITY(int roomHUMIDITY) {
+        this.roomHUMIDITY = roomHUMIDITY;
     }
 
-    public int getRoomNoiseLevel() {
+    public int getroomNoiseLevel() {
         return roomNoiseLevel;
     }
 
-    public void setRoomNoiseLevel(int roomNoiseLevel) {
+    public void setroomNoiseLevel(int roomNoiseLevel) {
         this.roomNoiseLevel = roomNoiseLevel;
     }
 
-    public int getRoomAirQuality() {
+    public int getroomAirQuality() {
         return roomAirQuality;
     }
 
-    public void setRoomAirQuality(int roomAirQuality) {
+    public void setroomAirQuality(int roomAirQuality) {
         this.roomAirQuality = roomAirQuality;
+    }
+
+    public int getRoomTemperature() {
+        return roomTemperature;
+    }
+
+    public void setRoomTemperature(int roomTemperature) {
+        this.roomTemperature = roomTemperature;
     }
 
     @Override
     public String toString() {
         return "RoomCondition{" +
                 "roomNumber='" + roomNumber + '\'' +
-                ", roomCleaness=" + roomCleaness +
+                ", roomHUMIDITY=" + roomHUMIDITY +
                 ", roomNoiseLevel=" + roomNoiseLevel +
                 ", roomAirQuality=" + roomAirQuality +
+                ", roomTemperature=" + roomTemperature +
                 '}';
     }
 }
