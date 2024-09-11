@@ -31,19 +31,19 @@ public class RoomCondition {
         this.roomCleaness = roomCleaness;
     }
 
-    public int getroomNoiseLevel() {
+    public int getRoomNoiseLevel() {
         return roomNoiseLevel;
     }
 
-    public void setroomNoiseLevel(int roomNoiseLevel) {
+    public void setRoomNoiseLevel(int roomNoiseLevel) {
         this.roomNoiseLevel = roomNoiseLevel;
     }
 
-    public int getroomAirQuality() {
+    public int getRoomAirQuality() {
         return roomAirQuality;
     }
 
-    public void setroomAirQuality(int roomAirQuality) {
+    public void setRoomAirQuality(int roomAirQuality) {
         this.roomAirQuality = roomAirQuality;
     }
 
