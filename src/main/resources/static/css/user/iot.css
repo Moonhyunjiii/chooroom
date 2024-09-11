@@ -20,20 +20,24 @@ body {
 .container {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    align-items: flex-start;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 20px;
 }
 
 .left-section {
-    width: 60%;
+    width: 55%;
+
 }
 
 .right-section {
-    width: 40%;
+    width: 45%;
+    display: flex;
     background-color: #f4f4f4;
-    padding: 20px;
+
     border-radius: 10px;
+    text-align: center; /* 오른쪽 섹션 중앙 정렬 */
 }
 
 .frame-10420 .title {
@@ -145,6 +149,8 @@ textarea {
 
 canvas {
     display: block;
+    width: 100%; /* 부모 요소에 맞춰 크기 설정 */
+    height: 100%; /* 부모 요소에 맞춰 크기 설정 */
     margin: 0 auto;  /* 캔버스 중앙 정렬 */
 }
 
@@ -152,22 +158,20 @@ canvas {
 
 .cleaning-status {
     display: flex;
-    justify-content: space-between; /* 버튼들이 좌우로 퍼지도록 */
-    align-items: center;
+    justify-content: space-between;
     margin-top: 20px;
 }
 
 .cleaning-status button {
-    padding: 10px 20px;
-    border: 1px solid #ccc;
-    background-color: #e0e0e0;
+    flex-grow: 1; /* 버튼들이 동일한 크기로 늘어나도록 */
+    margin: 0 5px; /* 버튼 사이 간격 설정 */
+    padding: 10px;
     border-radius: 5px;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
     cursor: pointer;
-    flex-grow: 1; /* 버튼이 동일한 크기를 유지 */
-    margin: 0 5px; /* 버튼 간의 간격 */
-    text-align: center;
-    font-size: 14px;
 }
+
 
 
 /* 체크인 하기 버튼 */
@@ -268,6 +272,9 @@ canvas {
   justify-content: flex-start;
   flex-shrink: 0;
   position: relative;
+  width = 1200px;
+  height = 600px;
+
 }
 .list {
   display: flex;
@@ -284,6 +291,9 @@ canvas {
   font-family: "NotoSansKr-Bold", sans-serif;
   font-size: 16px;
   line-height: 26px;
+  padding: 10px 20px;
+  width = 1200px;
+  height = 600px;
   letter-spacing: -0.0012em;
   font-weight: 700;
   position: relative;
@@ -292,6 +302,9 @@ canvas {
   justify-content: center;
 }
 .menu2 {
+  width = 1000px;
+  height = 600px
+  padding: 10px 20px;;
   color: var(--neutral-grayscale-neut-60, #bdbdbd);
   text-align: center;
   font-family: "PretendardVariable-Medium", sans-serif;

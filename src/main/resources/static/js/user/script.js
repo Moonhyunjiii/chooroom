@@ -83,25 +83,62 @@ window.onclick = function(event) {
   }
 }
 
-        // JavaScript로 동적으로 데이터를 생성하는 방법
-        document.addEventListener("DOMContentLoaded", function() {
-            const roomTags = [
-                { tagName: 'Deluxe Room' },
-                { tagName: 'Suite Room' },
-                { tagName: 'Standard Room' }
-            ];
+// JavaScript로 동적으로 데이터를 생성하는 방법
+document.addEventListener("DOMContentLoaded", function() {
+    const roomTags = [
+        { tagName: 'Deluxe Room' },
+        { tagName: 'Suite Room' },
+        { tagName: 'Standard Room' }
+    ];
 
-            // roomTags 데이터를 이용해 동적으로 HTML을 생성
-            const container = document.getElementById("tags-container");
-            roomTags.forEach((tag, index) => {
-                const div = document.createElement("div");
-                div.className = "tag";
-                div.innerHTML = `
-                    <div class="div5">${tag.tagName}</div>
-                `;
-                div.onclick = function() {
-                    toggleSelection(this);
-                };
-                container.appendChild(div);
-            });
-        });
+    // roomTags 데이터를 이용해 동적으로 HTML을 생성
+    const container = document.getElementById("tags-container");
+    roomTags.forEach((tag, index) => {
+        const div = document.createElement("div");
+        div.className = "tag";
+        div.innerHTML = `
+            <div class="div5">${tag.tagName}</div>
+        `;
+        div.onclick = function() {
+            toggleSelection(this);
+        };
+        container.appendChild(div);
+    });
+});
+
+function drawProgressCircle(canvasId, endProgress) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) {
+        console.error(`Canvas element with id ${canvasId} not found!`);
+        return;
+    }
+
+    const ctx = canvas.getContext('2d');
+    const radius = canvas.width / 2 - 10; // 패딩을 약간 주기 위해 크기 조정
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+
+    // 배경 원 그리기
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // 캔버스 초기화
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = '#e0e0e0';  // 배경 원색
+    ctx.lineWidth = 5;
+    ctx.stroke();
+
+    // 게이지 원 그리기
+    ctx.beginPath();
+    const startAngle = -0.5 * Math.PI; // 12시 방향에서 시작
+    const endAngle = (2 * Math.PI * (endProgress / 100)) - 0.5 * Math.PI; // 진행 비율
+    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+    ctx.strokeStyle = '#298cff';  // 게이지 색상
+    ctx.lineWidth = 5;
+    ctx.stroke();
+}
+
+// DOM이 로드된 후에 게이지를 그리기
+document.addEventListener("DOMContentLoaded", function() {
+    drawProgressCircle('dust-circle', 80);  // 미세먼지 80%
+    drawProgressCircle('temp-circle', 65);  // 온도 65%
+    drawProgressCircle('humid-circle', 45); // 습도 45%
+});

@@ -14,10 +14,14 @@
                 </div>
                 <div class="menu">
                     <div class="list">
-                        <div class="menu1">메뉴1</div>
+                        <div class="menu1">
+                            <button>메뉴1</button>
+                        </div>
                     </div>
                     <div class="list">
-                        <div class="menu2">메뉴2</div>
+                        <div class="menu2">
+                            <button> 메뉴2 </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -35,8 +39,11 @@
             </div>
             <div class="button">
                 <div class="frame-26085740">
-                    <div class="login_button">로그인</div>
+                    <button class="login_button">
+                        로그인
+                    </button>
                 </div>
+
             </div>
             <div class="divider"></div>
         </div>
@@ -56,17 +63,32 @@
         <div class="frame-10421">
             <img class="map-image" src="https://www.lottehotel.com/content/dam/lotte-hotel/lotte/busan/accommodation/standard/deluxe-room/180829-3-2000-acc-busan-hotel.jpg.thumb.768.768.jpg" alt="지도 이미지"/>
             <div class="hotel-info">
-                <div class="hotel-name">호텔 이름</div>
+                <div class="hotel-name">INTER CONTINENTAL</div>
                 <br>
                 <br>
-                <div class="room-name">객실명 / 예약번호</div>
+                <div class="room-name">객실명과 예약번호를 불러오고 있어요</div>
                 <div class="customer-name">투숙객 이름</div>
-
                 <div class="booking-info">디럭스 / A20051105 (결제 대기)</div>
 
+                    <script>
+                        function fetchRoomInfo(roomNumber) {
+                            fetch(`/room/Rooms/${roomNumber}`)
+                                .then(response => response.json())
+                                .then(data => {
+                                    document.getElementById("room-name").innerText = `객실명 : ${data.roomNumber}, 예약번호: ${data.reservId}`;
+                                })
+                                .catch(error => console.error('Error:', error));
+                        }
 
+                        // 예시로 방 번호 201호를 불러오기
+                        fetchRoomInfo("D704");
+                    </script>
             </div>
+
+
+
         </div>
+
 
         <!-- "내가 선택한 컨디션이에요"부터 "추가 요청사항 적는 란" -->
         <div class="frame-10422">
@@ -90,13 +112,40 @@
                 </div>
             </div>
 
-            <h3>201호는 이런 방이에요.</h3>
-            <p>조용한 방이고 어쩌구 저쩌구 방에 대한 설명 작성하기</p>
+            <div id="room-info">
+                <h3 id="room-number">방 번호 정보를 불러오는 중...</h3>
+                <p id="room-noise">방 설명을 불러오는 중...</p>
 
-            <h3>케어를 선택하시면</h3>
-            <p>어떤 케어 해주는지 설명으로 작성하기</p>
+                <h3>선택하신 서비스로</h3>
+                <p id="care-info">케어 정보를 불러오는 중...</p>
 
-            <h3>추가 요청사항을 적어주세요.</h3>
+                <h3>추가 요청사항을 적어주세요.</h3>
+            </div>
+
+            <script>
+                function fetchRoomInfo(roomNumber) {
+                    fetch(`/reservation/Reservation/${roomNumber}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById("room-number").innerText = `${data.roomNumber}호는 이런 방이에요.`;
+                            document.getElementById("room-number").innerText = `예약번호: ${data.reservationId}`;
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+                function fetchRoomDetails(roomNumber) {
+                    fetch(`/room/RoomCondition/${roomNumber}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            document.getElementById("room-noise").innerText = data.noiseDescription;
+                            document.getElementById("care-info").innerText = data.careDescription;
+                        })
+                        .catch(error => console.error('Error:', error));
+                }
+                fetchRoomInfo("D704");
+                fetchRoomDetails("D704");
+
+            </script>
+
             <textarea placeholder="입실 이틀 전까지 요청사항을 적을 수 있습니다."></textarea>
         </div>
     </div>
@@ -158,9 +207,9 @@
                                 }
                             }
 
-                            drawCircle();
-                        }
-                        drawProgressCircle('dust-circle', 20);
+                           drawCircle();
+                           }
+                           drawProgressCircle('dust-circle', 20);
                     </script>
                     <br>
                     <p>좋음</p>
@@ -278,6 +327,24 @@
                 <button>청소 전</button>
                 <br><br><br><br><br>
                 <button>청소 후</button>
+                <script>
+                    function fetchCleaningStatus(roomNumber) {
+                        fetch(`/room/status/${roomNumber}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.cleanStatus === "청소중") {
+                                    document.getElementById("cleaning-start").style.fontWeight = "bold";
+                                    document.getElementById("check-in").disabled = true;
+                                } else {
+                                    document.getElementById("cleaning-end").style.fontWeight = "bold";
+                                    document.getElementById("check-in").disabled = false;
+                                }
+                            })
+                            .catch(error => console.error('Error:', error));
+                    }
+                    setInterval(() => fetchCleaningStatus(roomNumber), 600000);
+                </script>
+
             </div>
         </div>
     </div>
