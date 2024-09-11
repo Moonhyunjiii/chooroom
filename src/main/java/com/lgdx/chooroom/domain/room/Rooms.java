@@ -1,28 +1,52 @@
 package com.lgdx.chooroom.domain.room;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="ROOMS")
 public class  Rooms {
 
     @Id
-    @Column(name="R_NUM") private String roomNumber;
-    @Column(name="R_TYPE") private String roomType;
-    @Column(name="B_TYPE") private String bedType;
-    @Column(name="V_TYPE") private String viewType;
-    @Column(name="R_PRICE") private String roomPrice;
-    @Column(name="R_DESC") private String roomDescription;
-    @Column(name="R_AVLGUEST") private String roomAvlGuest;
-    @Column(name="R_AVL") private String roomReservationAvl;
-    @Column(name="R_STRUCT") private String roomStructure;
-    @Column(name="C_STATUS") private String cleanStatus;
-    @Column(name="CIO_STATUS") private String checkInOutStatus;
-    @Column(name="R_CONTROL") private String roomControl;
+    @Column(name="R_NUM")
+    private String roomNumber;
+
+    @Column(name="R_TYPE")
+    private String roomType;
+
+    @Column(name="B_TYPE")
+    private String bedType;
+
+    @Column(name="V_TYPE")
+    private String viewType;
+
+    @Column(name="R_PRICE")
+    private int roomPrice;
+
+    @Column(name="R_DESC")
+    private String roomDescription;
+
+    @Column(name="R_AVLGUEST")
+    private int roomAvlGuest;
+
+    @Column(name="R_AVL")
+    private String roomReservationAvl;
+
+    @Column(name="R_STRUCT")
+    private String roomStructure;
+
+    @Column(name="C_STATUS")
+    private String cleanStatus;
+
+    @Column(name="CIO_STATUS")
+    private String checkInOutStatus;
+
+    @Column(name="R_CONTROL")
+    private String roomControl;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="R_NUM", referencedColumnName="R_NUM")
+    private RoomCondition roomCondition;
 
     public String getRoomNumber() {
         return roomNumber;
@@ -56,11 +80,11 @@ public class  Rooms {
         this.viewType = viewType;
     }
 
-    public String getRoomPrice() {
+    public int getRoomPrice() {
         return roomPrice;
     }
 
-    public void setRoomPrice(String roomPrice) {
+    public void setRoomPrice(int roomPrice) {
         this.roomPrice = roomPrice;
     }
 
@@ -72,11 +96,11 @@ public class  Rooms {
         this.roomDescription = roomDescription;
     }
 
-    public String getRoomAvlGuest() {
+    public int getRoomAvlGuest() {
         return roomAvlGuest;
     }
 
-    public void setRoomAvlGuest(String roomAvlGuest) {
+    public void setRoomAvlGuest(int roomAvlGuest) {
         this.roomAvlGuest = roomAvlGuest;
     }
 
@@ -118,6 +142,14 @@ public class  Rooms {
 
     public void setRoomControl(String roomControl) {
         this.roomControl = roomControl;
+    }
+
+    public RoomCondition getRoomCondition() {
+        return roomCondition;
+    }
+
+    public void setRoomCondition(RoomCondition roomCondition) {
+        this.roomCondition = roomCondition;
     }
 
     @Override
