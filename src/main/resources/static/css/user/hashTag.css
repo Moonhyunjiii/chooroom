@@ -1,0 +1,53 @@
+/* 해시태그 컨테이너 스타일 */
+.hashtag-section {
+    margin: 20px 0;
+    width: 100%;
+    background-color: white;
+}
+
+.hashtag-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 해시태그 리스트 스타일 */
+.hashtag-list {
+    display: flex;
+    /*justify-content: center;*/
+    padding: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* 해시태그 버튼 스타일 */
+.hashtag {
+    padding: 5px 10px;
+    border: 1px solid #007bff;
+    border-radius: 30px;
+    background-color: white;
+    color: #007bff;
+    font-size: 11px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.hashtag.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.hashtag:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+/* 반응형 처리 */
+@media screen and (max-width: 768px) {
+    .hashtag {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+}
