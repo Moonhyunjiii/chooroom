@@ -178,7 +178,7 @@ button:hover {
                 </div>
             </div>
             <div>
-                <button>예약하기</button>
+                <button id="reserveBtn">예약하기</button>
             </div>
         </div>
     </div>
@@ -205,6 +205,12 @@ button:hover {
         if (event.target == modal) {
             modal.style.display = "none";
         }
+    }
+
+    // 예약하기 버튼 클릭 시 알림창 띄우기
+    var reserveBtn = document.getElementById("reserveBtn");
+    reserveBtn.onclick = function() {
+        alert("예약이 완료되었습니다.\n완료된 예약은 마이페이지에서 확인하실 수 있습니다.");
     }
 </script>
 </body>
