@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive App Page</title>
+    <style>
+        /* 전체 페이지 레이아웃 */
+       .page-container {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         width: 100vw;
+         height: 100vh;
+         padding: 20px;
+         background: linear-gradient(90deg, rgba(195, 216, 235, 1) 0%, rgba(238, 246, 249, 1) 100%);
+       }
+
+       /* 상단 호텔 이름 및 아이콘 */
+       .header {
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         width: 100%;
+         margin-bottom: 20px;
+       }
+
+       .hotel-info {
+         font-size: 1.5rem;
+         color: black;
+       }
+
+       .header-icons {
+         display: flex;
+         gap: 15px;
+       }
+
+       .icon {
+         width: 24px;
+         height: 24px;
+       }
+
+       /* 스마트 루틴 섹션 */
+/* 스마트 루틴 섹션 */
+.smart-routine-frame {
+  display: flex;
+  flex-direction: column;    /* 세로로 정렬 */
+  align-items: flex-start;   /* 왼쪽 정렬 */
+  gap: 10px;                 /* 각 박스 사이 간격 */
+  width: auto;
+  margin-bottom: 20px;
+}
+
+.smart-routine-link {
+  font-size: 1.1rem;
+  color: #8a9197;
+  margin-bottom: 5px;
+}
+
+.mode-container {
+  display: flex;             /* 가로 정렬 */
+  gap: 15px;                 /* 각 모드 사이 간격 */
+}
+
+.mode-box {
+  background-color: white;
+  padding: 20px 40px;             /* 박스 크기 키움 */
+  border-radius: 15px;            /* 둥근 테두리 */
+  text-align: center;
+  font-size: 1.2rem;              /* 텍스트 크기도 약간 키움 */
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);  /* 박스 그림자 */
+  transition: background-color 0.3s ease;
+}
+
+.mode-box:hover {
+  background-color: #eef8f9;
+  cursor: pointer;
+}
+
+
+       /* 101호 텍스트 */
+       .room-number {
+         font-size: 1.2rem;
+         color: #8a9197;
+         margin-bottom: 20px;
+       }
+
+       /* 그리드 레이아웃 - 기기 카드 */
+       .device-grid {
+         display: grid;
+         grid-template-columns: repeat(2, 1fr);
+         gap: 20px;
+         width: 100%;
+       }
+
+      .device-card {
+  background-color: #f8fcfd;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer; /* 클릭 가능한 상태로 변경 */
+}
+
+.device-card:hover {
+  background-color: #eef8f9; /* 마우스 호버 시 배경색 변경 */
+  transform: scale(1.05);    /* 살짝 확대 효과 */
+}
+
+/* 기기 카드 클릭 시 */
+.device-card:active {
+  background-color: #d4f0f5;  /* 클릭했을 때 색상 변화 */
+  transform: scale(0.98);     /* 클릭 시 살짝 축소 효과 */
+}
+
+       .device-name {
+         font-size: 1.2rem;
+       }
+
+       .power-icon {
+         width: 40px;
+         height: 40px;
+       }
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+<div class="page-container">
+
+    <!-- 상단 호텔 이름 및 아이콘 -->
+    <div class="header">
+        <div class="hotel-info">인터컨티넨탈 호텔</div>
+        <div class="header-icons">
+            <svg class="icon add-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="12" x2="16" y2="12"></line>
+            </svg>
+            <svg class="icon search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                <circle cx="10" cy="10" r="7"></circle>
+                <line x1="21" y1="21" x2="15" y2="15"></line>
+            </svg>
+            <svg class="icon bell" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                <path d="M15 17H9v-5a7 7 0 0 1 14 0v5h-8z"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- 스마트 루틴 섹션 -->
+    <div class="smart-routine-frame">
+        <div class="smart-routine-link">스마트 루틴 &gt;</div>
+        <div class="mode-box">시네마 모드</div>
+        <div class="mode-box">취침 모드</div>
+    </div>
+
+    <!-- 101호 및 기기 컨트롤 -->
+    <div class="room-number">101호</div>
+    <div class="device-grid">
+        <div class="device-card">
+            <div class="device-name">에어컨</div>
+            <svg class="power-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12" y2="16"></line>
+            </svg>
+        </div>
+
+        <div class="device-card">
+            <div class="device-name">공기청정기</div>
+            <svg class="power-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12" y2="16"></line>
+            </svg>
+        </div>
+
+        <div class="device-card">
+            <div class="device-name">냉장고</div>
+            <svg class="power-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="12"></line>
+                <line x1="12" y1="16" x2="12" y2="16"></line>
+            </svg>
+        </div>
+
+        <!-- 추가 카드들 -->
+    </div>
+</div>
+</body>
+</html>
