@@ -130,6 +130,7 @@
         </section>
 
         <section class="room-section">
+            <!--스탠다드-->
             <div class="room-container">
                 <div class="room">
                     <div class="room-image">
@@ -149,64 +150,14 @@
                     </div>
                     <div class="room-status">
                         <span class="night-text">1박 기준</span>
-                        <span class="remaining-rooms">남은 객실 2개</span>
+                        <span class="remaining-rooms"></span>
                         <div class="room-price">100,000원 ~</div>
                     </div>
-                    <button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>
+
+                    <button class="reserve-btn toggle-btn">객실보기</button>
+
                 </div>
                 <!-- 호실 목록을 숨긴 상태로 추가 -->
-                <!--<div class="room-details" style="display: none;">
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">101호</span>
-                            <span class="room-viewAndNoise">오션뷰, 고요한 방</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">102호</span>
-                            <span class="room-viewAndNoise">시티뷰, 고요한 방</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">103호</span>
-                            <span class="room-viewAndNoise">산 전망, 고요한 방</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">104호</span>
-                            <span class="room-viewAndNoise">오션뷰, 산 전망</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">105호</span>
-                            <span class="room-viewAndNoise">오션뷰, dd 전망</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                </div>-->
                 <div class="room-details">
                     <div th:each="room : ${rooms}" class="room-item">
                         <!-- 객실 이미지 -->
@@ -216,22 +167,19 @@
 
                         <!-- 객실 정보 -->
                         <div class="room-item-info">
-                            <!-- 방 번호 -->
-                            <span class="room-number" th:text="${room.roomNumber} + '호'">101호</span>
-
-                            <!-- 뷰 타입과 소음 관련 정보 -->
-                            <span class="room-viewAndNoise" th:text="${room.viewType} + ', 고요한 방'">오션뷰, 고요한 방</span>
-
-                            <!-- 선택 버튼 -->
-                            <button class="room-select-btn">선택</button>
+                            <div class="room-left">
+                                <span class="room-number">${room.roomNumber}호</span>
+                                <span class="room-viewAndNoise">${room.viewType}, 평균소음: <span class="noise-level">${room.roomCondition.roomNoiseLevel}</span>db</span>
+                            </div>
+                            <div class="room-right">
+                                <button class="room-select-btn">선택</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
 
-            <!-- 스탠다드 테스트 후 정리 예정-->
-<!--
+            <!--디럭스-->
             <div class="room-container">
                 <div class="room">
                     <div class="room-image">
@@ -241,7 +189,7 @@
                         <h3 class="room-title">디럭스</h3>
                         <div class="room-noise">
                             <span class="noise-description">평균소음도</span>
-                            <span class="noise-level">20db</span>
+                            <span class="noise-level">17db</span>
                             <span class="noise-description">, 굉장히 조용해요</span>
                         </div>
                         <div class="room-description">
@@ -254,62 +202,29 @@
                         <span class="remaining-rooms">남은 객실 2개</span>
                         <div class="room-price">100,000원 ~</div>
                     </div>
-                    <button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>
+                    <!--<button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>-->
+                    <button class="reserve-btn toggle-btn">객실보기</button>
+
                 </div>
-                &lt;!&ndash; 호실 목록을 숨긴 상태로 추가 &ndash;&gt;
-                <div class="room-details" style="display: none;">
-                    <div class="room-item">
+                <!-- 호실 목록을 숨긴 상태로 추가 -->
+                <div class="room-details">
+                    <div th:each="room : ${rooms}" class="room-item">
+                        <!-- 객실 이미지 -->
                         <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                            <img th:src="@{/img/user/객실화면예시.png}" alt="Room image">
                         </div>
+
+                        <!-- 객실 정보 -->
                         <div class="room-item-info">
-                            <span class="room-number">201호</span>
-                            <span class="room-viewAndNoise">오션뷰, 고요한 방</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">202호</span>
-                            <span class="room-viewAndNoise">시티뷰, 고요한 방</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">203호</span>
-                            <span class="room-viewAndNoise">산 전망, 고요한 방</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">204호</span>
-                            <span class="room-viewAndNoise">오션뷰, 산 전망</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">205호</span>
-                            <span class="room-viewAndNoise">오션뷰, dd 전망</span>
+                            <span class="room-number" th:text="${room.roomNumber} + '호'">101호</span>
+                            <span class="room-viewAndNoise" th:text="${room.viewType} + ', 고요한 방'">오션뷰, 고요한 방</span>
                             <button class="room-select-btn">선택</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!--스위트-->
             <div class="room-container">
                 <div class="room">
                     <div class="room-image">
@@ -332,62 +247,27 @@
                         <span class="remaining-rooms">남은 객실 2개</span>
                         <div class="room-price">100,000원 ~</div>
                     </div>
-                    <button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>
+                    <!--<button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>-->
+                    <button class="reserve-btn toggle-btn">객실보기</button>
+
                 </div>
-                &lt;!&ndash; 호실 목록을 숨긴 상태로 추가 &ndash;&gt;
-                <div class="room-details" style="display: none;">
-                    <div class="room-item">
+                <!-- 호실 목록을 숨긴 상태로 추가 -->
+                <div class="room-details">
+                    <div th:each="room : ${rooms}" class="room-item">
+                        <!-- 객실 이미지 -->
                         <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                            <img th:src="@{/img/user/객실화면예시.png}" alt="Room image">
                         </div>
+
+                        <!-- 객실 정보 -->
                         <div class="room-item-info">
-                            <span class="room-number">301호</span>
-                            <span class="room-viewAndNoise">오션뷰, 고요한 방</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">302호</span>
-                            <span class="room-viewAndNoise">시티뷰, 고요한 방</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">303호</span>
-                            <span class="room-viewAndNoise">산 전망, 고요한 방</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">304호</span>
-                            <span class="room-viewAndNoise">오션뷰, 산 전망</span>
-                            <button class="room-select-btn">선택</button>
-                        </div>
-                    </div>
-                    <div class="room-item">
-                        <div class="room-item-image">
-                            <img src="/img/user/객실화면예시.png" alt="Room image">
-                        </div>
-                        <div class="room-item-info">
-                            <span class="room-number">305호</span>
-                            <span class="room-viewAndNoise">오션뷰, dd 전망</span>
+                            <span class="room-number" th:text="${room.roomNumber} + '호'">101호</span>
+                            <span class="room-viewAndNoise" th:text="${room.viewType} + ', 고요한 방'">오션뷰, 고요한 방</span>
                             <button class="room-select-btn">선택</button>
                         </div>
                     </div>
                 </div>
-            </div>-->
+            </div>
         </section>
     </main>
     <!-- 하단 푸터 -->

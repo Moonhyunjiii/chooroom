@@ -159,44 +159,58 @@
     border-radius: 8px;
 }
 
-/* room-item 정보 스타일 (수정된 부분) */
+/* room-item 정보 스타일 */
 .room-item-info {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* 왼쪽(left)과 오른쪽(right)을 좌우로 배치 */
+    align-items: stretch; /* 자식 요소들의 높이를 동일하게 만듦 */
     margin-top: 10px;
+    padding: 10px 0; /* 상하 여백 */
     width: 100%;
 }
 
-.room-item-info span {
-    padding-right: 10px;
+/* room-left: room-number와 room-viewAndNoise를 수직으로 쌓기 위해 flex-direction: column 적용 */
+.room-left {
+    display: flex;
+    flex-direction: column; /* 내부 요소 수직 정렬 */
+    text-align: left;
+    justify-content: flex-start; /* 요소들이 위쪽에 정렬되도록 설정 */
 }
 
-/* room-number와 room-viewAndNoise는 왼쪽 정렬 */
+/* room-number 스타일 */
 .room-number {
     font-size: 18px;
     font-weight: bold;
-    text-align: left;
+    margin-bottom: 5px; /* 아래에 여백 추가 */
 }
 
+/* room-viewAndNoise 스타일 */
 .room-viewAndNoise {
     font-size: 14px;
     color: #666;
-    margin-top: 5px;
-    text-align: left;
 }
 
-/* room-select-btn은 오른쪽 정렬 */
+/* room-select-btn은 오른쪽에 배치 */
+.room-right {
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+/* room-select-btn 높이 100% 설정 */
 .room-select-btn {
-    margin-left: auto;
-    padding: 5px 10px;
+    height: 100%; /* 부모 컨테이너인 room-item-info와 동일한 높이 */
+    padding: 5px 15px;
     background-color: #333;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center; /* 버튼 안의 텍스트를 세로 중앙 정렬 */
 }
 
+/* hover 시 버튼 색상 변경 */
 .room-select-btn:hover {
     background-color: #555;
 }
@@ -226,9 +240,15 @@
         width: 100%;
     }
 
+    .room-right {
+        width:100%;
+    }
+    /* 버튼이 한 행을 꽉 채우도록 */
     .room-select-btn {
-        width: 100%;
+        width: 100%; /* 버튼이 부모 요소의 너비를 가득 채움 */
         margin-top: 10px;
+        padding: 10px; /* 버튼에 충분한 여백 추가 */
+        text-align: center; /* 버튼 텍스트 가운데 정렬 */
     }
 }
 
@@ -244,9 +264,15 @@
 
     .reserve-btn,
     .room-select-btn {
-        width: 100%;
+        width: 100%; /* 버튼이 부모 요소의 너비를 가득 채움 */
         margin-top: 10px;
-        font-size: 12px;
+        font-size: 12px; /* 버튼 폰트 크기 조정 */
+        padding: 10px; /* 버튼 여백 추가 */
+        text-align: center; /* 텍스트 가운데 정렬 */
+    }
+
+    .room-right {
+        width:100%;
     }
 
     .room-details {
@@ -264,9 +290,5 @@
         align-items: flex-start;
         width: 100%;
     }
-
-    .room-select-btn {
-        width: 100%;
-        margin-top: 10px;
-    }
 }
+

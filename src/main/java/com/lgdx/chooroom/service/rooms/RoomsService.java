@@ -1,7 +1,8 @@
-package com.lgdx.chooroom.service.user;
+package com.lgdx.chooroom.service.rooms;
 
+import com.lgdx.chooroom.domain.room.RoomCondition;
 import com.lgdx.chooroom.domain.room.Rooms;
-import com.lgdx.chooroom.repository.user.RoomsRepository;
+import com.lgdx.chooroom.repository.rooms.RoomsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +19,10 @@ public class RoomsService {
 
         // roomNumber에서 숫자만 추출
         for(Rooms room : roomsList) {
-            String roomNumber = room.getRoomNumber().replace("[^0-9]", "");
+            String roomNumber = room.getRoomNumber().replaceAll("[^0-9]", "");
             room.setRoomNumber(roomNumber);
         }
 
-        System.out.println(roomsList);
         return roomsList;
     }
 }
