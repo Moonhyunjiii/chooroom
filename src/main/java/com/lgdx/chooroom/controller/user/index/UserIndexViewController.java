@@ -7,8 +7,4 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class UserIndexViewController {
 
-    @GetMapping("/")
-    public String userIndex(Model model) {
-        return "user/index";
-    }
 }

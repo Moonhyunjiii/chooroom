@@ -1,15 +1,28 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // 중복 확인 버튼 클릭 시
-    document.querySelector('.Idcheckbutton').addEventListener('click', function () {
-        // 아이디 입력 필드 값 가져오기
-        var customerId = document.getElementById('customerId').value;
+document.addEventListener("DOMContentLoaded", function() {
+    const checkUserIdButton = document.getElementById("checkId"); // 'checkUserId'에서 'checkId'로 변경
+    const userIdInput = document.getElementById("userId");
 
-        // 아이디가 입력되었는지 확인
-        if (!customerId) {
+    checkUserIdButton.addEventListener("click", function() {
+        const userId = userIdInput.value;
+
+        if (!userId) {
             alert("아이디를 입력하세요.");
-        } else {
-            // 단순한 알림 출력
-            alert("사용 가능한 아이디입니다!");
+            return;
         }
+
+        // 서버에 userId를 보내서 중복 여부를 확인
+        fetch(`/api/user/check-id?customerId=${encodeURIComponent(userId)}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    alert("이미 사용 중인 아이디입니다.");
+                } else {
+                    alert("사용 가능한 아이디입니다.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("아이디 중복검사 중 오류가 발생했습니다.");
+            });
     });
 });
