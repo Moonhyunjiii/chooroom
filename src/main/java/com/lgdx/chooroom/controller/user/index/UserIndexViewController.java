@@ -17,7 +17,7 @@ public class UserIndexViewController {
 
     @GetMapping("/")
     public String userIndex(Model model) {
-        return "user/index";
+        return "user/userRoomInfo";
     }
 
     // 로그인 페이지
