@@ -94,3 +94,15 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
+
+function redirectToLogin() {
+        window.location.href = '/login';
+    }
+
+    // Add event listener to the login button
+    document.addEventListener('DOMContentLoaded', function() {
+        var loginButton = document.getElementById('loginButton');
+        if (loginButton) {
+            loginButton.addEventListener('click', redirectToLogin);
+        }
+});
