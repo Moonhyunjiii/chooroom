@@ -12,8 +12,8 @@ public class RoomCondition {
     @Id
     @Column(name="R_NUM") private String roomNumber;
     @Column(name="R_CLEAN") private int roomCleaness;
-    @Column(name="R_NOISE") private int roomNoiselevel;
-    @Column(name="R_AIRQ") private int roomAirquality;
+    @Column(name="R_NOISE") private int roomNoiseLevel;
+    @Column(name="R_AIRQ") private int roomAirQuality;
 
     public String getRoomNumber() {
         return roomNumber;
@@ -31,20 +31,20 @@ public class RoomCondition {
         this.roomCleaness = roomCleaness;
     }
 
-    public int getRoomNoiselevel() {
-        return roomNoiselevel;
+    public int getRoomNoiseLevel() {
+        return roomNoiseLevel;
     }
 
-    public void setRoomNoiselevel(int roomNoiselevel) {
-        this.roomNoiselevel = roomNoiselevel;
+    public void setRoomNoiseLevel(int roomNoiseLevel) {
+        this.roomNoiseLevel = roomNoiseLevel;
     }
 
-    public int getRoomAirquality() {
-        return roomAirquality;
+    public int getRoomAirQuality() {
+        return roomAirQuality;
     }
 
-    public void setRoomAirquality(int roomAirquality) {
-        this.roomAirquality = roomAirquality;
+    public void setRoomAirQuality(int roomAirQuality) {
+        this.roomAirQuality = roomAirQuality;
     }
 
     @Override
@@ -52,8 +52,8 @@ public class RoomCondition {
         return "RoomCondition{" +
                 "roomNumber='" + roomNumber + '\'' +
                 ", roomCleaness=" + roomCleaness +
-                ", roomNoiselevel=" + roomNoiselevel +
-                ", roomAirquality=" + roomAirquality +
+                ", roomNoiseLevel=" + roomNoiseLevel +
+                ", roomAirQuality=" + roomAirQuality +
                 '}';
     }
 }

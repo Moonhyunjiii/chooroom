@@ -15,7 +15,6 @@ public class CustomerAccount {
     @Column(name="CUS_NAME") private String customerName;
     @Column(name="CUS_AGE") private String customerAge;
     @Column(name="CUS_CALL") private String customerCallNumber;
-    @Column(name="CUS_EMAIL") private String customerEmail;
     @Column(name="CUS_ADD") private String customerAdditionalRequest;
 
     public String getCustomerId() {
@@ -66,14 +65,6 @@ public class CustomerAccount {
         this.customerAdditionalRequest = customerAdditionalRequest;
     }
 
-    public String getCustomerEmail() {
-        return customerEmail;
-    }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
-    }
-
     @Override
     public String toString() {
         return "CustomerAccount{" +
@@ -82,7 +73,6 @@ public class CustomerAccount {
                 ", customerName='" + customerName + '\'' +
                 ", customerAge='" + customerAge + '\'' +
                 ", customerCallNumber='" + customerCallNumber + '\'' +
-                ", customerEmail='" + customerEmail + '\'' +
                 ", customerAdditionalRequest='" + customerAdditionalRequest + '\'' +
                 '}';
     }

@@ -1,214 +1,465 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../static/css/user/admin.css" />
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>/* 전체 레이아웃 */
+.dashboard-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  font-family: "NotoSansKr", sans-serif;
+}
+
+/* 사이드바 스타일 */
+.sidebar {
+  background-color: #FAFAFA;
+  width: 228px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: #555;
+    background-color: white;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.sidebar-item img {
+  width: 24px;
+  height: 24px;
+}
+/* 사이드바 버튼 눌리는 효과 */
+.sidebar-item:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-item:active {
+  transform: translateY(4px);
+  box-shadow: none;
+  background-color: #f0f0f0;
+}
+
+/* 메인 콘텐츠 영역 */
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  background-color: #FAFAFA;
+}
+
+/* 방 카드 배치*/
+.room-info-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3개의 동일한 크기의 칸으로 나눔 */
+  flex-wrap: wrap;
+  justify-content: center; /* 가운데 정렬 */
+  gap: 20px; /* 카드 사이의 간격 */
+  margin-top: 20px; /* 상단 여백 (옵션) */
+}
+
+
+/* 전체 대시보드 레이아웃 */
+.dashboard-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px; /* 대시보드 요약과 방 카드 간의 간격 */
+}
+
+/* 대시보드 요약 카드 배치 */
+.dashboard-summary {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* 요약 카드들 사이의 간격 */
+}
+
+/* 대시보드 요약 카드 스타일 */
+.summary-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 190px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: "NotoSansKr", sans-serif;
+}
+
+.summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.summary-header h3 {
+  font-size: 16px;
+  color: #555;
+}
+
+.summary-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.summary-details p {
+  font-size: 14px;
+  color: #777;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+/* 방 정보 텍스트 스타일 */
+.section-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000;
+  margin: 30px 0 20px 0; /* 위쪽, 왼쪽, 아래쪽 여백을 조정 */
+  text-align: left; /* 왼쪽 정렬 */
+  width: 100%; /* 전체 너비 차지 */
+}
+
+/* 카드 스타일 */
+.room-card {
+  border: 1px solid #2d60ff;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 20px;
+  width: 256px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: "NotoSansKr", sans-serif;
+  cursor: pointer;
+  width: 100%; /* 각 카드가 셀을 꽉 채우게 설정 */
+  max-width: 300px; /* 카드의 최대 너비를 설정하여 너무 커지지 않도록 */
+
+}
+/* 카드 눌리는 효과 */
+.room-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.room-card:active {
+  transform: translateY(4px);
+  box-shadow: none;
+  background-color: #f0f0f0;
+}
+
+
+/* 테두리 색상 */
+.blue-border {
+  border: 1px solid #2d60ff;
+}
+
+.red-border {
+  border: 1px solid #ff4b4a;
+}
+
+.green-border {
+  border: 1px solid #09a76e;
+}
+
+/* 방 번호와 타입 */
+.room-number {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.room-type {
+  font-size: 14px;
+  font-weight: normal;
+  color: #777;
+}
+
+/* 게스트 정보 */
+.guest-info {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+/* 섹션 타이틀 */
+.section-title {
+  font-size: 12px;
+  color: #999;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+/* 룸 정보 스타일 */
+.room-info-condition {
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  gap: 5px; /* 아이템들 간의 간격 */
+
+}
+
+.room-value {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #333;
+}
+
+/* 상태 표시 (ON/OFF) */
+.room-status {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.room-status.on {
+  color: #09a76e;
+}
+
+.room-status.off {
+  color: #ff4b4a;
+}</style>
+    <script>
+        // 사이드바 클릭 이벤트
+document.querySelectorAll('.sidebar-item').forEach(function (item) {
+    item.addEventListener('click', function () {
+        let target = item.getAttribute('data-target');
+        console.log(target + ' 섹션으로 이동합니다.');
+        // 페이지 이동 또는 내용 표시 로직 추가
+    });
+});
+
+// 방 카드 클릭 이벤트
+document.querySelectorAll('.room-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+        let roomNumber = card.getAttribute('data-room');
+        console.log(roomNumber + '호 방 정보를 확인합니다.');
+        // 방 정보 페이지로 이동하거나 팝업 표시 로직 추가
+    });
+});
+    </script>
+<!--    <link rel="stylesheet" href="../static/css/user/admin.css">-->
 </head>
 <body>
-<div class="container">
-    <!-- Sidebar -->
+<div class="dashboard-layout">
+    <!--    메뉴바-->
     <div class="sidebar">
-        <div class="sidebar-title"> 대시보드</div>
-        <div class="sidebar-item">객실 제품/ 기기관리</div>
-        <div class="sidebar-item">호텔 기기</div>
-        <!-- <div class="sidebar-item">에너지 관리</div> -->
-        <div class="sidebar-item">객실관리</div>
-    </div>
-
-    <!-- Summary Header Section -->
-    <div class="summary-header">
-        <!-- 다가오는 예약 -->
-        <div class="report-box upcoming-reservation">
-            <p class="report-title2">다가오는 예약</p>
-            <div class="report-details">
-                <!-- 얼리 체크인: 청소 완료된 방 개수 -->
-                <p>얼리 체크인: <span th:text="${earlyCheckinCount}"></span></p>
-                <!-- 일반 체크인: 청소 중인 방 개수 -->
-                <p>일반 체크인: <span th:text="${regularCheckinCount}"></span></p>
-                <!-- 레이트 체크인: 전체 방 수에서 얼리체크인, 일반체크인 제외 -->
-                <p>레이트 체크인 가능 방: <span th:text="${lateCheckinCount}"></span></p>
-
-                <!--
-                Controller
-                @Controller
-                public class RoomController {
-
-                    @Autowired
-                    private ReservationService reservationService;
-
-                    @GetMapping("/rooms")
-                    public String showRooms(Model model) {
-                        // 청소 상태에 따른 방 개수 가져오기
-                        Map<String, Integer> checkinCounts = reservationService.getCheckinStatusCounts();
-
-                        model.addAttribute("earlyCheckinCount", checkinCounts.get("earlyCheckinCount"));
-                        model.addAttribute("regularCheckinCount", checkinCounts.get("regularCheckinCount"));
-                        model.addAttribute("lateCheckinCount", checkinCounts.get("lateCheckinCount"));
-
-                        return "roomView";  // Thymeleaf 템플릿 이름
-                    }
-
-                    @GetMapping("/rooms")
-                    public String showRooms(Model model) {
-                        // 남은 객실 수 가져오기
-                        int availableRoomsCount = reservationService.getAvailableRoomsCount();
-
-                        model.addAttribute("availableRoomsCount", availableRoomsCount);
-
-                        return "roomView";  // Thymeleaf 템플릿 이름
-                    }
-                }
-
-                ReservationService 파일에
-                @Service
-                public class ReservationService {
-
-                    @Autowired
-                    private RoomRepository roomRepository;
-
-                    /**
-                     * 청소 상태에 따른 방 개수 반환 (얼리 체크인, 일반 체크인, 레이트 체크인)
-                     */
-                    public Map<String, Integer> getCheckinStatusCounts() {
-                        List<Room> rooms = roomRepository.findAll(); // 전체 방 목록을 가져옴
-
-                        int earlyCheckinCount = 0;  // 청소 완료된 방
-                        int regularCheckinCount = 0; // 청소 중인 방
-                        int totalRooms = rooms.size(); // 전체 방 수
-
-                        // 방의 청소 상태에 따라 카운트
-                        for (Room room : rooms) {
-                            if (room.getCleanStatus() == 1) {  // 1이면 청소 완료 (얼리 체크인)
-                                earlyCheckinCount++;
-                            } else if (room.getCleanStatus() == 0) {  // 0이면 청소 중 (일반 체크인)
-                                regularCheckinCount++;
-                            }
-                        }
-
-                        // 레이트 체크인: 전체 방 수에서 얼리 체크인과 일반 체크인 방을 뺀 값
-                        int lateCheckinCount = totalRooms - (earlyCheckinCount + regularCheckinCount);
-
-                        Map<String, Integer> checkinCounts = new HashMap<>();
-                        checkinCounts.put("earlyCheckinCount", earlyCheckinCount);
-                        checkinCounts.put("regularCheckinCount", regularCheckinCount);
-                        checkinCounts.put("lateCheckinCount", lateCheckinCount);
-
-                        return checkinCounts;
-
-
-                            /**
-                     * 전체 방 수에서 예약된 방(roomReservationAvl == 1)을 제외한 남은 객실 수 반환
-                     */
-                    public int getAvailableRoomsCount() {
-                        List<Room> rooms = roomRepository.findAll(); // 전체 방 목록을 가져옴
-                        int totalRooms = rooms.size(); // 전체 방 수
-                        int reservedRoomsCount = 0; // 예약된 방 수
-
-                        // 예약된 방의 개수 계산
-                        for (Room room : rooms) {
-                            if (room.getRoomReservationAvl() == 1) {  // 예약된 방 (roomReservationAvl == 1)
-                                reservedRoomsCount++;
-                            }
-                        }
-
-                        // 남은 객실 수 = 전체 방 수 - 예약된 방 수
-                        int availableRoomsCount = totalRooms - reservedRoomsCount;
-                        return availableRoomsCount;
-                    }
-                    }
-                }
-                -->
-
-            </div>
+        <div class="sidebar-item">
+            <img src="icon-dashboard.svg" alt="대시보드 아이콘" />
+            <span>대시보드</span>
         </div>
-        <div class="report-box occupancy">
-            <p class="report-title2">객실 사용량</p>
-            <div class="report-details">
-                <p>예약</p>
-                <p>남은 객실 수: 3</p>
-            </div>
+        <div class="sidebar-item">
+            <img src="icon-device-management.svg" alt="기기 관리 아이콘" />
+            <span>객실 기기관리</span>
         </div>
-        <div class="report-box cleaning-needed">
-            <p class="report-title2">청소가 필요한 방</p>
-            <div class="report-details">
-                <p>000호실</p>
-                <p>000호실</p>
-            </div>
+        <div class="sidebar-item">
+            <img src="icon-hotel.svg" alt="호텔 기기 아이콘" />
+            <span>호텔 기기</span>
         </div>
-        <div class="report-box equipment-issues">
-            <p class="report-title2">방별 기기 문제</p>
-            <div class="report-details">
-                <p>이상: 1</p>
-                <p>고장: 1</p>
-                <p>필터 교체: 2</p>
-            </div>
+        <div class="sidebar-item">
+            <img src="icon-energy.svg" alt="에너지 관리 아이콘" />
+            <span>에너지 관리</span>
+        </div>
+        <div class="sidebar-item">
+            <img src="icon-room-management.svg" alt="객실 관리 아이콘" />
+            <span>객실 관리</span>
         </div>
     </div>
 
-    <!-- Room Sections -->
-    <div class="room-sections">
+    <!--    메인 콘텐츠-->
+    <div class = "main-content">
+        <!--대시보드 요약-->
+        <div class="dashboard-container">
+            <div class="dashboard-summary">
+                <!-- 첫 번째 요약 카드 -->
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <img src="icon-user.svg" alt="Icon" class="summary-icon" />
+                        <h3>다가오는 예약</h3>
+                    </div>
+                    <div class="summary-details">
+                        <p>얼리 체크인<span>3</span></p>
+                        <p>체크인<span>3</span></p>
+                        <p>레이트 체크인<span>3</span></p>
+                    </div>
+                </div>
 
-        <!-- Room 1: Green - 사용 중 -->
-        <div class="box room green">
-            <p class="room-title">1호실</p>
-            <p class="room-details">객실타입</p>
-            <p class="room-details">예약자명 / 예약자 사이트</p>
-            <p class="room-status">방 온도: 정상</p>
-            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
-            <p class="room-timing">체크인 3시 / 체크아웃 9시 (예정)</p>
+                <!-- 두 번째 요약 카드 -->
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <img src="icon-room.svg" alt="Icon" class="summary-icon" />
+                        <h3>객실 사용량</h3>
+                    </div>
+                    <div class="summary-details">
+                        <p>사용 중<span>194</span></p>
+                        <p>예약<span>10</span></p>
+                        <p>남은 객실 수<span>20</span></p>
+                    </div>
+                </div>
+
+                <!-- 세 번째 요약 카드 -->
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <img src="icon-cleaning.svg" alt="Icon" class="summary-icon" />
+                        <h3>청소 예정</h3>
+                    </div>
+                    <div class="summary-details">
+                        <p>-</p>
+                    </div>
+                </div>
+
+                <!-- 네 번째 요약 카드 -->
+                <div class="summary-card">
+                    <div class="summary-header">
+                        <img src="icon-device.svg" alt="Icon" class="summary-icon" />
+                        <h3>방별 기기 관리</h3>
+                    </div>
+                    <div class="summary-details">
+                        <p>이상<span>10</span></p>
+                        <p>고장<span class="error">1</span></p>
+                        <p>필터 교체<span>20</span></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Room 2: Green - 사용 중 -->
-        <div class="box room green">
-            <p class="room-title">2호실</p>
-            <p class="room-details">객실타입</p>
-            <p class="room-details">예약자명 / 예약자 사이트</p>
-            <p class="room-status">방 온도: 정상</p>
-            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
-            <p class="room-timing">체크인 3시 / 체크아웃 9시 (예정)</p>
-        </div>
+        <h2 class="section-name">방 정보</h2>
+        <!--객실 카드-->
+        <div class="room-info-container">
+            <!--입실 완료-->
+            <div class="room-card data-room="101"">
+                <h2 class="room-number">101호 <span class="room-type">디럭스</span></h2>
+                <p class="guest-info">김하윤 / A0001429</p>
 
-        <!-- Room 3: Blue - 공실 -->
-        <div class="box room blue">
-            <p class="room-title">3호실</p>
-            <p class="room-details">객실타입</p>
-            <p class="room-status">방 온도: 정상</p>
-            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
-            <p class="room-timing">공실</p>
-        </div>
+                <div class="section-title">룸 컨디션</div>
+                <div class="room-info-condition">
+                    <div class="room-label">방 온도</div>
+                    <div class="room-value">26°C</div>
+                </div>
+                <div class="room-info-condition">
+                    <div>냉장고</div>
+                    <span class="room-status on">ON</span>
+                    <div class="room-value">냉장고 10°C, 냉동고 -1°C</div>
+                </div>
+                <div class="room-info-condition">
+                    <div>에어컨</div>
+                    <span class="room-status on">ON</span>
+                    <div class="room-value">설정 온도 24°C</div>
+                </div>
 
-        <!-- Room 4: Blue - 공실 -->
-        <div class="box room blue">
-            <p class="room-title">4호실</p>
-            <p class="room-details">객실타입</p>
-            <p class="room-status">방 온도: 정상</p>
-            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
-            <p class="room-timing">공실</p>
-        </div>
+                <div class="section-title">체크인 정보</div>
+                <div class="room-info-condition">
+                    <div class="room-label">체크인</div>
+                    <div class="room-value">9월 24일 3시</div>
+                </div>
+                <div class="room-info-condition">
+                    <div class="room-label">체크아웃</div>
+                    <div class="room-value">9월 26일 11시</div>
+                </div>
+            </div>
 
-        <!-- Room 5: Red - 체크인 예정 -->
-        <div class="box room red">
-            <p class="room-title">5호실</p>
-            <p class="room-details">객실타입</p>
-            <p class="room-details">예약자명 / 예약자 사이트</p>
-            <p class="room-status">방 온도: 정상</p>
-            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
-            <p class="room-timing">체크인 3시 / 체크아웃 9시 (예정)</p>
-        </div>
+            <!--입실 예정-->
+            <div class="room-card red-border" data-room="102">
+                <h2 class="room-number">101호 <span class="room-type">디럭스</span></h2>
+                <p class="guest-info">김하윤 / A0001429</p>
+                <div class="section-title">룸 컨디션</div>
+                <div class="room-info-condition">
+                    <div class="room-label">방 온도</div>
+                    <div class="room-value">26°C</div>
+                </div>
+                <div class="room-info-condition">
+                    <div class="room-label">냉장고</div>
+                    <div class="room-status on">ON</div>
+                    <div class="room-value">냉장고 10°C 냉동고 -1°C</div>
+                </div>
+                <div class="room-info-condition">
+                    <div class="room-label">에어컨</div>
+                    <div class="room-status off">OFF</div>
+                    <div class="room-value">설정 온도 24°C</div>
+                </div>
+                <div class="section-title">체크인 정보</div>
+                <div class="room-info-condition">
+                    <div class="room-label">체크인</div>
+                    <div class="room-value">9월 24일 3시</div>
+                </div>
+                <div class="room-info-condition">
+                    <div class="room-label">체크아웃</div>
+                    <div class="room-value">9월 26일 11시</div>
+                </div>
+            </div>
+            <!-- 공실 -->
+            <div class="room-card green-border" data-room="103">
+                <h2 class="room-number">101호 <span class="room-type">디럭스</span></h2>
+                <p class="guest-info">김하윤 / A0001429</p>
+                <div class="section-title">룸 컨디션</div>
+                <div class="room-info-condition">
+                    <div class="room-label">방 온도</div>
+                    <div class="room-value">28°C</div>
+                </div>
+                <div class="room-info-condition">
+                    <div class="room-label">냉장고</div>
+                    <div class="room-status off">OFF</div>
+                    <div class="room-value">냉장고 10°C 냉동고 -1°C</div>
+                </div>
+                <div class="room-info-condition">
+                    <div class="room-label">에어컨</div>
+                    <div class="room-status off">OFF</div>
+                    <div class="room-value">설정 온도 24°C</div>
+                </div>
+                <div class="section-title">체크인 정보</div>
+                <div class="room-info-condition">
+                    <div class="room-label">체크인</div>
+                    <div class="room-value">-</div>
+                </div>
+                <div class="room-info-condition">
+                    <div class="room-label">체크아웃</div>
+                    <div class="room-value">-</div>
+                </div>
+            </div>
 
-        <!-- Room 6: Red - 체크인 예정 -->
-        <div class="box room red">
-            <p class="room-title">6호실</p>
-            <p class="room-details">객실타입</p>
-            <p class="room-details">예약자명 / 예약자 사이트</p>
-            <p class="room-status">방 온도: 정상</p>
-            <p class="room-appliance">냉장고 (정상) 에어컨 (정상)</p>
-            <p class="room-timing">체크인 3시 / 체크아웃 9시 (예정)</p>
+            <div class="room-card green-border" data-room="104">
+                <h2 class="room-number">101호 <span class="room-type">디럭스</span></h2>
+                <p class="guest-info">김하윤 / A0001429</p>
+                <div class="section-title">룸 컨디션</div>
+                <div class="room-info-condition">
+                    <div class="room-label">방 온도</div>
+                    <div class="room-value">28°C</div>
+                </div>
+                <div class="room-info-condition">
+                    <div class="room-label">냉장고</div>
+                    <div class="room-status off">OFF</div>
+                    <div class="room-value">냉장고 10°C 냉동고 -1°C</div>
+                </div>
+                <div class="room-info-condition">
+                    <div class="room-label">에어컨</div>
+                    <div class="room-status off">OFF</div>
+                    <div class="room-value">설정 온도 24°C</div>
+                </div>
+                <div class="section-title">체크인 정보</div>
+                <div class="room-info-condition">
+                    <div class="room-label">체크인</div>
+                    <div class="room-value">-</div>
+                </div>
+                <div class="room-info-condition">
+                    <div class="room-label">체크아웃</div>
+                    <div class="room-value">-</div>
+                </div>
+            </div>
         </div>
     </div>
-
 </div>
 </body>
 </html>

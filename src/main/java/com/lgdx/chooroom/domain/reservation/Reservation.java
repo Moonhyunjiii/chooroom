@@ -7,40 +7,20 @@ import jakarta.persistence.Table;
 
 import java.util.Date;
 
-import java.time.LocalDate;
-import java.util.Objects;
-
 @Entity
 @Table(name="RESERVATION")
 public class Reservation {
 
     @Id
-    @Column(name="RESERV_ID", nullable = false)
-    private String reservationId;
-
-    @Column(name="CHIN_DATE", nullable = false)
-    private LocalDate checkinDate;
-
-    @Column(name="CHOUT_DATE", nullable = false)
-    private LocalDate checkoutDate;
-
-    @Column(name="GUEST_CNT", nullable = false)
-    private int guestCount;
-
-    @Column(name="RESERV_DATE", nullable = false)
-    private LocalDate reservationDate;
-
-    @Column(name="CUS_ID", nullable = false)
-    private String customerId;
-
-    @Column(name="R_NUM", nullable = false)
-    private String roomNumber;
-
-    @Column(name="PAY_AMOUNT", nullable = false)
-    private int payAmount;
-
-    @Column(name="PAY_DATE", nullable = false)
-    private LocalDate payDate;
+    @Column(name="RESERV_ID") private String reservationId;
+    @Column(name="CHIN_DATE") private Date checkinDate;
+    @Column(name="CHOUT_DATE") private Date checkoutDate;
+    @Column(name="GUEST_CNT") private int guestCount;
+    @Column(name="RESERV_DATE") private Date reservationDate;
+    @Column(name="CUS_ID") private String customerId;
+    @Column(name="R_NUM") private String roomNumber;
+    @Column(name="PAY_AMOUNT") private int payAmount;
+    @Column(name="PAY_DATE") private Date payDate;
 
     public String getReservationId() {
         return reservationId;
@@ -50,19 +30,19 @@ public class Reservation {
         this.reservationId = reservationId;
     }
 
-    public LocalDate getCheckinDate() {
+    public Date getCheckinDate() {
         return checkinDate;
     }
 
-    public void setCheckinDate(LocalDate checkinDate) {
+    public void setCheckinDate(Date checkinDate) {
         this.checkinDate = checkinDate;
     }
 
-    public LocalDate getCheckoutDate() {
+    public Date getCheckoutDate() {
         return checkoutDate;
     }
 
-    public void setCheckoutDate(LocalDate checkoutDate) {
+    public void setCheckoutDate(Date checkoutDate) {
         this.checkoutDate = checkoutDate;
     }
 
@@ -74,11 +54,11 @@ public class Reservation {
         this.guestCount = guestCount;
     }
 
-    public LocalDate getReservationDate() {
+    public Date getReservationDate() {
         return reservationDate;
     }
 
-    public void setReservationDate(LocalDate reservationDate) {
+    public void setReservationDate(Date reservationDate) {
         this.reservationDate = reservationDate;
     }
 
@@ -106,27 +86,12 @@ public class Reservation {
         this.payAmount = payAmount;
     }
 
-    public LocalDate getPayDate() {
+    public Date getPayDate() {
         return payDate;
     }
 
-    public void setPayDate(LocalDate payDate) {
+    public void setPayDate(Date payDate) {
         this.payDate = payDate;
-    }
-
-
-    // Override equals() and hashCode() based on reservationId
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Reservation that = (Reservation) o;
-        return Objects.equals(reservationId, that.reservationId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(reservationId);
     }
 
     @Override

@@ -6,9 +6,11 @@ import com.lgdx.chooroom.domain.user.CustomerRequestHealth;
 import com.lgdx.chooroom.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
 
 @Controller
 public class UserIndexViewController {
@@ -19,6 +21,15 @@ public class UserIndexViewController {
     @GetMapping("/")
     public String userIndex() {
         return "user/index";
+    }
+
+    // 회원가입 폼을 보여주는 메소드
+    @GetMapping("/join")
+    public String showJoinForm(Model model) {
+        model.addAttribute("customerAccount", new CustomerAccount());
+        model.addAttribute("customerRequestHealth", new CustomerRequestHealth());
+        model.addAttribute("customerFeedback", new CustomerFeedback());
+        return "user/join";  // join.html 파일을 반환
     }
 
     @PostMapping("/join")
