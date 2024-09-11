@@ -1,4 +1,4 @@
-/*배너 섹션 스타일*/
+/* 배너 섹션 스타일 */
 .banner {
     background-color: #f0f0f0;
     padding: 40px 0;
@@ -24,27 +24,28 @@
     color: white;
 }
 
-
 /* 디자인을 반영한 스타일 */
 .search-form {
     background: #ffffff;
     border-radius: 100px;
-    padding: 15px; /* 패딩을 줄여 사이즈 축소 */
+    padding: 15px;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* 간격 축소 */
+    gap: 10px;
     justify-content: space-between;
     align-items: center;
-    width: 60%; /* 전체 너비를 줄임 */
-    margin: 0 auto; /* 가운데 정렬 */
+    width: 60%;
+    margin: 0 auto;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* input-group 스타일 */
 .input-group {
-    flex: 1 1 150px; /* 입력 그룹의 최소 크기 줄임 */
+    flex: 1 1 150px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 10px; /* 입력 그룹 간 간격 추가 */
 }
 
 .input-group label {
@@ -59,9 +60,9 @@
     padding: 8px;
     font-size: 12px;
     color: #484848;
-    border: none; /* 기본 테두리 제거 */
-    border-bottom: 1px solid #ddd; /* 하단에만 테두리 추가 */
-    outline: none; /* 클릭 시 파란 테두리 제거 */
+    border: none;
+    border-bottom: 1px solid #ddd;
+    outline: none;
 }
 
 .search-btn {
@@ -72,17 +73,49 @@
 .search-button {
     background-color: #333;
     color: #fff;
-    width: 60px; /* 버튼의 너비와 높이를 동일하게 설정 */
+    width: 60px;
     height: 60px;
     border: none;
-    border-radius: 50%; /* 완전한 원형으로 만듦 */
+    border-radius: 50%;
     cursor: pointer;
     display: flex;
     justify-content: center;
-    align-items: center; /* 텍스트를 중앙에 배치 */
-    font-size: 16px; /* 글자 크기 설정 */
+    align-items: center;
+    font-size: 16px;
 }
 
 .search-button:hover {
     background-color: #555;
+}
+
+/* 반응형 미디어 쿼리 */
+@media screen and (max-width: 1024px) {
+    .search-form {
+        width: 80%; /* 중간 화면에서는 너비를 80%로 */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .banner-title {
+        font-size: 20px; /* 작은 화면에서 글씨 크기 조정 */
+    }
+
+    .search-form {
+        flex-direction: column; /* 작은 화면에서 검색 양식이 세로로 쌓임 */
+        width: 100%; /* 양식이 화면 너비에 맞게 확장 */
+    }
+
+    .input-group {
+        width: 100%; /* 입력 그룹이 세로로 쌓일 때 너비를 100%로 */
+    }
+
+    .search-btn {
+        width: 100%; /* 버튼도 100% 너비로 설정 */
+        margin-top: 10px;
+    }
+
+    .search-button {
+        width: 100%; /* 검색 버튼이 화면을 가로질러 100% 차지 */
+        border-radius: 25px; /* 버튼의 둥근 정도를 줄임 */
+    }
 }
