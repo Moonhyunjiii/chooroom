@@ -1,215 +1,393 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/user/style.css" />
-    <link rel="stylesheet" href="css/user/var.css" />
-    <link rel="stylesheet" href="css/user/calendar.css" />
-    <script src="js/user/script.js"></script>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/user/roomTypeIndex.css"/>
+    <link rel="stylesheet" href="css/user/hashTag.css"/>
+    <link rel="stylesheet" href="css/user/banner.css"/>
+    <link rel="stylesheet" href="css/user/calendarModal.css"/>
+    <link rel="stylesheet" href="css/user/filter.css"/>
+    <link rel="stylesheet" href="css/user/mainCommon.css"/>
+    <link rel="stylesheet" href="css/user/header.css"/>
+    <!-- jQuery 및 jQuery UI -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <title>LG 클린 서비스 제공 호텔</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <title>LG 클린 서비스 제공 호텔</title>
 </head>
 <body>
 <div class="container">
-  <div class="main">
-    <!-- 상단 배너 -->
-    <div class="line-banner">
-      <div class="lg">LG 클린 서비스 제공 호텔</div>
-    </div>
-
-    <div class="banner">
-      <div class="banner-image">우리 클린 서비스 관련 이미지</div>
-      <div class="rectangle-4"></div>
-      <div class="hotel-select">호텔 선택</div>
-      <div class="select-description">원하시는 호텔을 선택하세요.</div>
-
-      <!-- Check In과 Check Out 데이트피커 필드 -->
-      <div class="date-box">
-        <div class="check-in">
-          <input id="checkin-date" type="text" placeholder="Check In" class="datepicker" readonly onclick="toggleCalendar()">
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="/path/to/logo.png" alt="Logo" />
+            </div>
+            <div class="nav-icons">
+                <img src="/path/to/notification-icon.png" alt="Notification" />
+                <div id="loginButton" class="login">로그인</div>
+            </div>
         </div>
-        <div class="check-out">
-          <input id="checkout-date" type="text" placeholder="Check Out" class="datepicker" readonly>
-        </div>
-      </div>
+    </header>
 
-      <div class="guest-selection">
-        <div class="guests">Guests</div>
-        <div class="add-guests">Add Guests</div>
-      </div>
+    <main>
+        <!-- 배너 섹션 -->
+        <section class="banner">
+            <div class="banner-content">
+                <h1 class="banner-title">어서오세요. ㅇㅇㅇㅇㅇ호텔입니다.</h1>
 
-      <div class="round-search">
-        <div class="ellipse-1"></div>
-        <img class="fe-search" src="fe-search0.svg" alt="search" />
-      </div>
-    </div>
+                <!-- form을 사용해 데이터 서버로 전송 -->
+                <form action="#" method="GET" class="search-form">
+                    <!-- 날짜 입력 필드 -->
+                    <div class="input-group">
+                        <label for="checkin-date">Check In</label>
+                        <input id="checkin-date" name="checkin" type="text" placeholder="Add Dates" class="datepicker">
+                    </div>
+                    <div class="input-group">
+                        <label for="checkout-date">Check Out</label>
+                        <input id="checkout-date" name="checkout" type="text" placeholder="Add Dates" class="datepicker">
+                    </div>
 
-    <!-- 달력 섹션 -->
-    <div class="calendar" id="calendar" style="display:none;">
-      <div class="frame-201">
-        <div class="start-date">Check in date</div>
-        <img class="arrow-right" src="arrow-right0.svg" />
-        <div class="end-date">Check out date</div>
-      </div>
-      <div class="line-22"></div>
-      <div class="calendar-single-light">
-        <div class="month-year-line">
-          <img class="chevron-left" src="chevron-left0.svg" />
-          <div class="month-year">Month year</div>
-          <img class="chevron-right" src="chevron-right0.svg" />
-        </div>
-        <div class="line-21"></div>
-        <div class="day-date">
-          <div class="day-line">
-            <div class="day">Sun</div>
-            <div class="day">Mon</div>
-            <div class="day">Tue</div>
-            <div class="day">Wed</div>
-            <div class="day">Thu</div>
-            <div class="day">Fri</div>
-            <div class="day">Sat</div>
-          </div>
-          <div class="date-line">
-            <div class="date">1</div>
-            <div class="date">2</div>
-            <div class="date">3</div>
-          </div>
-        </div>
-      </div>
-    </div>
+                    <!-- 객실 수 입력 필드 -->
+                    <div class="input-group">
+                        <label for="room-count">Rooms</label>
+                        <input id="room-count" name="rooms" type="number" min="1" placeholder="Add Rooms" class="input-field">
+                    </div>
 
-    <!-- 필터 섹션 -->
-    <div class="filter-section">
-      <div class="filter-header">내가 원하는 컨디션의 방을 선택해요</div>
-      <div class="tag" onclick="toggleSelection(this)">
-        <div th:text="${ROOM_TAG[0].TAG_NAME}">위생 정수기</div>
-      </div>
-      <div class="tag" onclick="toggleSelection(this)">
-        <div th:text="${ROOM_TAG[1].TAG_NAME}">고급 의류 케어</div>
-      </div>
-      <div class="tag" onclick="toggleSelection(this)">
-        <div th:text="${ROOM_TAG[2].TAG_NAME}">프리미엄 신발 관리</div>
-      </div>
-      <div class="tag" onclick="toggleSelection(this)">
-        <div th:text="${ROOM_TAG[3].TAG_NAME}">프리미엄 안마 의자</div>
-      </div>
-      <div class="tag" onclick="toggleSelection(this)">
-        <div th:text="${ROOM_TAG[4].TAG_NAME}">Dolby Atomos 시네마 룸</div>
-      </div>
-      <div class="tag" onclick="toggleSelection(this)">
-        <div th:text="${ROOM_TAG[5].TAG_NAME}">프리미엄 청정 룸</div>
-      </div>
-    </div>
+                    <!-- 인원 수 입력 필드 -->
+                    <div class="input-group">
+                        <label for="guest-count">Guests</label>
+                        <input id="guest-count" name="guests" type="number" min="1" placeholder="Add Guests" class="input-field">
+                    </div>
 
-    <!-- 추가 필터 섹션 -->
-    <div class="filter-section2">
-      <div class="line"></div>
-      <div class="filter-options">
-        <!-- 뷰 필터 -->
-        <div class="filter-list" onclick="toggleDropdown('view-dropdown')">
-          <div class="filter-name">뷰</div>
-          <ul id="view-dropdown" class="dropdown">
-            <li th:each="viewType : ${V_TYPE}" th:text="${viewType}">시티뷰</li>
-            <li th:each="viewType : ${V_TYPE}" th:text="${viewType}">오션뷰</li>
-            <li th:each="viewType : ${V_TYPE}" th:text="${viewType}">산 전망</li>
-          </ul>
-        </div>
+                    <!-- 검색 버튼 -->
+                    <div class="search-btn">
+                        <button type="submit" class="search-button">Search</button>
+                    </div>
+                </form>
+            </div>
+        </section>
 
-        <!-- 침대 필터 -->
-        <div class="filter-list" onclick="toggleDropdown('bed-dropdown')">
-          <div class="filter-name">침대</div>
-          <ul id="bed-dropdown" class="dropdown">
-            <li th:each="bedType : ${B_TYPE}" th:text="${bedType}">싱글</li>
-          </ul>
-        </div>
+        <!--해시태그 영역-->
+        <section class="hashtag-section">
+            <h3 class="hashtag-title">내가 원하는 컨디션의 방을 선택해요</h3>
+            <div class="hashtag-list">
+                <button class="hashtag" data-tag="위생 정수기">#위생 정수기</button>
+                <button class="hashtag" data-tag="고급 의류 케어">#고급 의류 케어</button>
+                <button class="hashtag" data-tag="프리미엄 신발 관리">#프리미엄 신발 관리</button>
+                <button class="hashtag" data-tag="프리미엄 안마 의자">#프리미엄 안마 의자</button>
+                <button class="hashtag" data-tag="Dolby Atomos 시네마 룸">#Dolby Atomos 시네마 룸</button>
+                <button class="hashtag" data-tag="프리미엄 청정 룸">#프리미엄 청정 룸</button>
+            </div>
+        </section>
 
-        <!-- 가격 필터 -->
-        <div class="filter-list" onclick="toggleDropdown('price-dropdown')">
-          <div class="filter-name">가격</div>
-          <ul id="price-dropdown" class="dropdown">
-            <li th:each="priceOrder : ${R_PRICE}" th:text="${priceOrder}">높은순</li>
-            <li th:each="priceOrder : ${R_PRICE}" th:text="${priceOrder}">낮은순</li>
-          </ul>
-        </div>
+        <!-- 필터 섹션 -->
+        <section class="filter-section">
+            <div class="filter-wrapper">
+                <div class="filter-container">
+                    <!-- 뷰 필터 -->
+                    <div class="filter-category" onclick="toggleDropdown('view-dropdown')">
+                        <div class="filter-name">뷰</div>
+                        <ul id="view-dropdown" class="dropdown-list">
+                            <li>시티뷰</li>
+                            <li>오션뷰</li>
+                            <li>산 전망</li>
+                        </ul>
+                    </div>
 
-        <!-- 기타 필터 -->
-        <div class="filter-list" onclick="toggleDropdown('other-dropdown')">
-          <div class="filter-name">기타 필터</div>
-          <ul id="other-dropdown" class="dropdown">
-            <li th:each="otherFilter : ${otherFilters}" th:text="${otherFilter}">미정</li>
-          </ul>
-        </div>
-      </div>
-    </div>
+                    <!-- 침대 필터 -->
+                    <div class="filter-category" onclick="toggleDropdown('bed-dropdown')">
+                        <div class="filter-name">침대</div>
+                        <ul id="bed-dropdown" class="dropdown-list">
+                            <li>single</li>
+                            <li>twin</li>
+                            <li>double queen</li>
+                            <li>double king</li>
+                        </ul>
+                    </div>
 
-    <!-- 객실 섹션 -->
-    <div class="room-section" onclick="toggleRoomDetails(this)">
-      <div class="room-header">
-        <div class="room-type">싱글 룸</div>
-        <div class="room-price" th:text="${#numbers.formatInteger(room.minPrice, 0)} + '원 ~'">80,000원 ~</div>
-        <img class="room-image" src="group-60.svg" alt="room image" />
-        <div class="room-noise" th:text="${room.avgNoiseLevel} + 'db'">20db, 매우 조용해요</div>
-        <div class="room-info" th:text="${room.roomSize} + 'm² | ' + room.bedType + ' 침대 | ' + room.viewType">25m² | 싱글 침대 | 시티뷰</div>
-        <div class="room-description" th:text="${room.description}">싱글 룸 설명</div>
-        <div class="room-availability" th:text="'남은 객실 ' + ${room.availableCount}">남은 객실 1</div>
-      </div>
-      <div class="room-details" th:if="${room.roomDetails != null and !room.roomDetails.isEmpty()}">
-        <div th:each="detail : ${room.roomDetails}" class="room-selection">
-          <div class="room-number" th:text="${detail.roomNumber}">101호</div>
-          <div class="room-view-status" th:text="${detail.viewType} + ', ' + ${detail.roomStatus}">시티뷰, 고요한 방</div>
-          <div class="select-room">
-            <button onclick="openModal('${detail.roomNumber}')">선택</button>
-          </div>
-        </div>
-      </div>
-    </div>
+                    <!-- 가격 필터 -->
+                    <div class="filter-category" onclick="toggleDropdown('price-dropdown')">
+                        <div class="filter-name">가격</div>
+                        <ul id="price-dropdown" class="dropdown-list">
+                            <li>높은순</li>
+                            <li>낮은순</li>
+                        </ul>
+                    </div>
 
-    <!-- 모달 창 -->
-    <div id="myModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <h2>객실 선택 확인</h2>
-        <p id="modalRoomNumber"></p>
-        <div class="modal-body">
-          <img class="modal-image" src="group-320.svg" />
-          <div class="modal-description">스위트 룸 설명</div>
-          <div class="modal-info">
-            <div class="noise-info">평균 소음도: 19db, 굉장히 조용해요</div>
-            <div class="air-quality">현재 공기질: 9M, 산 속 공기와 같아요.</div>
-          </div>
+                    <!-- 기타 필터 -->
+                    <div class="filter-category" onclick="toggleDropdown('other-dropdown')">
+                        <div class="filter-name">기타 필터</div>
+                        <ul id="other-dropdown" class="dropdown-list">
+                            <li>미정</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="divider-line"></div>
+        </section>
+
+        <section class="room-section">
+            <div class="room-container">
+                <div class="room">
+                    <div class="room-image">
+                        <img src="/img/user/객실화면예시.png" alt="room image" />
+                    </div>
+                    <div class="room-header">
+                        <h3 class="room-title">스탠다드</h3>
+                        <div class="room-noise">
+                            <span class="noise-description">평균소음도</span>
+                            <span class="noise-level">19db</span>
+                            <span class="noise-description">, 굉장히 조용해요</span>
+                        </div>
+                        <div class="room-description">
+                            스탠다드 타입에 대한 간략한 설명을 작성합니다.<br />
+                            스탠다드 타입에 대한 간략한 설명을 작성합니다.
+                        </div>
+                    </div>
+                    <div class="room-status">
+                        <span class="night-text">1박 기준</span>
+                        <span class="remaining-rooms">남은 객실 2개</span>
+                        <div class="room-price">100,000원 ~</div>
+                    </div>
+                    <button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>
+                </div>
+                <!-- 호실 목록을 숨긴 상태로 추가 -->
+                <div class="room-details" style="display: none;">
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">101호</span>
+                            <span class="room-viewAndNoise">오션뷰, 고요한 방</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">102호</span>
+                            <span class="room-viewAndNoise">시티뷰, 고요한 방</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">103호</span>
+                            <span class="room-viewAndNoise">산 전망, 고요한 방</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">104호</span>
+                            <span class="room-viewAndNoise">오션뷰, 산 전망</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">105호</span>
+                            <span class="room-viewAndNoise">오션뷰, dd 전망</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room-container">
+                <div class="room">
+                    <div class="room-image">
+                        <img src="/img/user/객실화면예시.png" alt="room image" />
+                    </div>
+                    <div class="room-header">
+                        <h3 class="room-title">디럭스</h3>
+                        <div class="room-noise">
+                            <span class="noise-description">평균소음도</span>
+                            <span class="noise-level">20db</span>
+                            <span class="noise-description">, 굉장히 조용해요</span>
+                        </div>
+                        <div class="room-description">
+                            디럭스 타입에 대한 간략한 설명을 작성합니다.<br />
+                            디럭스 타입에 대한 간략한 설명을 작성합니다.
+                        </div>
+                    </div>
+                    <div class="room-status">
+                        <span class="night-text">1박 기준</span>
+                        <span class="remaining-rooms">남은 객실 2개</span>
+                        <div class="room-price">100,000원 ~</div>
+                    </div>
+                    <button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>
+                </div>
+                <!-- 호실 목록을 숨긴 상태로 추가 -->
+                <div class="room-details" style="display: none;">
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">201호</span>
+                            <span class="room-viewAndNoise">오션뷰, 고요한 방</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">202호</span>
+                            <span class="room-viewAndNoise">시티뷰, 고요한 방</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">203호</span>
+                            <span class="room-viewAndNoise">산 전망, 고요한 방</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">204호</span>
+                            <span class="room-viewAndNoise">오션뷰, 산 전망</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">205호</span>
+                            <span class="room-viewAndNoise">오션뷰, dd 전망</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="room-container">
+                <div class="room">
+                    <div class="room-image">
+                        <img src="/img/user/객실화면예시.png" alt="room image" />
+                    </div>
+                    <div class="room-header">
+                        <h3 class="room-title">스위트</h3>
+                        <div class="room-noise">
+                            <span class="noise-description">평균소음도</span>
+                            <span class="noise-level">15db</span>
+                            <span class="noise-description">, 굉장히 조용해요</span>
+                        </div>
+                        <div class="room-description">
+                            스위트 타입에 대한 간략한 설명을 작성합니다.<br />
+                            스위트 타입에 대한 간략한 설명을 작성합니다.
+                        </div>
+                    </div>
+                    <div class="room-status">
+                        <span class="night-text">1박 기준</span>
+                        <span class="remaining-rooms">남은 객실 2개</span>
+                        <div class="room-price">100,000원 ~</div>
+                    </div>
+                    <button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>
+                </div>
+                <!-- 호실 목록을 숨긴 상태로 추가 -->
+                <div class="room-details" style="display: none;">
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">301호</span>
+                            <span class="room-viewAndNoise">오션뷰, 고요한 방</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">302호</span>
+                            <span class="room-viewAndNoise">시티뷰, 고요한 방</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">303호</span>
+                            <span class="room-viewAndNoise">산 전망, 고요한 방</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">304호</span>
+                            <span class="room-viewAndNoise">오션뷰, 산 전망</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                    <div class="room-item">
+                        <div class="room-item-image">
+                            <img src="/img/user/객실화면예시.png" alt="Room image">
+                        </div>
+                        <div class="room-item-info">
+                            <span class="room-number">305호</span>
+                            <span class="room-viewAndNoise">오션뷰, dd 전망</span>
+                            <button class="room-select-btn">선택</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- 하단 푸터 -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-description">
+                    서비스 설명 대강 작성 서비스 설명 대강 작성
+                    <br />
+                    서비스 이메일 어쩌구 저쩌구
+                    <br />
+                    서비스 전화번호 어쩌구 저쩌구
+                </div>
+                <div class="footer-title">
+                    서비스 이름 작성
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button onclick="confirmSelection()">확인</button>
-        </div>
-      </div>
-    </div>
-  </div>
+    </footer>
+
+
 </div>
-
-<!-- 푸터 섹션 -->
-<div class="footer">
-  <div class="logo">LOGO</div>
-  <div class="contact-info">
-    Phone: 1234567890<br/>
-    Email: company@email.com<br/>
-    Location: 100 Smart Street, LA, USA
-  </div>
-  <div class="app-links">
-    <div class="google-play">
-      <img class="playstore-logo" src="ion-logo-google-playstore0.svg" />
-      <div>PlayStore</div>
-    </div>
-    <div class="apple-store">
-      <img class="applestore-logo" src="ion-logo-apple-appstore0.svg" />
-      <div>AppleStore</div>
-    </div>
-  </div>
-  <div class="social-media">
-    <img src="social-media-links0.svg" />
-  </div>
-</div>
-
+<script src="js/user/main.js"></script>
 </body>
 </html>

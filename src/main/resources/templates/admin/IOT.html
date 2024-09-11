@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive App Page</title>
+    <style>
+    /* 전체 페이지 레이아웃 */
+    .page-container {
+     display: flex;
+     flex-direction: column;
+     align-items: flex-start;;
+     width: 100vw;
+     height: 100vh;
+     padding: 20px;
+     box-sizing: border-box; /* 패딩을 포함한 크기 조정 */
+     background: linear-gradient(90deg, rgba(195, 216, 235, 1) 0%, rgba(238, 246, 249, 1) 100%);
+     overflow: hidden; /* 스크롤 제거 */
+    }
+
+    /* 상단 호텔 이름 및 아이콘 */
+    .header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     width: 100%;
+     margin-bottom: 20px;
+     gap: 10px; /* 호텔 이름과 아이콘 사이의 간격 조정 */
+    }
+
+    .hotel-info {
+     font-size: 1.5rem;
+     color: black;
+     margin-right: 20px; /* 호텔 이름과 아이콘 사이 여백 */
+    }
+
+    .header-icons {
+     display: flex;
+     gap: 15px;
+    }
+
+    /* header 아이콘 스타일 */
+    .header-icons {
+    display: flex;
+    gap: 15px; /* 각 아이콘 사이 간격 */
+    }
+
+    .header-icons svg {
+    pointer-events: auto;  /* SVG는 클릭 가능 */
+    cursor: pointer;       /* 마우스 커서를 손 모양으로 변경 */
+    transition: transform 0.2s ease; /* 클릭 시 반응을 위한 트랜지션 */
+    }
+
+    /* SVG 호버 시 효과 */
+    .header-icons svg:hover {
+    transform: scale(1.1);  /* 마우스 호버 시 약간 확대 */
+    }
+
+    /* SVG 클릭 시 효과 */
+    .header-icons svg:active {
+    transform: scale(0.95); /* 클릭 시 살짝 축소 */
+    }
+
+    .icon {
+     width: 24px;
+     height: 24px;
+    }
+
+    /* 스마트 루틴 섹션 */
+    /* 스마트 루틴 섹션 */
+    .smart-routine-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 60%;                 /* 웹페이지 가로의 60%를 차지 */
+    margin-bottom: 20px;
+    }
+
+    .mode-container {
+    display: flex;              /* 가로로 정렬 */
+    justify-content: space-between; /* 두 박스를 양쪽에 균등하게 배치 */
+    gap: 15px;                  /* 두 박스 사이 간격 */
+    width: 100%;                /* 컨테이너가 100% 가로를 차지 */
+    }
+
+    .mode-box {
+    background-color: white;
+    flex: 1;                    /* 박스가 남은 공간을 균등하게 차지 */
+    padding: 20px;              /* 박스 내부 여백 */
+    border-radius: 10px;        /* 둥근 테두리 */
+    text-align: flex-start;
+    font-size: 1.2rem;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);  /* 박스 그림자 */
+    transition: background-color 0.3s ease;
+    }
+
+    .mode-box:hover {
+    background-color: #eef8f9;  /* 마우스 호버 시 배경색 */
+    cursor: pointer;
+    }
+
+    .mode-box:active {
+    background-color: #d4f0f5;  /* 클릭했을 때 색상 변화 */
+    transform: scale(0.98);     /* 클릭 시 살짝 축소 효과 */
+    }
+    /* 101호 텍스트 섹션 */
+    .room-number {
+    font-size: 1.2rem;
+    color: #8a9197;
+    margin-bottom: 20px;
+    margin-left: 0;            /* 왼쪽 여백을 없애 101호도 왼쪽으로 붙임 */
+    }
+
+    /* 그리드 레이아웃 - 기기 카드 */
+    .device-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    }
+
+    .device-card {
+    background-color: #f8fcfd;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 120px;
+    pointer-events: none; /* 클릭과 이벤트 비활성화 */
+    }
+    /* 파워 아이콘은 여전히 클릭 가능하게 유지 */
+    .power-icon {
+    width: 40px;
+    height: 40px;
+    pointer-events: auto; /* 파워 아이콘은 클릭 가능 */
+    }
+    .device-name {
+    font-size: 1.2rem;
+    }
+
+    /* 에어컨 컨트롤 스타일 */
+    .aircon-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px; /* 버튼 사이 간격 */
+    }
+
+    .arrow-button {
+    background-color: #eef8f9;
+    border: none;
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    pointer-events: auto; /* 반드시 클릭 가능하도록 설정 */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* 클릭 시 반응 */
+    }
+
+    .aircon-level {
+    font-size: 1rem;
+    color: #8a9197;
+    }
+
+    /* 버튼 호버 효과 */
+    .arrow-button:hover {
+      background-color: #d4eaf2; /* 호버 시 버튼 배경색 변경 */
+    }
+
+    /* 버튼 클릭 시 효과 */
+    .arrow-button:active {
+      transform: scale(0.95); /* 클릭 시 버튼이 살짝 축소 */
+    }
+
+    /* 공기청정기 미세먼지 표시 */
+    .air-quality {
+    background-color: #eef8f9;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    color: #8a9197;
+    }
+
+    /* 파워 아이콘 스타일 */
+    .power-icon {
+    width: 40px;
+    height: 40px;
+    }
+
+    /* 모든 SVG 클릭 가능하게 설정 */
+    .device-card svg {
+    pointer-events: auto; /* SVG는 클릭 가능 */
+    cursor: pointer;      /* 마우스 커서를 손 모양으로 변경 */
+    transition: transform 0.2s ease; /* 클릭 시 반응을 위한 트랜지션 */
+    }
+
+    /* SVG 호버 시 효과 */
+    .device-card svg:hover {
+    transform: scale(1.1); /* 마우스 호버 시 약간 확대 */
+    }
+
+    /* SVG 클릭 시 효과 */
+    .device-card svg:active {
+    transform: scale(0.95); /* 클릭 시 살짝 축소 */
+    }
+
+
+
+
+    </style>
+</head>
+<body>
+<div class="page-container">
+
+    <!-- 상단 호텔 이름 및 아이콘 -->
+    <div class="header">
+        <div class="hotel-info">인터컨티넨탈 호텔</div>
+        <div class="header-icons">
+            <svg
+                    class="add-circle"
+                    width="41"
+                    height="41"
+                    viewBox="0 0 41 41"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M18.7915 29.0415H22.2082V22.2082H29.0415V18.7915H22.2082V11.9582H18.7915V18.7915H11.9582V22.2082H18.7915V29.0415ZM20.4998 37.5832C18.1366 37.5832 15.9158 37.1419 13.8373 36.2592C11.7589 35.3481 9.95088 34.1238 8.41338 32.5863C6.87588 31.0488 5.65157 29.2408 4.74046 27.1623C3.85782 25.0839 3.4165 22.863 3.4165 20.4998C3.4165 18.1366 3.85782 15.9158 4.74046 13.8373C5.65157 11.7589 6.87588 9.95088 8.41338 8.41338C9.95088 6.87588 11.7589 5.66581 13.8373 4.78317C15.9158 3.87206 18.1366 3.4165 20.4998 3.4165C22.863 3.4165 25.0839 3.87206 27.1623 4.78317C29.2408 5.66581 31.0488 6.87588 32.5863 8.41338C34.1238 9.95088 35.3339 11.7589 36.2165 13.8373C37.1276 15.9158 37.5832 18.1366 37.5832 20.4998C37.5832 22.863 37.1276 25.0839 36.2165 27.1623C35.3339 29.2408 34.1238 31.0488 32.5863 32.5863C31.0488 34.1238 29.2408 35.3481 27.1623 36.2592C25.0839 37.1419 22.863 37.5832 20.4998 37.5832ZM20.4998 34.1665C24.3151 34.1665 27.5467 32.8425 30.1946 30.1946C32.8425 27.5467 34.1665 24.3151 34.1665 20.4998C34.1665 16.6846 32.8425 13.453 30.1946 10.805C27.5467 8.15713 24.3151 6.83317 20.4998 6.83317C16.6846 6.83317 13.453 8.15713 10.805 10.805C8.15713 13.453 6.83317 16.6846 6.83317 20.4998C6.83317 24.3151 8.15713 27.5467 10.805 30.1946C13.453 32.8425 16.6846 34.1665 20.4998 34.1665Z"
+                        fill="#1D1B20"
+                />
+            </svg>
+
+            <svg
+                    class="search"
+                    width="41"
+                    height="41"
+                    viewBox="0 0 41 41"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M33.4833 35.875L22.7208 25.1125C21.8667 25.7958 20.8844 26.3368 19.774 26.7354C18.6635 27.134 17.4819 27.3333 16.2292 27.3333C13.1257 27.3333 10.4991 26.2585 8.34948 24.1089C6.19983 21.9592 5.125 19.3326 5.125 16.2292C5.125 13.1257 6.19983 10.4991 8.34948 8.34948C10.4991 6.19983 13.1257 5.125 16.2292 5.125C19.3326 5.125 21.9592 6.19983 24.1089 8.34948C26.2585 10.4991 27.3333 13.1257 27.3333 16.2292C27.3333 17.4819 27.134 18.6635 26.7354 19.774C26.3368 20.8844 25.7958 21.8667 25.1125 22.7208L35.875 33.4833L33.4833 35.875ZM16.2292 23.9167C18.3646 23.9167 20.1797 23.1693 21.6745 21.6745C23.1693 20.1797 23.9167 18.3646 23.9167 16.2292C23.9167 14.0938 23.1693 12.2786 21.6745 10.7839C20.1797 9.28906 18.3646 8.54167 16.2292 8.54167C14.0938 8.54167 12.2786 9.28906 10.7839 10.7839C9.28906 12.2786 8.54167 14.0938 8.54167 16.2292C8.54167 18.3646 9.28906 20.1797 10.7839 21.6745C12.2786 23.1693 14.0938 23.9167 16.2292 23.9167Z"
+                        fill="#1D1B20"
+                />
+            </svg>
+
+            <svg
+                    class="bell"
+                    width="41"
+                    height="41"
+                    viewBox="0 0 41 41"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M23.4554 35.8748C23.1551 36.3926 22.724 36.8224 22.2053 37.1211C21.6866 37.4199 21.0986 37.5771 20.5 37.5771C19.9014 37.5771 19.3134 37.4199 18.7947 37.1211C18.276 36.8224 17.8449 36.3926 17.5446 35.8748M30.75 13.6665C30.75 10.948 29.6701 8.34091 27.7478 6.41866C25.8256 4.49641 23.2185 3.4165 20.5 3.4165C17.7815 3.4165 15.1744 4.49641 13.2522 6.41866C11.3299 8.34091 10.25 10.948 10.25 13.6665C10.25 25.6248 5.125 29.0415 5.125 29.0415H35.875C35.875 29.0415 30.75 25.6248 30.75 13.6665Z"
+                        stroke="#1E1E1E"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                />
+            </svg>
+
+        </div>
+    </div>
+
+    <!-- 스마트 루틴 섹션 -->
+    <div class="smart-routine-frame">
+        <div class="smart-routine-link">스마트 루틴 &gt;</div>
+        <div class="mode-container">
+            <div class="mode-box">시네마 모드</div>
+            <div class="mode-box">취침 모드</div>
+        </div>
+    </div>
+
+    <!-- 101호 및 기기 컨트롤 -->
+    <div class="room-number">101호</div>
+    <div class="device-grid">
+        <!-- 에어컨 카드 -->
+        <div class="device-card">
+            <div class="device-name">에어컨</div>
+            <div class="aircon-control">
+                <button class="arrow-button">▲</button>
+                <span class="aircon-level">온도 : <span th:text="${roomCondition.rTemp}"></span>°C</span>
+                <button class="arrow-button">▼</button>
+            </div>
+            <svg
+                    class="icon"
+                    width="36"
+                    height="40"
+                    viewBox="0 0 36 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M30.7202 9.28C33.237 11.7976 34.9508 15.0049 35.6448 18.4964C36.3389 21.9879 35.9821 25.6068 34.6195 28.8955C33.257 32.1842 30.9499 34.9951 27.9899 36.9727C25.0299 38.9503 21.5501 40.0058 17.9902 40.0058C14.4304 40.0058 10.9505 38.9503 7.99059 36.9727C5.03063 34.9951 2.72352 32.1842 1.36097 28.8955C-0.0015769 25.6068 -0.35838 21.9879 0.335678 18.4964C1.02974 15.0049 2.74349 11.7976 5.26024 9.28M18.0002 0V20"
+                        stroke="#1E1E1E"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                />
+            </svg>
+
+        </div>
+
+
+        <div class="device-card">
+            <div class="device-name">LG OLED TV</div>
+            <svg
+                    class="icon"
+                    width="36"
+                    height="40"
+                    viewBox="0 0 36 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M30.7202 9.28C33.237 11.7976 34.9508 15.0049 35.6448 18.4964C36.3389 21.9879 35.9821 25.6068 34.6195 28.8955C33.257 32.1842 30.9499 34.9951 27.9899 36.9727C25.0299 38.9503 21.5501 40.0058 17.9902 40.0058C14.4304 40.0058 10.9505 38.9503 7.99059 36.9727C5.03063 34.9951 2.72352 32.1842 1.36097 28.8955C-0.0015769 25.6068 -0.35838 21.9879 0.335678 18.4964C1.02974 15.0049 2.74349 11.7976 5.26024 9.28M18.0002 0V20"
+                        stroke="#1E1E1E"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                />
+            </svg>
+
+        </div>
+
+        <!-- 공기청정기 카드 -->
+        <div class="device-card">
+            <div class="device-name">공기청정기</div>
+            <div class="air-quality">
+                미세먼지: <span th:text="${roomCondition.roomAirQuality}"></span>&micro;m&sup3;
+            </div>
+            <svg
+                    class="icon"
+                    width="36"
+                    height="40"
+                    viewBox="0 0 36 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M30.7202 9.28C33.237 11.7976 34.9508 15.0049 35.6448 18.4964C36.3389 21.9879 35.9821 25.6068 34.6195 28.8955C33.257 32.1842 30.9499 34.9951 27.9899 36.9727C25.0299 38.9503 21.5501 40.0058 17.9902 40.0058C14.4304 40.0058 10.9505 38.9503 7.99059 36.9727C5.03063 34.9951 2.72352 32.1842 1.36097 28.8955C-0.0015769 25.6068 -0.35838 21.9879 0.335678 18.4964C1.02974 15.0049 2.74349 11.7976 5.26024 9.28M18.0002 0V20"
+                        stroke="#1E1E1E"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                />
+            </svg>
+
+        </div>
+
+        <div class="device-card">
+            <div class="device-name">냉장고</div>
+            <svg
+                    class="icon"
+                    width="36"
+                    height="40"
+                    viewBox="0 0 36 40"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                        d="M30.7202 9.28C33.237 11.7976 34.9508 15.0049 35.6448 18.4964C36.3389 21.9879 35.9821 25.6068 34.6195 28.8955C33.257 32.1842 30.9499 34.9951 27.9899 36.9727C25.0299 38.9503 21.5501 40.0058 17.9902 40.0058C14.4304 40.0058 10.9505 38.9503 7.99059 36.9727C5.03063 34.9951 2.72352 32.1842 1.36097 28.8955C-0.0015769 25.6068 -0.35838 21.9879 0.335678 18.4964C1.02974 15.0049 2.74349 11.7976 5.26024 9.28M18.0002 0V20"
+                        stroke="#1E1E1E"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                />
+            </svg>
+
+        </div>
+
+        <!-- 추가 카드들 -->
+    </div>
+</div>
+</body>
+</html>
