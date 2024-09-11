@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<CustomerAccount, String> {
     @Query(value = "SELECT * FROM CUSTOMER_ACCOUNT WHERE CUS_ID = :customerId AND CUS_PW = :customerPw", nativeQuery = true)
     CustomerAccount login(@Param("customerId") String customerId, @Param("customerPw") String customerPw);
+
 }
