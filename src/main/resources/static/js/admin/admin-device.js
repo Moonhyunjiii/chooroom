@@ -26,7 +26,7 @@
             roomCard.className = 'room-card';
 
             roomCard.innerHTML = `
-                <h4>${room.roomNumber}<span class="room-type"> 디럭스</span></h4>
+                <h4>${room.roomNumber}<span class="room-type">${room.roomType}</span></h4>
 
                 <div class="status-section">
                     <div class="status-item">
