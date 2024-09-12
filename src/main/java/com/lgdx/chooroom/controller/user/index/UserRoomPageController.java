@@ -122,7 +122,7 @@ public class UserRoomPageController {
             response.put("noiseDescription", "편안하게 휴식하기에 알맞은 조용하고 편안한 방입니다.");
             response.put("noiseLevel", roomCondition.getroomNoiseLevel());
         } else {
-            response.put("noiseDescription", "주변 소음이 조금 있는 편이나, 창문밖으로 보이는 전망이 매우 아름다운 방이에요.");
+            response.put("noiseDescription", "주변 소음이 조금 있는 편이나, 창문밖으로 보이는 전망이 좋은 방이에요.");
             response.put("noiseLevel", roomCondition.getroomNoiseLevel());
         }
         response.put("Temperature", roomCondition.getRoomTemperature());

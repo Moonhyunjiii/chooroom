@@ -1,5 +1,5 @@
 
-roomNumber = "101";
+roomNumber = "1115";
 customerId = "user12";
 reservationId = "RES0040";
 
@@ -47,7 +47,7 @@ function fetchRoomDetails(roomNumber) {
         .then(response => response.json())
         .then(data => {
             document.getElementById("roomID").innerText = `${data.roomId}호는 이런 방이에요.`;
-            document.getElementById("roomNoise").innerText = `${data.noiseDescription} | 소음도: ${data.noiseLevel} dB`;
+            document.getElementById("roomNoise").innerHTML = `${data.noiseDescription} <br> 소음도: ${data.noiseLevel} dB`;
             document.getElementById("care-info").innerText = data.careDescription;
         })
         .catch(error => console.error('Error:', error));
