@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
              // 새 창의 크기
              const newWidth = width * 0.5;
-             const newHeight = height * 0.5;
+             const newHeight = height ;
 
              // 새 창의 위치
              const left = (width - newWidth) / 2;
