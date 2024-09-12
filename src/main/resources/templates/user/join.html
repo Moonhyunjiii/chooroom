@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" th:href="@{/css/user/join.css}">
-    <script th:src="@{/js/user/join.js}"></script>
     <title>회원가입</title>
 
 </head>
@@ -17,30 +16,30 @@
             <div>
                 <label for="userId">아이디:</label>
                 <div class="user-id-container">
-                    <input id="userId" name="userId" type="text" required/>
+                    <input id="userId" name="customerId" type="text" required/>
                     <button type="button" id="checkUserId">중복 검사</button>
                 </div>
 
             </div>
             <div>
                 <label for="userPassword">패스워드:</label>
-                <input id="userPassword" name="userPassword" type="password" required/>
+                <input id="userPassword" name="customerPw" type="password" required/>
             </div>
             <div>
                 <label for="name">이름:</label>
-                <input id="name" name="name" type="text" required/>
+                <input id="name" name="customerName" type="text" required/>
             </div>
             <div>
                 <label for="age">나이:</label>
-                <input id="age" name="age" type="number" required/>
+                <input id="age" name="customerAge" type="number" required/>
             </div>
             <div>
                 <label for="contact">연락처:</label>
-                <input id="contact" name="contact" type="tel" required/>
+                <input id="contact" name="customerCallNumber" type="tel" required/>
             </div>
             <div>
                 <label for="email">이메일:</label>
-                <input id="email" name="email" type="email" required/>
+                <input id="email" name="customerEmail" type="email" required/>
             </div>
             <!-- 방 컨디션 선택 -->
             <div class="wanted-conditions">

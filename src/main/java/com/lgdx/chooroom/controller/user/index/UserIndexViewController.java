@@ -2,12 +2,14 @@ package com.lgdx.chooroom.controller.user.index;
 
 import com.lgdx.chooroom.domain.user.CustomerAccount;
 import com.lgdx.chooroom.service.user.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class UserIndexViewController {
@@ -16,9 +18,16 @@ public class UserIndexViewController {
     private UserService userService;
 
     @GetMapping("/")
-    public String userIndex(Model model) {
-        return "user/userRoomInfo";
+    public String userIndex(Model model , HttpSession session) {
+
+        if(session.getAttribute("user") != null) {
+            model.addAttribute("user" , session.getAttribute("user"));
+        }
+
+        return "user/index";
     }
+
+
 
     // 로그인 페이지
     @GetMapping("/login")
@@ -28,14 +37,25 @@ public class UserIndexViewController {
 
     // 로그인 처리
     @PostMapping("/login")
-    public String login(@RequestParam String customerId, @RequestParam String customerPw, Model model) {
+    public String login(@RequestParam(name="userId") String customerId,
+                        @RequestParam(name="userPassword")  String customerPw ,
+                        Model model ,
+                        HttpSession session) {
         CustomerAccount customerAccount = userService.login(customerId, customerPw);
         if (customerAccount != null) {
-            return "redirect:user/login";
+            session.setAttribute("user" , customerAccount);
+            return "redirect:/";
         } else {
             model.addAttribute("loginError", "아이디 또는 비밀번호가 올바르지 않습니다.");
             return "user/login";
         }
+    }
+
+    //로그아웃 처리
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/";
     }
 
     // 회원가입 페이지
@@ -58,7 +78,7 @@ public class UserIndexViewController {
         }
 
         userService.join(customerAccount);
-        return "redirect:user/index";
+        return "redirect:/login";
     }
 
 }

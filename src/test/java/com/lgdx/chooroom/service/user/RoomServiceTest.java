@@ -1,6 +1,7 @@
 package com.lgdx.chooroom.service.user;
 
 import com.lgdx.chooroom.domain.room.Rooms;
+import com.lgdx.chooroom.domain.user.CustomerAccount;
 import com.lgdx.chooroom.service.rooms.RoomsService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,6 @@ public class RoomServiceTest {
             System.out.println("RoomCondition: " + room.getRoomCondition());
         }
     }
+
 
 }
