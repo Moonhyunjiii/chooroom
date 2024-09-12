@@ -35,9 +35,59 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    // 모든 room-title 요소를 가져옴
+    const roomTitles = document.getElementsByClassName('room-title');
+
+    // roomTitles의 각 요소에 대해 처리
+    for (let i = 0; i < roomTitles.length; i++) {
+        const roomTitle = roomTitles[i].textContent.trim();  // 각 room-title의 텍스트 값을 가져옴
+
+        // 한글 방 제목을 영문 roomType으로 변환하는 함수
+        function convertRoomTitleToRoomType(roomTitle) {
+            switch (roomTitle) {
+                case "스탠다드":
+                    return "STANDARD";
+                case "디럭스":
+                    return "DELUXE";
+                case "스위트":
+                    return "SUITE";
+                default:
+                    throw new Error("Unknown room title: " + roomTitle);
+            }
+        }
+
+        // 변환된 roomType
+        const roomType = convertRoomTitleToRoomType(roomTitle);
+
+        // 서버로 변환된 roomType을 GET 요청으로 전송
+        fetch(`/rooms-noiseAvg?roomType=${roomType}`, {
+            method: 'GET'
+        })
+        .then(response => response.json())  // JSON으로 응답 처리
+        .then(data => {
+            // noiseLevelAvg 요소들을 가져옴 (각 room-title에 대응되는 noiseLevelAvg 값을 업데이트)
+            const noiseLevelAvgElements = document.getElementsByClassName('noiseLevelAvg');
+            const minRoomPriceElements = document.getElementsByClassName('minRoomPrice');
+
+            // 해당하는 noiseLevelAvg 요소의 값을 업데이트
+            if (noiseLevelAvgElements[i]) {
+                noiseLevelAvgElements[i].textContent = data.noiseLevelAvg + 'db';
+            }
+
+            // 해당하는 minRoomPrice 요소의 값을 업데이트
+            if (minRoomPriceElements[i]) {
+                minRoomPriceElements[i].textContent = data.minRoomPrice + '원~';
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
     // 페이지 로드 시 서버로부터 데이터를 받아오는 함수
-    function fetchRoomData() {
-        fetch("/api/rooms")
+    function fetchFilteredRoomData(filters) {
+        const queryString = new URLSearchParams(filters).toString();
+        return fetch(`/api/rooms?${queryString}`) // 확인하기
             .then(response => response.json())
             .then(data => {
                 // 모든 room-container를 가져옴
@@ -78,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                             <span class="room-viewAndNoise">${room.viewType}, 평균소음: <span class="noise-level">${room.roomCondition.roomNoiseLevel}</span>db</span>
                                         </div>
                                         <div class="room-right">
-                                            <button class="room-select-btn">선택</button>
+                                            <button class="room-select-btn" data-room-number="${room.roomNumber}">선택</button>
                                         </div>
                                     </div>
                                 </div>
@@ -92,6 +142,35 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .catch(error => console.error('Error fetching room data:', error));
     }
+
+    // 필터 적용 함수
+    function applyFilters() {
+        const selectedView = document.querySelector('#view-dropdown .selected')?.textContent || '';
+        const selectedBed = document.querySelector('#bed-dropdown .selected')?.textContent || '';
+        const selectedPrice = document.querySelector('#price-dropdown .selected')?.textContent || '';
+
+        const filters = {
+            viewType: selectedView,
+            bedType: selectedBed,
+            priceOrder: selectedPrice
+        };
+
+        console.log(filters);
+
+        fetchFilteredRoomData(filters); // 필터에 맞는 데이터 요청
+    }
+
+    // 필터 클릭 이벤트 처리 - 중복 이벤트 리스너 방지
+    document.querySelectorAll('.filter-category').forEach(filter => {
+        const dropdownItems = filter.querySelectorAll('li');
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function () {
+                dropdownItems.forEach(i => i.classList.remove('selected'));
+                this.classList.add('selected');
+                applyFilters(); // 필터 적용
+            });
+        });
+    });
 
     // 객실보기 토글 함수
     function toggleRoomList(button) {
@@ -119,23 +198,62 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 페이지 로드 시 데이터 불러오기
-    fetchRoomData();
+    // 동적으로 생성된 .room-select-btn에 대한 이벤트 위임 (수정된 부분)
+    document.addEventListener('click', function(event) {
+        if (event.target && event.target.classList.contains('room-select-btn')) {
+            const roomNumber = event.target.getAttribute('data-room-number');
+            console.log(roomNumber);
+            // 모달을 열고, 선택한 방 번호에 해당하는 세부 정보 요청
 
-    // 검색 버튼 클릭 이벤트 처리
-    document.querySelector('.search-button').addEventListener('click', function() {
-        const checkInDate = document.getElementById('checkin-date').value;
-        const checkOutDate = document.getElementById('checkout-date').value;
-        const roomCount = document.getElementById('room-count').value;
-        const guestCount = document.getElementById('guest-count').value;
+             const url = "/room-detail?roomNumber=" + roomNumber;
+             const width = window.innerWidth;
+             const height = window.innerHeight;
 
-        // 입력 값이 모두 있는지 확인 후 알림창으로 표시
-        if (checkInDate && checkOutDate && roomCount && guestCount) {
-            alert(`Check In: ${checkInDate}, Check Out: ${checkOutDate}, Rooms: ${roomCount}, Guests: ${guestCount}`);
-        } else {
-            alert('Please fill out all fields.');
+             // 새 창의 크기
+             const newWidth = width * 0.5;
+             const newHeight = height ;
+
+             // 새 창의 위치
+             const left = (width - newWidth) / 2;
+             const top = (height - newHeight) / 2;
+
+             // 새 창을 여는 옵션 설정
+             const features = `width=${newWidth},height=${newHeight},left=${left},top=${top},scrollbars=yes,resizable=yes`;
+
+             // 새 창 열기
+             window.open(url, '_blank', features);
+
         }
     });
+
+    // 초기화 버튼 클릭 이벤트 처리
+//    document.getElementById('reset-filters').addEventListener('click', function() {
+//        // 모든 필터의 'selected' 클래스 제거
+//        document.querySelectorAll('.filter-category .selected').forEach(item => {
+//            item.classList.remove('selected');
+//        });
+//
+//        // 필터 초기화 후 기본 데이터 다시 불러오기
+//        fetchFilteredRoomData({}); // 기본 필터 없이 데이터 요청
+//    });
+
+    // 페이지 로드 시 기본 데이터 불러오기
+    fetchFilteredRoomData({}); // 기본 필터 없이 모든 객실 데이터를 불러옴
+
+//    // 검색 버튼 클릭 이벤트 처리
+//    document.querySelector('.search-button').addEventListener('click', function() {
+//        const checkInDate = document.getElementById('checkin-date').value;
+//        const checkOutDate = document.getElementById('checkout-date').value;
+//        const roomCount = document.getElementById('room-count').value;
+//        const guestCount = document.getElementById('guest-count').value;
+//
+//        // 입력 값이 모두 있는지 확인 후 알림창으로 표시
+//        if (checkInDate && checkOutDate && roomCount && guestCount) {
+//            alert(`Check In: ${checkInDate}, Check Out: ${checkOutDate}, Rooms: ${roomCount}, Guests: ${guestCount}`);
+//        } else {
+//            alert('Please fill out all fields.');
+//        }
+//    });
 
     // 클릭 외부 영역 클릭 시 드롭다운 닫기
     document.addEventListener('click', function(event) {
@@ -148,20 +266,83 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    document.querySelector('.notification-btn').addEventListener('click', function() {
+/*    document.querySelector('.reservstionCheckButton').addEventListener('click', function() {
         alert('알림이 없습니다.');
-    });
+    });*/
 
 });
 
 function redirectToLogin() {
         window.location.href = '/login';
-    }
+}
+
+function redirectToLogout() {
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = '/logout';
+
+    document.body.appendChild(form);
+    form.submit();
+}
 
     // Add event listener to the login button
-    document.addEventListener('DOMContentLoaded', function() {
-        var loginButton = document.getElementById('loginButton');
-        if (loginButton) {
-            loginButton.addEventListener('click', redirectToLogin);
-        }
+document.addEventListener('DOMContentLoaded', function() {
+    var loginButton = document.getElementById('loginButton');
+    if (loginButton) {
+        loginButton.addEventListener('click', redirectToLogin);
+    }
 });
+
+// Add event listener to the login button
+document.addEventListener('DOMContentLoaded', function() {
+    var logoutButton = document.getElementById('logoutButton');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', redirectToLogout);
+    }
+
+});
+//
+//function openModalWithRoomDetails(roomNumber) {
+//    // 모달을 열고 방 세부정보를 표시하는 코드
+//    console.log(`Opening modal for room number: ${roomNumber}`);
+//    // 모달 열기 및 세부정보 요청 로직
+//    // 모달 관련 스크립트
+//    var modal = document.getElementById("myModal");
+//    var btn = document.querySelectorAll(".room-select-btn");
+//    var span = document.getElementsByClassName("close")[0];
+//
+//    // 모달을 열기
+//    btn.onclick = function() {
+//        modal.style.display = "block";
+//    }
+//
+//    // 모달을 닫기
+//    span.onclick = function() {
+//        modal.style.display = "none";
+//    }
+//
+//    // 모달 바깥을 클릭하면 모달 닫기
+//    window.onclick = function(event) {
+//        if (event.target == modal) {
+//            modal.style.display = "none";
+//        }
+//    }
+//
+//    // 예약하기 버튼 클릭 시 알림창 띄우기
+//    var reserveBtn = document.getElementById("reserveBtn");
+//    reserveBtn.onclick = function() {
+//        alert("예약이 완료되었습니다.\n완료된 예약은 마이페이지에서 확인하실 수 있습니다.");
+//    }
+//}
+
+
+document.querySelectorAll('.room-select-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const roomNumber = this.getAttribute('data-room-number');
+        console.log(roomNumber);
+        // 모달을 열고, 선택한 방 번호에 해당하는 세부 정보 요청
+        openModalWithRoomDetails(roomNumber);
+    });
+});
+
+

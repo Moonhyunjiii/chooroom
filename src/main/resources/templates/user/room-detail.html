@@ -1,71 +1,145 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Room Detail</title>-->
+<!--    <link rel="stylesheet" href="/css/user/room-detail.css">-->
+<!--    &lt;!&ndash; jQuery 포함 &ndash;&gt;-->
+<!--    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>-->
+<!--    &lt;!&ndash; jQuery UI 포함 &ndash;&gt;-->
+<!--    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>-->
+<!--    &lt;!&ndash; jQuery UI CSS 포함 &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">-->
+<!--</head>-->
+<!--<body>-->
+
+<!--&lt;!&ndash; 모달 &ndash;&gt;-->
+<!--<div id="myModal" class="modal">-->
+<!--    <div class="modal-content">-->
+<!--        <span class="close">&times;</span>-->
+<!--        &lt;!&ndash; 모달 내용 &ndash;&gt;-->
+<!--        <div class="selected-room">-->
+<!--            <section class="room-details">-->
+<!--                <div class="room-basic-information">-->
+<!--                    <h2 class="room-name" th:text="${room.roomType}">스탠다드 룸</h2>-->
+<!--                    <h3 class="room-number" th:text="${room.roomNumber}">101호</h3>-->
+<!--                    <img src="/신라호텔%20사진.jpg" alt="Room Image" class="room-image">-->
+<!--                    <p class="room-description" th:text="${room.roomDescription}">스탠다드 룸 설명 어쩌고~</p>-->
+<!--                </div>-->
+<!--            </section>-->
+<!--            <div class="room-clean-details">-->
+<!--                <section class="room-sound-air">-->
+<!--                    <p>-->
+<!--                        평균 소음도: <span th:text="${roomCondition.roomNoiseLevel}"></span>db,-->
+<!--                        <span th:if="${roomCondition.roomNoiseLevel < 20}">매우 조용해요.</span>-->
+<!--                        <span th:if="${roomCondition.roomNoiseLevel >= 20} and ${roomCondition.roomNoiseLevel < 40}">조용해요.</span>-->
+<!--                        <span th:if="${roomCondition.roomNoiseLevel >= 40} and ${roomCondition.roomNoiseLevel < 50}">약간 시끄러울 수 있어요.</span>-->
+<!--                        <span th:if="${roomCondition.roomNoiseLevel >= 50}">상당히 시끄러울 수 있어요.</span>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        현재 공기질: <span th:text="${roomCondition.roomAirQuality}"></span>CAI,-->
+<!--                        <span th:if="${roomCondition.roomAirQuality < 50}">공기질이 좋습니다.</span>-->
+<!--                        <span th:if="${roomCondition.roomAirQuality >= 50} and ${roomCondition.roomAirQuality < 100}">공기질이 보통입니다.</span>-->
+<!--                    </p>-->
+<!--                </section>-->
+<!--                <section class="room-lg-care">-->
+<!--                    <p>LG 청결 케어를 받는 방이에요.</p>-->
+<!--                    <p>LG 전자 기기를 이용해서 청결도를 90% 증가시켰어요.</p>-->
+<!--                </section>-->
+<!--            </div>-->
+<!--            <div class="hotel-information">-->
+<!--                <p class="hotel-info-title1">편의 시설</p>-->
+<!--                <div class="hotel-info-content1">-->
+<!--                    <ul>-->
+<!--                        <li>쇼파, 옷장, 데스크</li>-->
+<!--                        <li>헤어드라이기, 욕실용품, 샤워가운, 슬리퍼</li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--                <p class="hotel-info-title2">부대 시설</p>-->
+<!--                <div class="hotel-info-content2">-->
+<!--                    <ul>-->
+<!--                        <li>수영장</li>-->
+<!--                        <li>헬스장</li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--                <button id="reserveBtn">예약하기</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<script src="/js/user/main.js"></script>-->
+<!--<script src="/js/user/room-detail.js"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Room Detail</title>
     <link rel="stylesheet" href="/css/user/room-detail.css">
+    <!-- jQuery 포함 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- jQuery UI 포함 -->
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+    <!-- jQuery UI CSS 포함 -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
 </head>
 <body>
-<!-- 모달 버튼 -->
-<button id="openModalBtn">자세히 보기</button>
-
-<!-- 모달 -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <!-- 모달 내용 -->
-        <div class="selected-room">
-            <section class="room-details">
-                <div class="room-basic-information">
-                    <h2 class="room-name" th:text="${room.roomType}">스탠다드 룸</h2>
-                    <h3 class="room-number" th:text="${room.roomNumber}">101호</h3>
-                    <img src="/신라호텔%20사진.jpg" alt="Room Image" class="room-image">
-                    <p class="room-description" th:text="${room.roomDescription}">스탠다드 룸 설명 어쩌고~</p>
-                </div>
-            </section>
-            <div class="room-clean-details">
-                <section class="room-sound-air">
-                    <p>
-                        평균 소음도: <span th:text="${roomCondition.roomNoiseLevel}"></span>db,
-                        <span th:if="${roomCondition.roomNoiseLevel < 20}">매우 조용해요.</span>
-                        <span th:if="${roomCondition.roomNoiseLevel >= 20} and ${roomCondition.roomNoiseLevel < 40}">조용해요.</span>
-                        <span th:if="${roomCondition.roomNoiseLevel >= 40} and ${roomCondition.roomNoiseLevel < 50}">약간 시끄러울 수 있어요.</span>
-                        <span th:if="${roomCondition.roomNoiseLevel >= 50}">상당히 시끄러울 수 있어요.</span>
-                    </p>
-                    <p>
-                        현재 공기질: <span th:text="${roomCondition.roomAirQuality}"></span>CAI,
-                        <span th:if="${roomCondition.roomAirQuality < 50}">공기질이 좋습니다.</span>
-                        <span th:if="${roomCondition.roomAirQuality >= 50} and ${roomCondition.roomAirQuality < 100}">공기질이 보통입니다.</span>
-                    </p>
-                </section>
-                <section class="room-lg-care">
-                    <p>LG 청결 케어를 받는 방이에요.</p>
-                    <p>LG 전자 기기를 이용해서 청결도를 90% 증가시켰어요.</p>
-                </section>
-            </div>
-            <div class="hotel-information">
-                <p class="hotel-info-title1">편의 시설</p>
-                <div class="hotel-info-content1">
-                    <ul>
-                        <li>쇼파, 옷장, 데스크</li>
-                        <li>헤어드라이기, 욕실용품, 샤워가운, 슬리퍼</li>
-                    </ul>
-                </div>
-                <p class="hotel-info-title2">부대 시설</p>
-                <div class="hotel-info-content2">
-                    <ul>
-                        <li>수영장</li>
-                        <li>헬스장</li>
-                    </ul>
-                </div>
-            </div>
-            <div>
-                <button id="reserveBtn">예약하기</button>
-            </div>
+<!-- 모달 내용을 창으로 띄움 -->
+<div class="selected-room">
+    <section class="room-details">
+        <div class="room-basic-information">
+            <h2 class="room-name" th:text="${room.roomType}">스탠다드 룸</h2>
+            <h3 class="room-number" th:text="${room.roomNumber}">101호</h3>
+            <img th:src="@{/img/user/객실화면예시.png}" alt="Room image" class="room-image">
+            <p class="room-description" th:text="${room.roomDescription}">스탠다드 룸 설명 어쩌고~</p>
+        </div>
+    </section>
+    <div class="room-clean-details">
+        <section class="room-sound-air">
+            <p id="noiseLevelText">
+                평균 소음도: <span id="noiseLevel" th:text="${roomCondition.roomNoiseLevel}"></span>db,
+                <span th:if="${roomCondition.roomNoiseLevel < 20}">매우 조용해요.</span>
+                <span th:if="${roomCondition.roomNoiseLevel >= 20} and ${roomCondition.roomNoiseLevel < 40}">조용해요.</span>
+                <span th:if="${roomCondition.roomNoiseLevel >= 40} and ${roomCondition.roomNoiseLevel < 50}">약간 시끄러울 수 있어요.</span>
+                <span th:if="${roomCondition.roomNoiseLevel >= 50}">상당히 시끄러울 수 있어요.</span>
+            </p>
+            <p>
+                현재 공기질: <span th:text="${roomCondition.roomAirQuality}"></span>CAI,
+                <span th:if="${roomCondition.roomAirQuality < 50}">공기질이 좋습니다.</span>
+                <span th:if="${roomCondition.roomAirQuality >= 50} and ${roomCondition.roomAirQuality < 100}">공기질이 보통입니다.</span>
+            </p>
+        </section>
+        <section class="room-lg-care">
+            <p>LG 청결 케어를 받는 방이에요.</p>
+            <p>LG 전자 기기를 이용해서 청결도를 90% 증가시켰어요.</p>
+        </section>
+    </div>
+    <div class="hotel-information">
+        <p class="hotel-info-title1">편의 시설</p>
+        <div class="hotel-info-content1">
+            <ul>
+                <li>쇼파, 옷장, 데스크</li>
+                <li>헤어드라이기, 욕실용품, 샤워가운, 슬리퍼</li>
+            </ul>
+        </div>
+        <p class="hotel-info-title2">부대 시설</p>
+        <div class="hotel-info-content2">
+            <ul>
+                <li>수영장</li>
+                <li>헬스장</li>
+            </ul>
         </div>
     </div>
+    <div>
+        <button id="reserveBtn">예약하기</button>
+    </div>
 </div>
-
 <script src="/js/user/room-detail.js"></script>
 </body>
 </html>
