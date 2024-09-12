@@ -28,13 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
         minDate: 0
     });
 
-    // 해시태그 버튼 클릭 이벤트 처리
-    document.querySelectorAll('.hashtag').forEach(button => {
-        button.addEventListener('click', function () {
-            this.classList.toggle('selected');
-        });
-    });
-
     // 모든 room-title 요소를 가져옴
     const roomTitles = document.getElementsByClassName('room-title');
 
@@ -83,6 +76,13 @@ document.addEventListener("DOMContentLoaded", function() {
             console.error('Error:', error);
         });
     }
+
+    // 해시태그 버튼 클릭 이벤트 처리
+    document.querySelectorAll('.hashtag').forEach(button => {
+        button.addEventListener('click', function () {
+            this.classList.toggle('selected');
+        });
+    });
 
     // 페이지 로드 시 서버로부터 데이터를 받아오는 함수
     function fetchFilteredRoomData(filters) {
