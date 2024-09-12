@@ -26,6 +26,9 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	// Oracle JDBC driver
 	implementation 'com.oracle.database.jdbc:ojdbc8:19.16.0.0'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.hamcrest:hamcrest:2.2'
 }
 
 tasks.named('test') {
@@ -35,3 +38,5 @@ tasks.named('test') {
 tasks.withType(JavaCompile) {
 	options.compilerArgs += '-parameters'
 }
+
+
