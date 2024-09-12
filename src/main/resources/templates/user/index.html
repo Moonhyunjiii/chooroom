@@ -11,12 +11,23 @@
     <link rel="stylesheet" href="css/user/filter.css"/>
     <link rel="stylesheet" href="css/user/mainCommon.css"/>
     <link rel="stylesheet" href="css/user/header.css"/>
-    <!-- jQuery 및 jQuery UI -->
+    <!-- jQuery 로드 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI (필요할 경우에만) -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 
+    <!-- Moment.js & Daterangepicker -->
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+    <!-- Custom JS for Daterangepicker -->
+    <script src="path/to/daterangepicker.js"></script>
     <title>LG 클린 서비스 제공 호텔</title>
 </head>
 <body>
@@ -47,14 +58,17 @@
                 <!-- form을 사용해 데이터 서버로 전송 -->
                 <form action="#" method="GET" class="search-form">
                     <!-- 날짜 입력 필드 -->
-                    <div class="input-group">
-                        <label for="checkin-date">Check In</label>
-                        <input id="checkin-date" name="checkin" type="text" placeholder="Add Dates" class="datepicker">
+                    <div class="container px-1 px-sm-5 mx-auto">
+                        <div class="flex-row d-flex justify-content-center">
+                            <div class="col-xl-5 col-lg-6 col-11 px-1">
+                                <div class="input-group input-daterange">
+                                    <label for="daterange">Select Date Range:</label>
+                                    <input id="daterange" name="daterange" type="text" value="01/01/2024- 01/15/2024" readonly />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="input-group">
-                        <label for="checkout-date">Check Out</label>
-                        <input id="checkout-date" name="checkout" type="text" placeholder="Add Dates" class="datepicker">
-                    </div>
+
 
                     <!-- 객실 수 입력 필드 -->
                     <div class="input-group">
@@ -321,5 +335,15 @@
 
 <script src="js/user/main.js"></script>
  <script src="js/user/room-detail.js"></script>
+<script>
+    $(function() {
+        $('#daterange').daterangepicker({
+            opens: 'left',
+            locale: {
+                format: 'DD/MM/YYYY'
+            }
+        });
+    });
+</script>
 </body>
 </html>
