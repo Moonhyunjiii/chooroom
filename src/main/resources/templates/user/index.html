@@ -15,6 +15,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
 
     <title>LG 클린 서비스 제공 호텔</title>
 </head>
@@ -23,11 +24,10 @@
     <header>
         <div class="header-container">
             <div class="logo">
-                <img src="/path/to/logo.png" alt="Logo" />
+                <img src="/img/user/츄룸로고.png" alt="Logo" />
             </div>
             <div class="nav-icons">
-                <img src="/path/to/notification-icon.png" alt="Notification" />
-
+                <div id="reservstionCheckButton" class="reservstionCheck"><i class="bi bi-person-circle fs-5"></i>예약확인</div>
                 <!-- 로그인이 되어 있을 때 로그아웃 버튼만 표시 -->
                 <div id="logoutButton" class="login" th:if="${user != null}">로그아웃</div>
 
@@ -107,10 +107,11 @@
                     <div class="filter-category" onclick="toggleDropdown('bed-dropdown')">
                         <div class="filter-name">침대</div>
                         <ul id="bed-dropdown" class="dropdown-list">
-                            <li>single</li>
-                            <li>twin</li>
-                            <li>double queen</li>
-                            <li>double king</li>
+                            <li>SINGLE</li>
+                            <li>TWIN</li>
+                            <li>DOUBLE QUEEN</li>
+                            <li>DOUBLE KING</li>
+                            <li>TRIPLE</li>
                         </ul>
                     </div>
 
@@ -124,12 +125,18 @@
                     </div>
 
                     <!-- 기타 필터 -->
-                    <div class="filter-category" onclick="toggleDropdown('other-dropdown')">
+                    <!--<div class="filter-category" onclick="toggleDropdown('other-dropdown')">
                         <div class="filter-name">기타 필터</div>
                         <ul id="other-dropdown" class="dropdown-list">
                             <li>미정</li>
                         </ul>
+                    </div>-->
+
+                    <!-- 초기화 버튼-->
+                    <div class="filter-reset">
+                        <button id="reset-filters">필터 초기화</button>
                     </div>
+
                 </div>
             </div>
             <div class="divider-line"></div>
@@ -143,11 +150,11 @@
                         <img src="/img/user/객실화면예시.png" alt="room image" />
                     </div>
                     <div class="room-header">
-                        <h3 class="room-title">스탠다드</h3>
+                        <h3 class="room-title" id="roomTitle">스탠다드</h3>
                         <div class="room-noise">
                             <span class="noise-description">평균소음도</span>
-                            <span class="noise-level">19db</span>
-                            <span class="noise-description">, 굉장히 조용해요</span>
+                            <span class="noise-level noiseLevelAvg" th:text="${noiseLevelAvg} + 'db'"></span>
+                            <span class="noise-description">, 조용해요.</span>
                         </div>
                         <div class="room-description">
                             스탠다드 타입에 대한 간략한 설명을 작성합니다.<br />
@@ -157,7 +164,7 @@
                     <div class="room-status">
                         <span class="night-text">1박 기준</span>
                         <span class="remaining-rooms"></span>
-                        <div class="room-price">100,000원 ~</div>
+                        <div class="room-price minRoomPrice" th:text="${minRoomPrice} + '원~'"></div>
                     </div>
 
                     <button class="reserve-btn toggle-btn">객실보기</button>
@@ -175,7 +182,8 @@
                         <div class="room-item-info">
                             <div class="room-left">
                                 <span class="room-number">${room.roomNumber}호</span>
-                                <span class="room-viewAndNoise">${room.viewType}, 평균소음: <span class="noise-level">${room.roomCondition.roomNoiseLevel}</span>db</span>
+                                <span class="room-viewAndNoise">${room.viewType}, 평균소음:
+                                <span class="noise-level">${room.roomCondition.roomNoiseLevel}</span>db</span>
                             </div>
                             <div class="room-right">
                                 <button class="room-select-btn" data-room-number="${room.roomNumber}">선택</button>
@@ -195,8 +203,8 @@
                         <h3 class="room-title">디럭스</h3>
                         <div class="room-noise">
                             <span class="noise-description">평균소음도</span>
-                            <span class="noise-level">17db</span>
-                            <span class="noise-description">, 굉장히 조용해요</span>
+                            <span class="noise-level noiseLevelAvg" th:text="${noiseLevelAvg} + 'db'"></span>
+                            <span class="noise-description">, 약간 시끄러울 수 있어요.</span>
                         </div>
                         <div class="room-description">
                             디럭스 타입에 대한 간략한 설명을 작성합니다.<br />
@@ -206,7 +214,7 @@
                     <div class="room-status">
                         <span class="night-text">1박 기준</span>
                         <span class="remaining-rooms">남은 객실 2개</span>
-                        <div class="room-price">100,000원 ~</div>
+                        <div class="room-price minRoomPrice" th:text="${minRoomPrice} + '원~'"></div>
                     </div>
                     <!--<button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>-->
                     <button class="reserve-btn toggle-btn">객실보기</button>
@@ -222,9 +230,14 @@
 
                         <!-- 객실 정보 -->
                         <div class="room-item-info">
-                            <span class="room-number" th:text="${room.roomNumber} + '호'">101호</span>
-                            <span class="room-viewAndNoise" th:text="${room.viewType} + ', 고요한 방'">오션뷰, 고요한 방</span>
-                            <button>선택</button>
+                            <div class="room-left">
+                                <span class="room-number">${room.roomNumber}호</span>
+                                <span class="room-viewAndNoise">${room.viewType}, 평균소음:
+                                <span class="noise-level">${room.roomCondition.roomNoiseLevel}</span>db</span>
+                            </div>
+                            <div class="room-right">
+                                <button class="room-select-btn" data-room-number="${room.roomNumber}">선택</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -240,8 +253,8 @@
                         <h3 class="room-title">스위트</h3>
                         <div class="room-noise">
                             <span class="noise-description">평균소음도</span>
-                            <span class="noise-level">15db</span>
-                            <span class="noise-description">, 굉장히 조용해요</span>
+                            <span class="noise-level noiseLevelAvg" th:text="${noiseLevelAvg} + 'db'"></span>
+                            <span class="noise-description">, 약간 시끄러울 수 있어요.</span>
                         </div>
                         <div class="room-description">
                             스위트 타입에 대한 간략한 설명을 작성합니다.<br />
@@ -251,7 +264,7 @@
                     <div class="room-status">
                         <span class="night-text">1박 기준</span>
                         <span class="remaining-rooms">남은 객실 2개</span>
-                        <div class="room-price">100,000원 ~</div>
+                        <div class="room-price minRoomPrice" th:text="${minRoomPrice} + '원~'"></div>
                     </div>
                     <!--<button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>-->
                     <button class="reserve-btn toggle-btn">객실보기</button>
@@ -267,9 +280,14 @@
 
                         <!-- 객실 정보 -->
                         <div class="room-item-info">
-                            <span class="room-number" th:text="${room.roomNumber} + '호'">101호</span>
-                            <span class="room-viewAndNoise" th:text="${room.viewType} + ', 고요한 방'">오션뷰, 고요한 방</span>
-                            <button class="room-select-btn" data-room-number="${room.roomNumber}">선택</button>
+                            <div class="room-left">
+                                <span class="room-number">${room.roomNumber}호</span>
+                                <span class="room-viewAndNoise">${room.viewType}, 평균소음:
+                                <span class="noise-level">${room.roomCondition.roomNoiseLevel}</span>db</span>
+                            </div>
+                            <div class="room-right">
+                                <button class="room-select-btn" data-room-number="${room.roomNumber}">선택</button>
+                            </div>
                         </div>
                     </div>
                 </div>

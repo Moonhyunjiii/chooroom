@@ -27,8 +27,8 @@ header {
     align-items: center;
 }
 
-.login {
-    padding: 10px 20px;
+.login, .reservstionCheck {
+    padding: 10px;
     background-color: #333;
     color: white;
     border-radius: 4px;

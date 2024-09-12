@@ -35,9 +35,59 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    // 모든 room-title 요소를 가져옴
+    const roomTitles = document.getElementsByClassName('room-title');
+
+    // roomTitles의 각 요소에 대해 처리
+    for (let i = 0; i < roomTitles.length; i++) {
+        const roomTitle = roomTitles[i].textContent.trim();  // 각 room-title의 텍스트 값을 가져옴
+
+        // 한글 방 제목을 영문 roomType으로 변환하는 함수
+        function convertRoomTitleToRoomType(roomTitle) {
+            switch (roomTitle) {
+                case "스탠다드":
+                    return "STANDARD";
+                case "디럭스":
+                    return "DELUXE";
+                case "스위트":
+                    return "SUITE";
+                default:
+                    throw new Error("Unknown room title: " + roomTitle);
+            }
+        }
+
+        // 변환된 roomType
+        const roomType = convertRoomTitleToRoomType(roomTitle);
+
+        // 서버로 변환된 roomType을 GET 요청으로 전송
+        fetch(`/rooms-noiseAvg?roomType=${roomType}`, {
+            method: 'GET'
+        })
+        .then(response => response.json())  // JSON으로 응답 처리
+        .then(data => {
+            // noiseLevelAvg 요소들을 가져옴 (각 room-title에 대응되는 noiseLevelAvg 값을 업데이트)
+            const noiseLevelAvgElements = document.getElementsByClassName('noiseLevelAvg');
+            const minRoomPriceElements = document.getElementsByClassName('minRoomPrice');
+
+            // 해당하는 noiseLevelAvg 요소의 값을 업데이트
+            if (noiseLevelAvgElements[i]) {
+                noiseLevelAvgElements[i].textContent = data.noiseLevelAvg + 'db';
+            }
+
+            // 해당하는 minRoomPrice 요소의 값을 업데이트
+            if (minRoomPriceElements[i]) {
+                minRoomPriceElements[i].textContent = data.minRoomPrice + '원~';
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
     // 페이지 로드 시 서버로부터 데이터를 받아오는 함수
-    function fetchRoomData() {
-        return fetch("/api/rooms")   // 수정: Promise를 반환하기 위해 fetch 함수에 return 추가
+    function fetchFilteredRoomData(filters) {
+        const queryString = new URLSearchParams(filters).toString();
+        return fetch(`/api/rooms?${queryString}`) // 확인하기
             .then(response => response.json())
             .then(data => {
                 // 모든 room-container를 가져옴
@@ -93,6 +143,35 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error('Error fetching room data:', error));
     }
 
+    // 필터 적용 함수
+    function applyFilters() {
+        const selectedView = document.querySelector('#view-dropdown .selected')?.textContent || '';
+        const selectedBed = document.querySelector('#bed-dropdown .selected')?.textContent || '';
+        const selectedPrice = document.querySelector('#price-dropdown .selected')?.textContent || '';
+
+        const filters = {
+            viewType: selectedView,
+            bedType: selectedBed,
+            priceOrder: selectedPrice
+        };
+
+        console.log(filters);
+
+        fetchFilteredRoomData(filters); // 필터에 맞는 데이터 요청
+    }
+
+    // 필터 클릭 이벤트 처리 - 중복 이벤트 리스너 방지
+    document.querySelectorAll('.filter-category').forEach(filter => {
+        const dropdownItems = filter.querySelectorAll('li');
+        dropdownItems.forEach(item => {
+            item.addEventListener('click', function () {
+                dropdownItems.forEach(i => i.classList.remove('selected'));
+                this.classList.add('selected');
+                applyFilters(); // 필터 적용
+            });
+        });
+    });
+
     // 객실보기 토글 함수
     function toggleRoomList(button) {
         const roomContainer = button.closest('.room-container');
@@ -129,8 +208,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // 페이지 로드 시 데이터 불러오기
-    fetchRoomData();  // 수정: fetchRoomData() 함수 호출
+    // 초기화 버튼 클릭 이벤트 처리
+    document.getElementById('reset-filters').addEventListener('click', function() {
+        // 모든 필터의 'selected' 클래스 제거
+        document.querySelectorAll('.filter-category .selected').forEach(item => {
+            item.classList.remove('selected');
+        });
+
+        // 필터 초기화 후 기본 데이터 다시 불러오기
+        fetchFilteredRoomData({}); // 기본 필터 없이 데이터 요청
+    });
+
+    // 페이지 로드 시 기본 데이터 불러오기
+    fetchFilteredRoomData({}); // 기본 필터 없이 모든 객실 데이터를 불러옴
 
     // 검색 버튼 클릭 이벤트 처리
     document.querySelector('.search-button').addEventListener('click', function() {
@@ -157,6 +247,11 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         }
     });
+
+/*    document.querySelector('.reservstionCheckButton').addEventListener('click', function() {
+        alert('알림이 없습니다.');
+    });*/
+
 });
 
 function redirectToLogin() {

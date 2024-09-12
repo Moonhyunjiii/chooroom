@@ -27,8 +27,6 @@ public class UserIndexViewController {
         return "user/index";
     }
 
-
-
     // 로그인 페이지
     @GetMapping("/login")
     public String loginPage() {
