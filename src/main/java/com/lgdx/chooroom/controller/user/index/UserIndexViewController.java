@@ -32,6 +32,10 @@ public class UserIndexViewController {
     public String loginPage() {
         return "user/login";
     }
+    @GetMapping("/userRoomInfo")
+    public String userRoomInfo() {
+        return "user/userRoomInfo";
+    }
 
     // 로그인 처리
     @PostMapping("/login")

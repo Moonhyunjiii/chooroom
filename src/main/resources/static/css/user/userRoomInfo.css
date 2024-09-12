@@ -1,3 +1,10 @@
+p {
+    margin-bottom: 10px;
+}
+h3 {
+    margin-bottom: 8px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +16,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 20px;
-    max-width: 1200px;
+    max-width: 1600px;
     margin: 0 auto;
 }
 
@@ -24,19 +31,24 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    box-sizing: border-box; /* padding과 border 크기를 포함 */
+
 }
 
 .left-section {
     width: 55%;
+    height : 100%;
 
 }
 
 .right-section {
-    width: 45%;
-    display: flex;
+    width: 43%;
+    height : 100%;
+    height
     background-color: #f4f4f4;
 
     border-radius: 10px;
+    box-sizing: border-box;  /* padding 포함한 너비 계산 */
     text-align: center; /* 오른쪽 섹션 중앙 정렬 */
 }
 
@@ -52,8 +64,8 @@ body {
 }
 
 .map-image {
-    width: 200px;
-    height: 150px;
+    width: 300px;
+    height: 180px;
     background-color: #e0e0e0;
 }
 
@@ -97,7 +109,7 @@ body {
 }
 
 textarea {
-    width: 95%;
+    width: 80%;
     height: 50px; /* 높이 조정 */
     margin-top: 10px;
     padding: 10px;
@@ -112,7 +124,8 @@ textarea {
     padding: 20px;
     border-radius: 10px;
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
+    height : 100%;
     margin: 0 auto;
 }
 
@@ -143,6 +156,9 @@ textarea {
     flex-direction: column;
     align-items: center;  /* 수평 및 수직 중앙 정렬 */
     justify-content: center;
+    width: 100px;  /* 게이지 컨테이너 크기 */
+    height: 100px; /* 게이지 컨테이너 크기 */
+    margin: 10px;
     text-align: center;
     margin: 10px;
 }
@@ -162,14 +178,10 @@ canvas {
     margin-top: 20px;
 }
 
-.cleaning-status button {
-    flex-grow: 1; /* 버튼들이 동일한 크기로 늘어나도록 */
-    margin: 0 5px; /* 버튼 사이 간격 설정 */
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #e0e0e0;
-    border: 1px solid #ccc;
-    cursor: pointer;
+.cleaning-title{
+    text-align : left;
+    align-items: left;
+    font-size: 20px;
 }
 
 
@@ -180,6 +192,7 @@ canvas {
     display: flex;
     justify-content: center;  /* 가운데 정렬 */
     margin: 20px 0;
+
 }
 
 .check-in-button {
@@ -187,25 +200,15 @@ canvas {
     background-color: #A50034;
     color: white;
     border: none;
+    align-items: center;
     border-radius: 5px;
     font-size: 16px;
-    width: 1150px;
+
+    width : 1160px;
     cursor: pointer;
 }
-.gauge-container {
-    text-align: center;
-    width: 100px; /* 캔버스와 동일한 너비 */
-    height: 100px; /* 캔버스와 동일한 높이 */
-    display: inline-block;
-    margin: 10px;
-}
 
-canvas {
-    display: block;
-    width: 70%;  /* 부모 요소인 gauge-container에 맞춰서 크기를 설정 */
-    height: 70%; /* 부모 요소의 크기에 맞춰서 설정 */
-}
-.navigation-web,
+
 .navigation-web * {
   box-sizing: border-box;
 }
@@ -614,6 +617,14 @@ body {
     justify-content: flex-start;
     padding-left: 10px;
 }
+.iot-button{
+    width :  120px;
+    height : 60px;
+    content align = center;
+
+}
+
+
 
 /* 반응형 디자인 */
 @media screen and (max-width: 768px) {
@@ -644,4 +655,5 @@ body {
         text-align: center;
         padding-left: 0;
     }
+
 }
