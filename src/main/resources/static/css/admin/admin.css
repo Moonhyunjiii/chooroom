@@ -25,7 +25,7 @@
   gap: 10px;
   font-size: 16px;
   color: #555;
-    background-color: white;
+    background-color: #FAFAFA;
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
 }
@@ -201,7 +201,7 @@
 
 /* 룸 정보 스타일 */
 .room-info-condition {
-  font-size: 14px;
+  font-size: 12px;
   color: #555;
   display: flex;
   gap: 5px; /* 아이템들 간의 간격 */
@@ -211,14 +211,14 @@
 .room-value {
   display: flex;
   flex-direction: column;
-  font-size: 14px;
+  font-size: 12px;
   color: #333;
 }
 
 /* 상태 표시 (ON/OFF) */
 .room-status {
   display: inline-block;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   margin-right: 8px;
 }

@@ -24,4 +24,34 @@ public class RoomServiceTest {
         }
     }
 
+    @Test
+    public void getFilteredRooms() {
+        List<Rooms> rooms = roomsService.getFilteredRooms("오션뷰", "SINGLE", "낮은순");
+
+        System.out.println(rooms);
+
+    }
+
+    @Test
+    public void getNoiseLevelAvg() {
+        Double standartresult = roomsService.getNoiseLevelAvg("STANDARD");
+        Double deluxeresult = roomsService.getNoiseLevelAvg("DELUXE");
+        Double suiteresult = roomsService.getNoiseLevelAvg("SUITE");
+
+        System.out.println(standartresult);
+        System.out.println(deluxeresult);
+        System.out.println(suiteresult);
+    }
+
+    @Test
+    public void minRoomPrice() {
+        String standartresult = roomsService.getMinRoomPrice("STANDARD");
+        String deluxeresult = roomsService.getMinRoomPrice("DELUXE");
+        String suiteresult = roomsService.getMinRoomPrice("SUITE");
+
+        System.out.println(standartresult);
+        System.out.println(deluxeresult);
+        System.out.println(suiteresult);
+    }
+
 }

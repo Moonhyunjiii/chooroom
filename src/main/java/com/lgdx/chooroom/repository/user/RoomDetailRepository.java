@@ -19,4 +19,3 @@ public interface RoomDetailRepository extends JpaRepository<Rooms, String> {
     RoomCondition findRoomConditionByNumber(@Param("roomNumber") String roomNumber);
 }
 
-

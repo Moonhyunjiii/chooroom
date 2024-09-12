@@ -1,125 +1,147 @@
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto;
+/* Container for the room information */
+.selected-room{
+    background-color: #fff;
+    border-radius: 8px;
+    width: 50%;
+    max-width: 600px;
     padding: 20px;
-    border: 1px solid #888;
-    width: 60%;
-    max-width: 900px;
-    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin: 50px auto;
 }
 
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
+/* Room Details */
 .room-details {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .room-basic-information {
-    flex: 2;
-    text-align: left;
+    text-align: center;
 }
 
 .room-name {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 1.8em;
+    margin-bottom: 0.5em;
+    color: #333;
 }
 
-.room-number {
-    font-size: 18px;
-    margin-top: 5px;
+.room-number h3 {
+    font-size: 1.2em;
+    margin-bottom: 1em;
+    color: #666;
 }
 
 .room-image {
     width: 100%;
     height: auto;
-    margin-top: 10px;
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 .room-description {
-    font-size: 16px;
-    margin-top: 15px;
-    line-height: 1.5;
+    font-size: 1em;
+    color: #333;
 }
 
+/* Sound and Air Quality Details */
 .room-clean-details {
+    margin-bottom: 20px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.room-sound-air p {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.room-sound-air span {
+    font-weight: bold;
+    color: #333;
+}
+/*Noise Level Colors*/
+.blue{
+    color:blue;
+}
+
+.green{
+    color:green;
+}
+
+.red{
+    color:red;
+}
+
+/* LG Clean Care */
+.room-lg-care {
     margin-top: 15px;
-    font-size: 16px;
-    flex: 1;
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-left: 2px solid #ccc;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
+    font-size: 0.9em;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.room-clean-details p {
-    margin: 10px 0;
+.room-lg-care p {
+    margin: 5px 0;
 }
 
-.room-clean-details .arrow-icon {
-    position: absolute;
-    right: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 30px;
-    color: #ccc;
-    cursor: pointer;
-}
-
+/* Hotel Information */
 .hotel-information {
     margin-top: 20px;
-    font-size: 16px;
 }
 
-.hotel-info-title1, .hotel-info-title2 {
+.hotel-info-title1,
+.hotel-info-title2 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
     font-weight: bold;
-    margin-top: 10px;
+    color: #333;
 }
 
-.hotel-info-content1, .hotel-info-content2 {
+.hotel-info-content1,
+.hotel-info-content2 {
     margin-left: 15px;
 }
 
-button {
-    background-color: #A9A9A9;
-    color: white;
-    padding: 10px 20px;
-    margin-top: 15px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    width: 100%;
+.hotel-info-content1 ul,
+.hotel-info-content2 ul {
+    list-style-type: none;
+    padding-left: 0;
 }
 
-button:hover {
-    background-color: #808080;
+.hotel-info-content1 li,
+.hotel-info-content2 li {
+    font-size: 0.9em;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+
+
+/* Reserve Button */
+#reserveBtn {
+    background-color: #6b6b6b;
+    color: white;
+    font-size: 1em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+#reserveBtn:hover {
+    background-color: #a50034;
+}
+
+@media (max-width: 1200px) {
+  .dashboard-summary {
+    flex-wrap: wrap;
+  }
+
+  .summary-item {
+    flex: 0 0 calc(50% - 20px);
+    margin-bottom: 20px;
+  }
 }

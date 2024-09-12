@@ -15,6 +15,7 @@ public class RoomCondition {
     @Column(name="R_NOISE") private int roomNoiseLevel;
     @Column(name="R_AIRQ") private int roomAirQuality;
     @Column(name="R_TEMP") private int roomTemperature;
+
     public String getRoomNumber() {
         return roomNumber;
     }
@@ -31,19 +32,19 @@ public class RoomCondition {
         this.roomHUMIDITY = roomHUMIDITY;
     }
 
-    public int getroomNoiseLevel() {
+    public int getRoomNoiseLevel() {
         return roomNoiseLevel;
     }
 
-    public void setroomNoiseLevel(int roomNoiseLevel) {
+    public void setRoomNoiseLevel(int roomNoiseLevel) {
         this.roomNoiseLevel = roomNoiseLevel;
     }
 
-    public int getroomAirQuality() {
+    public int getRoomAirQuality() {
         return roomAirQuality;
     }
 
-    public void setroomAirQuality(int roomAirQuality) {
+    public void setRoomAirQuality(int roomAirQuality) {
         this.roomAirQuality = roomAirQuality;
     }
 

@@ -118,15 +118,15 @@ public class UserRoomPageController {
         Map<String, Object> response = new HashMap<>();
 
         RoomCondition roomCondition = roomConditionRepository.findByRoomNumber(roomNumber);
-        if (roomCondition.getroomNoiseLevel() < 40) {
+        if (roomCondition.getRoomNoiseLevel() < 40) {
             response.put("noiseDescription", "편안하게 휴식하기에 알맞은 조용하고 편안한 방입니다.");
-            response.put("noiseLevel", roomCondition.getroomNoiseLevel());
+            response.put("noiseLevel", roomCondition.getRoomNoiseLevel());
         } else {
             response.put("noiseDescription", "주변 소음이 조금 있는 편이나, 창문밖으로 보이는 전망이 좋은 방이에요.");
-            response.put("noiseLevel", roomCondition.getroomNoiseLevel());
+            response.put("noiseLevel", roomCondition.getRoomNoiseLevel());
         }
         response.put("Temperature", roomCondition.getRoomTemperature());
-        response.put("AirQuality", roomCondition.getroomAirQuality());
+        response.put("AirQuality", roomCondition.getRoomAirQuality());
         response.put("Humidity", roomCondition.getRoomHUMIDITY());
         response.put("roomId", roomCondition.getRoomNumber());
 
