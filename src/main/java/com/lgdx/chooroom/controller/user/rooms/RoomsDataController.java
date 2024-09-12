@@ -30,15 +30,16 @@ public class RoomsDataController {
     }
 
     @GetMapping("/rooms-noiseAvg")
-    @ResponseBody  // JSON 형식으로 응답을 반환
-    public Map<String, Object> getRoomNoise(@RequestParam(name = "roomType", required = false) String roomType) {
+    @ResponseBody
+    public Map<String, Object> getRoomNoiseAndPrice(@RequestParam(name = "roomType") String roomType) {
         Double noiseLevelAvg = roomsService.getNoiseLevelAvg(roomType);
-
-        // 응답을 위한 Map 생성
+        String minRoomPrice = roomsService.getMinRoomPrice(roomType);
+        // JSON 응답으로 소음도 값을 반환
         Map<String, Object> response = new HashMap<>();
         response.put("noiseLevelAvg", noiseLevelAvg);
+        response.put("minRoomPrice", minRoomPrice);
 
-        return response;  // JSON 형식으로 반환
+        return response;
     }
 
 }

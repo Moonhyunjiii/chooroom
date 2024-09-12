@@ -43,4 +43,15 @@ public class RoomServiceTest {
         System.out.println(suiteresult);
     }
 
+    @Test
+    public void minRoomPrice() {
+        String standartresult = roomsService.getMinRoomPrice("STANDARD");
+        String deluxeresult = roomsService.getMinRoomPrice("DELUXE");
+        String suiteresult = roomsService.getMinRoomPrice("SUITE");
+
+        System.out.println(standartresult);
+        System.out.println(deluxeresult);
+        System.out.println(suiteresult);
+    }
+
 }

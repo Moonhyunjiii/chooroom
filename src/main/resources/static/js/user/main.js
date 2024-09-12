@@ -35,39 +35,54 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // roomTitle 값을 가져옴
-    const roomTitle = document.getElementById('roomTitle').textContent.trim();
+    // 모든 room-title 요소를 가져옴
+    const roomTitles = document.getElementsByClassName('room-title');
 
-    // 한글 방 제목을 영문 roomType으로 변환하는 함수
-    function convertRoomTitleToRoomType(roomTitle) {
-        switch (roomTitle) {
-            case "스탠다드":
-                return "STANDARD";
-            case "디럭스":
-                return "DELUXE";
-            case "스위트":
-                return "SUITE";
-            default:
-                throw new Error("Unknown room title: " + roomTitle);
+    // roomTitles의 각 요소에 대해 처리
+    for (let i = 0; i < roomTitles.length; i++) {
+        const roomTitle = roomTitles[i].textContent.trim();  // 각 room-title의 텍스트 값을 가져옴
+
+        // 한글 방 제목을 영문 roomType으로 변환하는 함수
+        function convertRoomTitleToRoomType(roomTitle) {
+            switch (roomTitle) {
+                case "스탠다드":
+                    return "STANDARD";
+                case "디럭스":
+                    return "DELUXE";
+                case "스위트":
+                    return "SUITE";
+                default:
+                    throw new Error("Unknown room title: " + roomTitle);
+            }
         }
+
+        // 변환된 roomType
+        const roomType = convertRoomTitleToRoomType(roomTitle);
+
+        // 서버로 변환된 roomType을 GET 요청으로 전송
+        fetch(`/rooms-noiseAvg?roomType=${roomType}`, {
+            method: 'GET'
+        })
+        .then(response => response.json())  // JSON으로 응답 처리
+        .then(data => {
+            // noiseLevelAvg 요소들을 가져옴 (각 room-title에 대응되는 noiseLevelAvg 값을 업데이트)
+            const noiseLevelAvgElements = document.getElementsByClassName('noiseLevelAvg');
+            const minRoomPriceElements = document.getElementsByClassName('minRoomPrice');
+
+            // 해당하는 noiseLevelAvg 요소의 값을 업데이트
+            if (noiseLevelAvgElements[i]) {
+                noiseLevelAvgElements[i].textContent = data.noiseLevelAvg + 'db';
+            }
+
+            // 해당하는 minRoomPrice 요소의 값을 업데이트
+            if (minRoomPriceElements[i]) {
+                minRoomPriceElements[i].textContent = data.minRoomPrice + '원~';
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
     }
-
-    // 변환된 roomType
-    const roomType = convertRoomTitleToRoomType(roomTitle);
-
-    // 서버로 변환된 roomType을 GET 요청으로 전송
-    fetch(`/rooms-noiseAvg?roomType=${roomType}`, {
-        method: 'GET'
-    })
-    .then(response => response.json())  // JSON으로 응답 처리
-    .then(data => {
-        // 서버로부터 받은 소음도를 페이지에 업데이트
-        document.getElementById('noiseLevel').textContent = data.noiseLevelAvg + 'db';
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-
 
     // 페이지 로드 시 서버로부터 데이터를 받아오는 함수
     function fetchFilteredRoomData(filters) {

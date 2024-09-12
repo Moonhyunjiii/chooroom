@@ -148,7 +148,7 @@
                         <h3 class="room-title" id="roomTitle">스탠다드</h3>
                         <div class="room-noise">
                             <span class="noise-description">평균소음도</span>
-                            <span class="noise-level" id="noiseLevel" th:text="${noiseLevelAvg} + 'db'"></span>
+                            <span class="noise-level noiseLevelAvg" th:text="${noiseLevelAvg} + 'db'"></span>
                             <span class="noise-description">, 조용해요.</span>
                         </div>
                         <div class="room-description">
@@ -159,7 +159,7 @@
                     <div class="room-status">
                         <span class="night-text">1박 기준</span>
                         <span class="remaining-rooms"></span>
-                        <div class="room-price">100,000원 ~</div>
+                        <div class="room-price minRoomPrice" th:text="${minRoomPrice} + '원~'"></div>
                     </div>
 
                     <button class="reserve-btn toggle-btn">객실보기</button>
@@ -198,8 +198,8 @@
                         <h3 class="room-title">디럭스</h3>
                         <div class="room-noise">
                             <span class="noise-description">평균소음도</span>
-                            <span class="noise-level" id="noiseLevel" th:text="${noiseLevelAvg} + 'db'"></span>
-                            <span class="noise-description">, 굉장히 조용해요</span>
+                            <span class="noise-level noiseLevelAvg" th:text="${noiseLevelAvg} + 'db'"></span>
+                            <span class="noise-description">, 약간 시끄러울 수 있어요.</span>
                         </div>
                         <div class="room-description">
                             디럭스 타입에 대한 간략한 설명을 작성합니다.<br />
@@ -209,7 +209,7 @@
                     <div class="room-status">
                         <span class="night-text">1박 기준</span>
                         <span class="remaining-rooms">남은 객실 2개</span>
-                        <div class="room-price">100,000원 ~</div>
+                        <div class="room-price minRoomPrice" th:text="${minRoomPrice} + '원~'"></div>
                     </div>
                     <!--<button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>-->
                     <button class="reserve-btn toggle-btn">객실보기</button>
@@ -243,8 +243,8 @@
                         <h3 class="room-title">스위트</h3>
                         <div class="room-noise">
                             <span class="noise-description">평균소음도</span>
-                            <span class="noise-level" id="noiseLevel" th:text="${noiseLevelAvg} + 'db'"></span>
-                            <span class="noise-description">, 굉장히 조용해요</span>
+                            <span class="noise-level noiseLevelAvg" th:text="${noiseLevelAvg} + 'db'"></span>
+                            <span class="noise-description">, 약간 시끄러울 수 있어요.</span>
                         </div>
                         <div class="room-description">
                             스위트 타입에 대한 간략한 설명을 작성합니다.<br />
@@ -254,7 +254,7 @@
                     <div class="room-status">
                         <span class="night-text">1박 기준</span>
                         <span class="remaining-rooms">남은 객실 2개</span>
-                        <div class="room-price">100,000원 ~</div>
+                        <div class="room-price minRoomPrice" th:text="${minRoomPrice} + '원~'"></div>
                     </div>
                     <!--<button class="reserve-btn toggle-btn" onclick="toggleRoomList(this)">객실보기</button>-->
                     <button class="reserve-btn toggle-btn">객실보기</button>

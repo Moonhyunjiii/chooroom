@@ -7,6 +7,7 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.Comparator;
 import java.util.List;
 
@@ -56,10 +57,18 @@ public class RoomsService {
         return roomsList;
     }
 
-    public double getNoiseLevelAvg(String roomType) {
+    public Double getNoiseLevelAvg(String roomType) {
         Double noiseLevelAvg = roomsRepository.noiseLevelAvg(roomType);
-
         return noiseLevelAvg != null ? noiseLevelAvg : 0.0;
+    }
 
+    public String getMinRoomPrice(String roomType) {
+        Double minRoomPrice = roomsRepository.minRoomPrice(roomType);
+
+        // DecimalFormat을 사용하여 가격을 #,### 형식으로 포맷
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+
+        // 가격이 null이 아니면 포맷된 가격 반환, null이면 0을 반환
+        return minRoomPrice != null ? decimalFormat.format(minRoomPrice) : decimalFormat.format(0);
     }
 }

@@ -18,4 +18,7 @@ public interface RoomsRepository extends JpaRepository<Rooms, String> {
 
     @Query(value = "SELECT ROUND(AVG(B.R_NOISE),1) FROM ROOMS A JOIN ROOM_CONDITION B ON A.R_NUM = B.R_NUM where A.R_TYPE = :roomType GROUP BY A.R_TYPE ", nativeQuery = true)
     Double noiseLevelAvg(@Param("roomType") String roomType);
+
+    @Query(value = "SELECT R1.R_PRICE FROM ROOMS R1 WHERE R1.R_PRICE = (SELECT MIN(R2.R_PRICE) FROM ROOMS R2 WHERE R2.R_TYPE = :roomType)", nativeQuery = true)
+    Double minRoomPrice(@Param("roomType") String roomType);
 }
