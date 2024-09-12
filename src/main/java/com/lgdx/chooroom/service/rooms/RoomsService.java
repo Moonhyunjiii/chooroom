@@ -25,4 +25,15 @@ public class RoomsService {
 
         return roomsList;
     }
+
+//    public void updateCheckInStatus(String roomNumber, String status) {
+//        Rooms room = roomsRepository.findByRoomNumber(roomNumber);
+//        if (room != null) {
+//            room.setCioStatus(status);  // 상태 업데이트
+//            roomsRepository.save(room);  // DB에 저장
+//        } else {
+//            throw new RuntimeException("방 정보를 찾을 수 없습니다.");
+//        }
+//    }
+
 }

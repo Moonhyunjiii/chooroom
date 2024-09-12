@@ -61,7 +61,26 @@
         </div>
 
         <div class="frame-10421">
-            <img class="map-image" src="https://www.lottehotel.com/content/dam/lotte-hotel/lotte/busan/accommodation/standard/deluxe-room/180829-3-2000-acc-busan-hotel.jpg.thumb.768.768.jpg" alt="지도 이미지"/>
+            <img class="map-image" id = "dynamic-image"  src="지도이미지를 불러오는중입니다."/>
+            <script>
+                function fetchImageUrl(roomNumber) {
+                    fetch(`/room/Rooms/${roomNumber}`)  // 템플릿 리터럴을 사용해서 roomNumber를 삽입
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);  // 응답 데이터를 콘솔에 출력해서 확인
+                            if (data.imageUrl) {  // imageUrl이 실제로 있는지 확인
+                                document.getElementById("dynamic-image").src = data.imageUrl;
+                            } else {
+                                console.error('No image URL found in the response.');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching image URL:', error);  // 오류 로그 출력
+                        });
+                }
+                     // 예시로 방 ID에 따른 이미지 URL 가져오기
+                     fetchImageUrl("1115");
+            </script>
             <div class="hotel-info">
                 <div class="hotel-name">INTER CONTINENTAL</div>
                 <br>
@@ -85,7 +104,7 @@
                         }
 
                         // 예시로 방 번호 201호를 불러오기
-                        fetchRoomInfo("RES24");
+                        fetchRoomInfo("RES0040");
                     </script>
             </div>
 
@@ -116,31 +135,33 @@
                 </div>
             </div>
         </div>
-
+        <br>
         <script>
             function fetchCustomerConditions(customerId) {
-                fetch(`/customer/health/${customerId}`)
+                // customerId를 경로에 올바르게 포함시킵니다.
+                fetch(`/user/CustomerRequestHealth/${customerId}`)
                     .then(response => response.json())
                     .then(data => {
                         // 각 조건에 대해 체크 여부 설정
-                        document.getElementById('noise-sensitive').checked = data.includes('소음에 민감해요');
-                        document.getElementById('dust-sensitive').checked = data.includes('먼지에 민감해요');
-                        document.getElementById('dust-allergy').checked = data.includes('먼지 알레르기');
-                        document.getElementById('mite-allergy').checked = data.includes('진드기 알레르기');
+                        document.getElementById('noise-sensitive').checked = data.health.includes('소음에 민감해요');
+                        document.getElementById('dust-sensitive').checked = data.health.includes('먼지에 민감해요');
+                        document.getElementById('dust-allergy').checked = data.health.includes('먼지 알레르기');
+                        document.getElementById('mite-allergy').checked = data.health.includes('진드기 알레르기');
                     })
                     .catch(error => console.error('Error:', error));
             }
 
-            // 특정 고객의 아이디로 상태 조회 (예: "customer123")
-            fetchCustomerConditions("customer123");
+            // 특정 고객의 아이디로 상태 조회 (예: "user12")
+            fetchCustomerConditions("user12");
         </script>
+
 
 
         <div id="room-info">
                 <h3 id="roomID">방 번호 정보를 불러오는 중...</h3>
                 <p id="roomNoise">방 설명을 불러오는 중...</p>
 
-                <h3>선택하신 서비스로</h3>
+                <h3>선택하신 서비스는</h3>
                 <p id="care-info">케어 정보를 불러오는 중...</p>
 
                 <h3>추가 요청사항을 적어주세요.</h3>
@@ -151,7 +172,7 @@
                     fetch(`/reservation/Reservation/${reservationId}`)
                         .then(response=> response.json())
                         .then(data => {
-                            document.getElementById("roomID").innerText = `${data.roomId}호는 이런 방이에요.`;
+                            document.getElementById("roomID").innerText = `${data.roomId}호는 이런 방이에요. `;
                         })
                         .catch(error => console.error('Error:', error));
                 }
@@ -159,19 +180,40 @@
                     fetch(`/room/RoomCondition/${roomNumber}`)
                         .then(response => response.json())
                         .then(data => {
-                            document.getElementById("roomNoise").innerText = data.noiseDescription;
+                            document.getElementById("roomNoise").innerText = `${data.noiseDescription} | 소음도 : ${data.noiseLevel} dB` ;
                             document.getElementById("care-info").innerText = data.careDescription;
                         })
                         .catch(error => console.error('Error:', error));
                 }
-                fetchRoomInfo("RES24");
-                fetchRoomDetails("SU1114");
+                fetchRoomInfo("RES0040");
+                fetchRoomDetails("1115");
 
             </script>
 
-            <textarea placeholder="입실 이틀 전까지 요청사항을 적을 수 있습니다."></textarea>
-        </div>
+        <!-- 요청사항 입력란 -->
+        <textarea id="additional-requests" placeholder="입실 이틀 전까지 요청사항을 적을 수 있습니다."></textarea>
+        <button id="submit-request" class="submit-button">전송</button>
+
+        <script>
+            document.getElementById("submit-request").addEventListener("click", function () {
+                const requestText = document.getElementById("additional-requests").value;
+                fetch('/submit-request', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ request: requestText })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert("요청사항이 전송되었습니다.");
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        </script>
+
     </div>
+
 
     <!-- 오른쪽: 종합 청정도 영역 -->
     <div class="right-section">
@@ -184,6 +226,8 @@
             <br>
             <br>
             <div class="status-info">"방이 쾌적하게 관리되고 있어요."</div>
+            <br>
+            <br>
             <div class="gauges">
                 <div class="gauge-container">
                     <div class="gauge-label">미세먼지</div>
@@ -256,7 +300,7 @@
 
 
                         // 함수 호출
-                        drawProgressCircle('dust-circle', "SU1114");
+                        drawProgressCircle('dust-circle', "1115");
 
                     </script>
                     <br>
@@ -332,7 +376,7 @@
                         }
 
                         // 함수 호출
-                        drawProgressCircle('temp-circle', "SU1114");
+                        drawProgressCircle('temp-circle', "1115");
                     </script>
                     <br>
                     <p id="temp-lev">조금 더워요</p>
@@ -406,7 +450,7 @@
                         }
 
                         // 함수 호출
-                        drawProgressCircle('humid-circle', "SU1114");
+                        drawProgressCircle('humid-circle', "1115");
 
                     </script>
                     <br>
@@ -415,48 +459,84 @@
             </div>
 
             <br><br>
+            <h3 class = "cleaning-title">청소 현황</h3>
             <div class="cleaning-status">
-                <div>청소 현황</div>
-                <button id="beforeClean">청소 전</button>
-                <br><br><br><br><br>
-                <button id="afterClean">청소 후</button>
+                <div class="cleaning-status">
+
+                    <p id="clean-status-text">청소 상태를 불러오는 중...</p>
+                </div>
 
                 <script>
                     function fetchCleaningStatus(roomNumber) {
                         fetch(`/room/Rooms/${roomNumber}`)
                             .then(response => response.json())
                             .then(data => {
-                                if (data.cleanStatus === "청소중") {
-                                    document.getElementById("beforeClean").style.fontWeight = "bold";
-                                    document.getElementById("beforeClean").disabled = false;
-                                    document.getElementById("afterClean").disabled = true;  // 청소 후 버튼 비활성화
-                                    document.getElementById("afterClean").style.fontWeight = "normal";  // 청소 후 버튼 스타일 초기화
-                                } else if (data.cleanStatus === "청소") {
-                                    document.getElementById("afterClean").style.fontWeight = "bold";
-                                    document.getElementById("afterClean").disabled = false;
-                                    document.getElementById("beforeClean").disabled = true;  // 청소 전 버튼 비활성화
-                                    document.getElementById("beforeClean").style.fontWeight = "normal";  // 청소 전 버튼 스타일 초기화
-                                }
-                                document.getElementById("booking-info").innerText = `객실 등급 : ${data.roomT}`;
+                                const statusText = data.cleaningStatus === '청소완료' ? '청소가 완료되었습니다.' : '현재 청소 중입니다.';
+                                document.getElementById("clean-status-text").innerText = statusText;
                             })
                             .catch(error => console.error('Error:', error));
                     }
-
-                    // 상태를 확인할 방 번호 입력 (예시: "SU1114")
-                    fetchCleaningStatus("SU1114");
-
-                    // 상태를 주기적으로 10분마다 업데이트 (600000ms = 10분)
-                    setInterval(() => fetchCleaningStatus("SU1114"), 600000);
+                    fetchCleaningStatus("1115");
+                    setInterval(function() {
+                        fetchCleaningStatus("1115");
+                     }, 60000);
                 </script>
+                <div class ="iot-toggle">
+                    <button class = iot-button> IOT 제어</button>
+
+                </div>
+
             </div>
         </div>
     </div>
 
 </div>
+<!-- 체크인 하기 버튼 -->
+<!-- 체크인 하기 버튼 -->
+<div class="checkin-button">
+    <button id="check-in-button" class="check-in-button">체크인 하기</button>
+</div>
+
+<script>
+    function checkIn(roomNumber) {
+        fetch(`/room/Rooms/${roomNumber}`)
+            .then(response => response.json())
+            .then(data => {
+                const cleanStatus = data.cleaningStatus;
+                if (cleanStatus === "청소완료") {
+                    // 체크인 가능 팝업
+                    const confirmCheckIn = confirm("체크인 하시겠습니까?");
+                    if (confirmCheckIn) {
+                        // 체크인 처리
+                        document.getElementById("check-in-button").innerText = "체크아웃 하기";
+                        // CIO_STATUS 업데이트
+                        fetch(`/room/ROOMS/${roomNumber}`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ status: 'Y' })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert("체크인 완료되었습니다.");
+                        })
+                        .catch(error => console.error('Error:', error));
+                    }
+                } else {
+                    // 체크인 불가능 팝업
+                    alert("지금은 체크인이 불가능합니다.");
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+
+    document.getElementById("check-in-button").addEventListener("click", function () {
+        checkIn("1115");
+    });
+</script>
 
 </body>
-<!-- 체크인 하기 버튼 -->
-<div class="check-button">
-    <button class="check-in-button">체크인 하기</button>
-</div>
+
+
 </html>
