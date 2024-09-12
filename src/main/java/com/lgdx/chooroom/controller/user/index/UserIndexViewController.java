@@ -17,13 +17,17 @@ public class UserIndexViewController {
 
     @GetMapping("/")
     public String userIndex(Model model) {
-        return "user/userRoomInfo";
+        return "user/index";
     }
 
     // 로그인 페이지
     @GetMapping("/login")
     public String loginPage() {
         return "user/login";
+    }
+    @GetMapping("/userRoomInfo")
+    public String userRoomInfo() {
+        return "user/userRoomInfo";
     }
 
     // 로그인 처리
