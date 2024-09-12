@@ -71,4 +71,6 @@ public class RoomsService {
         // 가격이 null이 아니면 포맷된 가격 반환, null이면 0을 반환
         return minRoomPrice != null ? decimalFormat.format(minRoomPrice) : decimalFormat.format(0);
     }
+
+
 }

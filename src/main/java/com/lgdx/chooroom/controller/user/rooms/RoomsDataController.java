@@ -1,6 +1,7 @@
 package com.lgdx.chooroom.controller.user.rooms;
 
 import com.lgdx.chooroom.domain.room.Rooms;
+import com.lgdx.chooroom.service.rooms.RoomTagsService;
 import com.lgdx.chooroom.service.rooms.RoomsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -18,6 +19,9 @@ public class RoomsDataController {
 
     @Autowired
     RoomsService roomsService;
+
+    @Autowired
+    RoomTagsService roomTagsService;
 
     @GetMapping("/api/rooms")
     @ResponseBody
@@ -42,4 +46,10 @@ public class RoomsDataController {
         return response;
     }
 
+    @GetMapping("/api/rooms-by-tags")
+    @ResponseBody
+    public List<Rooms> getRoomsByTags(@RequestParam(name = "tags", required = false) List<String> tags) {
+        System.out.println("Selected tags: " + tags); // 태그가 제대로 전달되는지 확인
+        return roomTagsService.getRoomsByTags(tags);
+    }
 }
