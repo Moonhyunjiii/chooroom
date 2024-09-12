@@ -28,7 +28,12 @@
             </div>
             <div class="nav-icons">
                 <div id="reservstionCheckButton" class="reservstionCheck"><i class="bi bi-person-circle fs-5"></i>예약확인</div>
-                <div id="loginButton" class="login">로그인</div>
+                <!-- 로그인이 되어 있을 때 로그아웃 버튼만 표시 -->
+                <div id="logoutButton" class="login" th:if="${user != null}">로그아웃</div>
+
+                <!-- 로그인이 안 되어 있을 때 로그인 버튼만 표시 -->
+                <div id="loginButton" class="login" th:if="${user == null}"> 로그인</div>
+
             </div>
         </div>
     </header>
@@ -181,7 +186,7 @@
                                 <span class="noise-level">${room.roomCondition.roomNoiseLevel}</span>db</span>
                             </div>
                             <div class="room-right">
-                                <button class="room-select-btn">선택</button>
+                                <button class="room-select-btn" data-room-number="${room.roomNumber}">선택</button>
                             </div>
                         </div>
                     </div>
@@ -225,9 +230,14 @@
 
                         <!-- 객실 정보 -->
                         <div class="room-item-info">
-                            <span class="room-number" th:text="${room.roomNumber} + '호'">101호</span>
-                            <span class="room-viewAndNoise" th:text="${room.viewType} + ', 고요한 방'">오션뷰, 고요한 방</span>
-                            <button class="room-select-btn">선택</button>
+                            <div class="room-left">
+                                <span class="room-number">${room.roomNumber}호</span>
+                                <span class="room-viewAndNoise">${room.viewType}, 평균소음:
+                                <span class="noise-level">${room.roomCondition.roomNoiseLevel}</span>db</span>
+                            </div>
+                            <div class="room-right">
+                                <button class="room-select-btn" data-room-number="${room.roomNumber}">선택</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -270,15 +280,21 @@
 
                         <!-- 객실 정보 -->
                         <div class="room-item-info">
-                            <span class="room-number" th:text="${room.roomNumber} + '호'">101호</span>
-                            <span class="room-viewAndNoise" th:text="${room.viewType} + ', 고요한 방'">오션뷰, 고요한 방</span>
-                            <button class="room-select-btn">선택</button>
+                            <div class="room-left">
+                                <span class="room-number">${room.roomNumber}호</span>
+                                <span class="room-viewAndNoise">${room.viewType}, 평균소음:
+                                <span class="noise-level">${room.roomCondition.roomNoiseLevel}</span>db</span>
+                            </div>
+                            <div class="room-right">
+                                <button class="room-select-btn" data-room-number="${room.roomNumber}">선택</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+    <!--  모달  -->
     <!-- 하단 푸터 -->
     <footer>
         <div class="footer-container">
@@ -300,5 +316,6 @@
 
 </div>
 <script src="js/user/main.js"></script>
+<script src="js/user/room-detail.js"></script>
 </body>
 </html>

@@ -7,9 +7,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Objects;
 
 @Repository
-public interface RoomsRepository extends JpaRepository<Rooms, String> {
+public interface RoomsRepository extends JpaRepository<Rooms, Objects> {
     Rooms findByRoomNumber(String roomNumber);
 
     // viewType과 bedType에 따라 방을 필터링하는 쿼리 메서드
