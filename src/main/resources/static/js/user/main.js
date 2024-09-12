@@ -204,38 +204,56 @@ document.addEventListener("DOMContentLoaded", function() {
             const roomNumber = event.target.getAttribute('data-room-number');
             console.log(roomNumber);
             // 모달을 열고, 선택한 방 번호에 해당하는 세부 정보 요청
-            openModalWithRoomDetails(roomNumber);
+
+             const url = "/room-detail?roomNumber=" + roomNumber;
+             const width = window.innerWidth;
+             const height = window.innerHeight;
+
+             // 새 창의 크기
+             const newWidth = width * 0.5;
+             const newHeight = height ;
+
+             // 새 창의 위치
+             const left = (width - newWidth) / 2;
+             const top = (height - newHeight) / 2;
+
+             // 새 창을 여는 옵션 설정
+             const features = `width=${newWidth},height=${newHeight},left=${left},top=${top},scrollbars=yes,resizable=yes`;
+
+             // 새 창 열기
+             window.open(url, '_blank', features);
+
         }
     });
 
     // 초기화 버튼 클릭 이벤트 처리
-    document.getElementById('reset-filters').addEventListener('click', function() {
-        // 모든 필터의 'selected' 클래스 제거
-        document.querySelectorAll('.filter-category .selected').forEach(item => {
-            item.classList.remove('selected');
-        });
-
-        // 필터 초기화 후 기본 데이터 다시 불러오기
-        fetchFilteredRoomData({}); // 기본 필터 없이 데이터 요청
-    });
+//    document.getElementById('reset-filters').addEventListener('click', function() {
+//        // 모든 필터의 'selected' 클래스 제거
+//        document.querySelectorAll('.filter-category .selected').forEach(item => {
+//            item.classList.remove('selected');
+//        });
+//
+//        // 필터 초기화 후 기본 데이터 다시 불러오기
+//        fetchFilteredRoomData({}); // 기본 필터 없이 데이터 요청
+//    });
 
     // 페이지 로드 시 기본 데이터 불러오기
     fetchFilteredRoomData({}); // 기본 필터 없이 모든 객실 데이터를 불러옴
 
-    // 검색 버튼 클릭 이벤트 처리
-    document.querySelector('.search-button').addEventListener('click', function() {
-        const checkInDate = document.getElementById('checkin-date').value;
-        const checkOutDate = document.getElementById('checkout-date').value;
-        const roomCount = document.getElementById('room-count').value;
-        const guestCount = document.getElementById('guest-count').value;
-
-        // 입력 값이 모두 있는지 확인 후 알림창으로 표시
-        if (checkInDate && checkOutDate && roomCount && guestCount) {
-            alert(`Check In: ${checkInDate}, Check Out: ${checkOutDate}, Rooms: ${roomCount}, Guests: ${guestCount}`);
-        } else {
-            alert('Please fill out all fields.');
-        }
-    });
+//    // 검색 버튼 클릭 이벤트 처리
+//    document.querySelector('.search-button').addEventListener('click', function() {
+//        const checkInDate = document.getElementById('checkin-date').value;
+//        const checkOutDate = document.getElementById('checkout-date').value;
+//        const roomCount = document.getElementById('room-count').value;
+//        const guestCount = document.getElementById('guest-count').value;
+//
+//        // 입력 값이 모두 있는지 확인 후 알림창으로 표시
+//        if (checkInDate && checkOutDate && roomCount && guestCount) {
+//            alert(`Check In: ${checkInDate}, Check Out: ${checkOutDate}, Rooms: ${roomCount}, Guests: ${guestCount}`);
+//        } else {
+//            alert('Please fill out all fields.');
+//        }
+//    });
 
     // 클릭 외부 영역 클릭 시 드롭다운 닫기
     document.addEventListener('click', function(event) {
@@ -283,39 +301,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
-
-function openModalWithRoomDetails(roomNumber) {
-    // 모달을 열고 방 세부정보를 표시하는 코드
-    console.log(`Opening modal for room number: ${roomNumber}`);
-    // 모달 열기 및 세부정보 요청 로직
-    // 모달 관련 스크립트
-    var modal = document.getElementById("myModal");
-    var btn = document.querySelectorAll(".room-select-btn");
-    var span = document.getElementsByClassName("close")[0];
-
-    // 모달을 열기
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // 모달을 닫기
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // 모달 바깥을 클릭하면 모달 닫기
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    // 예약하기 버튼 클릭 시 알림창 띄우기
-    var reserveBtn = document.getElementById("reserveBtn");
-    reserveBtn.onclick = function() {
-        alert("예약이 완료되었습니다.\n완료된 예약은 마이페이지에서 확인하실 수 있습니다.");
-    }
-}
+//
+//function openModalWithRoomDetails(roomNumber) {
+//    // 모달을 열고 방 세부정보를 표시하는 코드
+//    console.log(`Opening modal for room number: ${roomNumber}`);
+//    // 모달 열기 및 세부정보 요청 로직
+//    // 모달 관련 스크립트
+//    var modal = document.getElementById("myModal");
+//    var btn = document.querySelectorAll(".room-select-btn");
+//    var span = document.getElementsByClassName("close")[0];
+//
+//    // 모달을 열기
+//    btn.onclick = function() {
+//        modal.style.display = "block";
+//    }
+//
+//    // 모달을 닫기
+//    span.onclick = function() {
+//        modal.style.display = "none";
+//    }
+//
+//    // 모달 바깥을 클릭하면 모달 닫기
+//    window.onclick = function(event) {
+//        if (event.target == modal) {
+//            modal.style.display = "none";
+//        }
+//    }
+//
+//    // 예약하기 버튼 클릭 시 알림창 띄우기
+//    var reserveBtn = document.getElementById("reserveBtn");
+//    reserveBtn.onclick = function() {
+//        alert("예약이 완료되었습니다.\n완료된 예약은 마이페이지에서 확인하실 수 있습니다.");
+//    }
+//}
 
 
 document.querySelectorAll('.room-select-btn').forEach(button => {

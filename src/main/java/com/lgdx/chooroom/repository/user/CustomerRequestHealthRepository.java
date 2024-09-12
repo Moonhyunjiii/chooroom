@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CustomerRequestHealthRepository extends JpaRepository<CustomerRequestHealth, String> {
-    // customerId가 프라이머리 키가 아닐 때 사용
+public interface CustomerRequestHealthRepository extends JpaRepository<CustomerRequestHealth, Long> {
     List<CustomerRequestHealth> findByCustomerId(String customerId);
 }

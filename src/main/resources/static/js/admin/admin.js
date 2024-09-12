@@ -15,3 +15,4 @@ document.querySelectorAll('.room-card').forEach(function (card) {
         // 방 정보 페이지로 이동하거나 팝업 표시 로직 추가
     });
 });
+

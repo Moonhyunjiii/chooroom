@@ -5,7 +5,6 @@ import jakarta.persistence.Column;
 public class RoomsRoomConditionDTO {
 
     private String roomType; //rooms
-
     private String roomNumber;  //roomConditions
     private int roomNoiseLevel;
     private int roomAirQuality;

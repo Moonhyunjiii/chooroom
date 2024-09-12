@@ -8,11 +8,10 @@ import com.lgdx.chooroom.domain.room.Rooms;
 import com.lgdx.chooroom.domain.user.CustomerRequestHealth;
 import com.lgdx.chooroom.repository.rooms.RoomsRepository;
 import com.lgdx.chooroom.repository.user.*;
+import com.lgdx.chooroom.service.rooms.RoomsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +35,11 @@ public class UserRoomPageController {
     @Autowired
     private CustomerRequestHealthRepository customerRequestHealthRepository;
 
+    @Autowired
+    private RoomsService roomService;
+
+
+
     // 방 번호 및 예약 번호 가져오기
     @GetMapping("/reservation/Reservation/{reservationId}")
     public Map<String, String> getRoomInfo(@PathVariable String reservationId) {
@@ -56,27 +60,55 @@ public class UserRoomPageController {
         Map<String, String> response = new HashMap<>();
         Rooms rooms = roomsRepository.findByRoomNumber(roomNumber);
 
-        System.out.println(rooms.getCleanStatus());
-        if(rooms.getCleanStatus() == "청소완료"){
+
+        if(rooms.getCleanStatus().equals("청소완료")){
             response.put("cleaningStatus", "청소완료");
         }
         else{
             response.put("cleaningStatus", "청소중");
         }
+        response.put("imageUrl",rooms.getRoomStructure());
         response.put("roomT", rooms.getRoomType());
         return response;
     }
-    // 수집한 고객 건강정보
+
+//    @PostMapping("/room/update-checkin/{roomNumber}")
+//    public ResponseEntity<String> updateCheckInStatus(@PathVariable String roomNumber, @RequestBody Map<String, String> payload) {
+//        String status = payload.get("status");
+//        try {
+//            roomService.updateCheckInStatus(roomNumber, status);
+//            return ResponseEntity.ok("체크인 상태가 성공적으로 업데이트되었습니다.");
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("체크인 상태 업데이트 실패");
+//        }
+//    }
+
+
     @GetMapping("/user/CustomerRequestHealth/{customerId}")
     @ResponseBody
     public Map<String, String> getHealthStatus(@PathVariable String customerId) {
-
-
         Map<String, String> response = new HashMap<>();
-        List<CustomerRequestHealth> customerRequestHealth = customerRequestHealthRepository.findByCustomerId(customerId);
+
+        // cus_id로 고객의 건강 요청 정보 리스트 조회
+        List<CustomerRequestHealth> customerRequestHealthList = customerRequestHealthRepository.findByCustomerId(customerId);
+
+        // 조회된 건강 요청 정보 리스트에서 h_info 필드를 가져와서 맵에 저장
+        StringBuilder healthInfoBuilder = new StringBuilder();
+        for (CustomerRequestHealth health : customerRequestHealthList) {
+            healthInfoBuilder.append(health.getHealthInfo()).append(", "); // h_info 필드를 가져옴
+        }
+
+        // 맨 마지막 ", "를 제거
+        if (healthInfoBuilder.length() > 0) {
+            healthInfoBuilder.setLength(healthInfoBuilder.length() - 2);
+        }
+
+        // health 키에 저장
+        response.put("health", healthInfoBuilder.toString());
 
         return response;
     }
+
 
 
     // 방 소음 상태 및 케어 정보
@@ -86,15 +118,17 @@ public class UserRoomPageController {
         Map<String, Object> response = new HashMap<>();
 
         RoomCondition roomCondition = roomConditionRepository.findByRoomNumber(roomNumber);
-        if (roomCondition.getroomNoiseLevel() < 40) {
+        if (roomCondition.getRoomNoiseLevel() < 40) {
             response.put("noiseDescription", "편안하게 휴식하기에 알맞은 조용하고 편안한 방입니다.");
+            response.put("noiseLevel", roomCondition.getRoomNoiseLevel());
         } else {
-            response.put("noiseDescription", "주변 소음이 조금 있는 편이나, 창문밖으로 보이는 전망이 매우 아름다운 방이에요.");
+            response.put("noiseDescription", "주변 소음이 조금 있는 편이나, 창문밖으로 보이는 전망이 좋은 방이에요.");
+            response.put("noiseLevel", roomCondition.getRoomNoiseLevel());
         }
         response.put("Temperature", roomCondition.getRoomTemperature());
-        response.put("AirQuality", roomCondition.getroomAirQuality());
+        response.put("AirQuality", roomCondition.getRoomAirQuality());
         response.put("Humidity", roomCondition.getRoomHUMIDITY());
-
+        response.put("roomId", roomCondition.getRoomNumber());
 
         List<RoomTags> roomTags = roomTagsRepository.findByRoomNumber(roomNumber);
         StringBuilder careDescription = new StringBuilder();
