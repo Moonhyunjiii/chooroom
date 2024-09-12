@@ -185,6 +185,7 @@
     padding: 40px 0;
     text-align: center;
     width: 100%;
+    border-radius: 10px; /* 둥근 테두리 */
 }
 
 .banner-content {
@@ -197,6 +198,7 @@
     padding-bottom: 90px;
     padding-top: 150px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px; /* 둥근 테두리 */
 }
 
 .banner-title {

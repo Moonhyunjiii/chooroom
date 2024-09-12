@@ -4,6 +4,7 @@
     padding: 20px;
     box-sizing: border-box;
     background-color: white;
+    border-radius: 10px 10px 0 0;
 }
 
 .divider-line {
@@ -58,8 +59,21 @@
 
 /* 필터 제목 스타일 */
 .filter-name {
+    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
+    transition: box-shadow 0.2s ease, transform 0.1s ease, background-color 0.4s ease;
+    box-shadow: none; /* 기본 그림자 */
+}
+
+.filter-name:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 마우스 오버 시 그림자 진하게 */
+}
+
+.filter-name:active {
+    transform: translateY(2px); /* 클릭 시 살짝 내려가는 효과 */
+    box-shadow: none; /* 클릭 시 그림자 제거 */
+    background-color: #f0f0f0; /* 클릭 시 배경색 변경 */
 }
 
 .filter-reset {
@@ -68,20 +82,29 @@
 }
 
 #reset-filters {
-    background-color: white;
+    border-radius: 10px;
+    background-color: #d3d3d3;
     color: black;
     border: 2px solid #e7e7e7;
     padding: 5px 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    transition-duration: 0.4s;
+    transition: background-color 0.4s ease, box-shadow 0.2s ease, transform 0.1s ease;
     cursor: pointer;
     font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 기본 그림자 */
 }
 
 #reset-filters:hover {
     background-color: #e7e7e7;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 마우스 오버 시 그림자 진하게 */
+}
+
+#reset-filters:active {
+    transform: translateY(4px); /* 클릭 시 살짝 내려가는 효과 */
+    box-shadow: none; /* 클릭 시 그림자 제거 */
+    background-color: #f0f0f0; /* 클릭 시 배경색 변경 */
 }
 
 /* 반응형 스타일링 */
