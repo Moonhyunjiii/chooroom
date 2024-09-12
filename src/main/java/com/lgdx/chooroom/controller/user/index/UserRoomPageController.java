@@ -60,7 +60,7 @@ public class UserRoomPageController {
         Map<String, String> response = new HashMap<>();
         Rooms rooms = roomsRepository.findByRoomNumber(roomNumber);
 
-        System.out.println(rooms.getCleanStatus());
+
         if(rooms.getCleanStatus().equals("청소완료")){
             response.put("cleaningStatus", "청소완료");
         }
@@ -68,7 +68,6 @@ public class UserRoomPageController {
             response.put("cleaningStatus", "청소중");
         }
         response.put("imageUrl",rooms.getRoomStructure());
-        System.out.println(rooms.getRoomStructure());
         response.put("roomT", rooms.getRoomType());
         return response;
     }
@@ -129,7 +128,7 @@ public class UserRoomPageController {
         response.put("Temperature", roomCondition.getRoomTemperature());
         response.put("AirQuality", roomCondition.getroomAirQuality());
         response.put("Humidity", roomCondition.getRoomHUMIDITY());
-
+        response.put("roomId", roomCondition.getRoomNumber());
 
         List<RoomTags> roomTags = roomTagsRepository.findByRoomNumber(roomNumber);
         StringBuilder careDescription = new StringBuilder();

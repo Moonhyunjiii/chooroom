@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>예약 확인 페이지</title>
     <link rel="stylesheet" href="css/user/userRoomInfo.css">
+    <script src="js/user/userRoomInfo.js" defer></script> <!-- 분리된 JS 파일 연결 -->
 
     <div class="navigation-web">
         <div class="content">
@@ -26,29 +27,29 @@
                 </div>
             </div>
 
-        <div class="right">
-            <div class="action">
-                <div class="icon">
-                    <div class="icon-2">
-                        <img class="icon-icons" src="https://img.freepik.com/premium-vector/bell-icon-notification-bell-vector-icon_564974-1243.jpg" />
-                        <div class="interaction">
-                            <div class="interaction2"></div>
+            <div class="right">
+                <div class="action">
+                    <div class="icon">
+                        <div class="icon-2">
+                            <img class="icon-icons" src="https://img.freepik.com/premium-vector/bell-icon-notification-bell-vector-icon_564974-1243.jpg" />
+                            <div class="interaction">
+                                <div class="interaction2"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="button">
-                <div class="logout-button">
-                    <button class="logout_button">
-                        로그인
-                    </button>
+                <div class="button">
+                    <div class="logout-button">
+                        <button class="logout_button">
+                            로그인
+                        </button>
+                    </div>
+
                 </div>
-
+                <div class="divider"></div>
             </div>
-            <div class="divider"></div>
-        </div>
 
-    </div>
+        </div>
     </div>
 </head>
 <body>
@@ -61,59 +62,17 @@
         </div>
 
         <div class="frame-10421">
-            <img class="map-image" id = "dynamic-image"  src="지도이미지를 불러오는중입니다."/>
-            <script>
-                function fetchImageUrl(roomNumber) {
-                    fetch(`/room/Rooms/${roomNumber}`)  // 템플릿 리터럴을 사용해서 roomNumber를 삽입
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log(data);  // 응답 데이터를 콘솔에 출력해서 확인
-                            if (data.imageUrl) {  // imageUrl이 실제로 있는지 확인
-                                document.getElementById("dynamic-image").src = data.imageUrl;
-                            } else {
-                                console.error('No image URL found in the response.');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error fetching image URL:', error);  // 오류 로그 출력
-                        });
-                }
-                     // 예시로 방 ID에 따른 이미지 URL 가져오기
-                     fetchImageUrl("1115");
-            </script>
+            <img class="map-image" id="dynamic-image" src="">
             <div class="hotel-info">
                 <div class="hotel-name">INTER CONTINENTAL</div>
-                <br>
-                <br>
+                <br><br>
                 <div id="roomname1">객실명과 예약번호를 불러오고 있어요</div>
-
                 <div id="customer-name">고객아이디를 불러오고 있어요</div>
-
                 <div id="booking-info"></div>
-
-                    <script>
-                        function fetchRoomInfo(reservationId) {
-                            fetch(`/reservation/Reservation/${reservationId}`)
-                                .then(response => response.json())
-                                .then(data => {
-                                    document.getElementById("roomname1").innerText =  `객실명: ${data.roomId}호, 예약번호: ${data.reservId}`;
-                                    document.getElementById("customer-name").innerText = `아이디 : ${data.cusId}`;
-
-                                })
-                                .catch(error => console.error('Error:', error));
-                        }
-
-                        // 예시로 방 번호 201호를 불러오기
-                        fetchRoomInfo("RES0040");
-                    </script>
             </div>
-
-
-
         </div>
 
-
-        <!-- "내가 선택한 컨디션이에요"부터 "추가 요청사항 적는 란" -->
+        <!-- 내가 선택한 컨디션 -->
         <div class="choose-condition">
             <h3>내가 선택한 컨디션이에요.</h3>
             <div class="condition-list">
@@ -135,408 +94,72 @@
                 </div>
             </div>
         </div>
-        <br>
-        <script>
-            function fetchCustomerConditions(customerId) {
-                // customerId를 경로에 올바르게 포함시킵니다.
-                fetch(`/user/CustomerRequestHealth/${customerId}`)
-                    .then(response => response.json())
-                    .then(data => {
-                        // 각 조건에 대해 체크 여부 설정
-                        document.getElementById('noise-sensitive').checked = data.health.includes('소음에 민감해요');
-                        document.getElementById('dust-sensitive').checked = data.health.includes('먼지에 민감해요');
-                        document.getElementById('dust-allergy').checked = data.health.includes('먼지 알레르기');
-                        document.getElementById('mite-allergy').checked = data.health.includes('진드기 알레르기');
-                    })
-                    .catch(error => console.error('Error:', error));
-            }
-
-            // 특정 고객의 아이디로 상태 조회 (예: "user12")
-            fetchCustomerConditions("user12");
-        </script>
-
-
 
         <div id="room-info">
-                <h3 id="roomID">방 번호 정보를 불러오는 중...</h3>
-                <p id="roomNoise">방 설명을 불러오는 중...</p>
+            <h3 id="roomID">방 번호 정보를 불러오는 중...</h3>
+            <p id="roomNoise">방 설명을 불러오는 중...</p>
+            <h3>선택하신 서비스는</h3>
+            <p id="care-info">케어 정보를 불러오는 중...</p>
+            <h3>추가 요청사항을 적어주세요.</h3>
+        </div>
 
-                <h3>선택하신 서비스는</h3>
-                <p id="care-info">케어 정보를 불러오는 중...</p>
-
-                <h3>추가 요청사항을 적어주세요.</h3>
-            </div>
-
-            <script>
-                function fetchRoomInfo(reservationId) {
-                    fetch(`/reservation/Reservation/${reservationId}`)
-                        .then(response=> response.json())
-                        .then(data => {
-                            document.getElementById("roomID").innerText = `${data.roomId}호는 이런 방이에요. `;
-                        })
-                        .catch(error => console.error('Error:', error));
-                }
-                function fetchRoomDetails(roomNumber) {
-                    fetch(`/room/RoomCondition/${roomNumber}`)
-                        .then(response => response.json())
-                        .then(data => {
-                            document.getElementById("roomNoise").innerText = `${data.noiseDescription} | 소음도 : ${data.noiseLevel} dB` ;
-                            document.getElementById("care-info").innerText = data.careDescription;
-                        })
-                        .catch(error => console.error('Error:', error));
-                }
-                fetchRoomInfo("RES0040");
-                fetchRoomDetails("1115");
-
-            </script>
-
-        <!-- 요청사항 입력란 -->
         <textarea id="additional-requests" placeholder="입실 이틀 전까지 요청사항을 적을 수 있습니다."></textarea>
         <button id="submit-request" class="submit-button">전송</button>
-
-        <script>
-            document.getElementById("submit-request").addEventListener("click", function () {
-                const requestText = document.getElementById("additional-requests").value;
-                fetch('/submit-request', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ request: requestText })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert("요청사항이 전송되었습니다.");
-                })
-                .catch(error => console.error('Error:', error));
-            });
-        </script>
-
     </div>
-
 
     <!-- 오른쪽: 종합 청정도 영역 -->
     <div class="right-section">
         <div class="clean-status">
-            <br>
-            <br>
+            <br><br>
             <h3>종합 청정도</h3>
             <br>
-            <div class="status-good">좋음</div>
+            <div class="status-good" id="status">좋음</div>
+            <br><br>
+            <div class="status-info" id="status-infor">"방이 쾌적하게 관리되고 있어요."</div>
             <br>
-            <br>
-            <div class="status-info">"방이 쾌적하게 관리되고 있어요."</div>
-            <br>
-            <br>
+
             <div class="gauges">
                 <div class="gauge-container">
                     <div class="gauge-label">미세먼지</div>
                     <br>
                     <canvas id="dust-circle" width="73" height="73"></canvas>
-                    <script>
-                        function drawProgressCircle(canvasId, roomNumber) {
-                            let endProgress = 0;  // 변수 선언을 let으로 변경
-
-                            // 먼저 fetch 요청을 완료한 후에 그리기 함수 실행
-                            fetch(`/room/RoomCondition/${roomNumber}`)
-                                .then(response => response.json())
-                                .then(data => {
-                                    endProgress = parseInt(data.AirQuality);  // 응답 데이터에서 습도 값 받기
-                                    const canvas = document.getElementById(canvasId);
-                                    const ctx = canvas.getContext('2d');
-                                    const radius = 30;
-                                    const centerX = canvas.width / 2;
-                                    const centerY = canvas.height / 2;
-                                    let progress = 0;
-                                    const speed = 2;
-
-                                function drawCircle() {
-                                    // 배경 원
-                                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                                    ctx.beginPath();
-                                    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-                                    ctx.strokeStyle = '#e0e0e0';
-                                    ctx.lineWidth = 5;
-                                    ctx.stroke();
-
-                                    // 진행 원
-                                    ctx.beginPath();
-                                    const startAngle = -0.5 * Math.PI;
-                                    const endAngle = (2 * Math.PI * (progress / 100)) - 0.5 * Math.PI;
-                                    ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-                                    ctx.strokeStyle = '#29ff30';
-                                    ctx.lineWidth = 5;
-                                    ctx.stroke();
-
-                                    ctx.font = "16px Arial";
-                                    ctx.fillStyle = "#000";  // 텍스트 색상
-                                    ctx.textAlign = "center";
-                                    ctx.textBaseline = "middle";
-                                    ctx.fillText(`${Math.floor(progress)}㎍/m³`, centerX, centerY);
-
-                                    if (progress < endProgress) {
-                                        progress += speed;
-                                        requestAnimationFrame(drawCircle);
-                                    }
-
-
-                                }
-                                drawCircle();
-                                if(endProgress > 70){
-                                    document.getElementById("air-lev").innerText = "공기청정이필요해요"
-                                }
-                                else if(endProgress >= 60){
-                                    document.getElementById("air-lev").innerText = "조금 탁해요"
-                                }
-                                else if(endProgress >= 40){
-                                    document.getElementById("air-lev").innerText = "적당해요"
-                                }
-                                else{
-                                    document.getElementById("air-lev").innerText = "공기가 좋아요"
-                                }
-                                })
-                                .catch(error => console.error('Error:', error));
-                        }
-
-
-                        // 함수 호출
-                        drawProgressCircle('dust-circle', "1115");
-
-                    </script>
                     <br>
                     <p id="air-lev">청정</p>
                 </div>
-                <div class="gauge-container">
 
+                <div class="gauge-container">
                     <div class="gauge-label">온도</div>
                     <br>
                     <canvas id="temp-circle" width="73" height="73"></canvas>
-                    <script>
-                        function drawProgressCircle(canvasId, roomNumber) {
-                            let endProgress = 0;  // 변수 선언을 let으로 변경
-
-                            // 먼저 fetch 요청을 완료한 후에 그리기 함수 실행
-                            fetch(`/room/RoomCondition/${roomNumber}`)
-                                .then(response => response.json())
-                                .then(data => {
-                                    endProgress = parseInt(data.Temperature);  // 응답 데이터에서 습도 값 받기
-                                    const canvas = document.getElementById(canvasId);
-                                    const ctx = canvas.getContext('2d');
-                                    const radius = 30;
-                                    const centerX = canvas.width / 2;
-                                    const centerY = canvas.height / 2;
-                                    let progress = 0;
-                                    const speed = 2;
-
-                                    function drawCircle() {
-                                        // 배경 원
-                                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                                        ctx.beginPath();
-                                        ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-                                        ctx.strokeStyle = '#e0e0e0';
-                                        ctx.lineWidth = 5;
-                                        ctx.stroke();
-
-                                        // 진행 원
-                                        ctx.beginPath();
-                                        const startAngle = -0.5 * Math.PI;
-                                        const endAngle = (2 * Math.PI * (progress / 100)) - 0.5 * Math.PI;
-                                        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-                                        ctx.strokeStyle = '#ff7429';
-                                        ctx.lineWidth = 5;
-                                        ctx.stroke();
-
-                                        ctx.font = "16px Arial";
-                                        ctx.fillStyle = "#000";  // 텍스트 색상
-                                        ctx.textAlign = "center";
-                                        ctx.textBaseline = "middle";
-                                        ctx.fillText(`${Math.floor(progress)}°C`, centerX, centerY);
-
-                                        if (progress < endProgress) {
-                                            progress += speed;
-                                            requestAnimationFrame(drawCircle);
-                                        }
-                                    }
-
-                                drawCircle();
-                                if(endProgress > 28){
-                                        document.getElementById("temp-lev").innerText = "더워요"
-                                }
-                                else if(endProgress >= 22){
-                                    document.getElementById("temp-lev").innerText = "적당해요"
-                                }
-                                else if(endProgress >= 18){
-                                    document.getElementById("temp-lev").innerText = "시원해요"
-                                }
-                                else{
-                                    document.getElementById("temp-lev").innerText = "추워요"
-                                }
-                                })
-                                .catch(error => console.error('Error:', error));
-                        }
-
-                        // 함수 호출
-                        drawProgressCircle('temp-circle', "1115");
-                    </script>
                     <br>
                     <p id="temp-lev">조금 더워요</p>
                 </div>
+
                 <div class="gauge-container">
                     <div class="gauge-label">습도</div>
                     <br>
                     <canvas id="humid-circle" width="73" height="73"></canvas>
-                    <script>
-                        function drawProgressCircle(canvasId, roomNumber) {
-                            let endProgress = 0;  // 변수 선언을 let으로 변경
-
-                            // 먼저 fetch 요청을 완료한 후에 그리기 함수 실행
-                            fetch(`/room/RoomCondition/${roomNumber}`)
-                                .then(response => response.json())
-                                .then(data => {
-                                    endProgress = parseInt(data.Humidity);  // 응답 데이터에서 습도 값 받기
-                                    const canvas = document.getElementById(canvasId);
-                                    const ctx = canvas.getContext('2d');
-                                    const radius = 30;
-                                    const centerX = canvas.width / 2;
-                                    const centerY = canvas.height / 2;
-
-                                    let progress = 0;
-                                    const speed = 2;
-
-                                    function drawCircle() {
-                                        // 배경 원
-                                        ctx.clearRect(0, 0, canvas.width, canvas.height);
-                                        ctx.beginPath();
-                                        ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-                                        ctx.strokeStyle = '#e0e0e0';
-                                        ctx.lineWidth = 5;
-                                        ctx.stroke();
-
-                                        // 진행 원
-                                        ctx.beginPath();
-                                        const startAngle = -0.5 * Math.PI;
-                                        const endAngle = (2 * Math.PI * (progress / 100)) - 0.5 * Math.PI;
-                                        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
-                                        ctx.strokeStyle = '#298cff';
-                                        ctx.lineWidth = 5;
-                                        ctx.stroke();
-
-                                        // 텍스트 표시
-                                        ctx.font = "16px Arial";
-                                        ctx.fillStyle = "#000";  // 텍스트 색상
-                                        ctx.textAlign = "center";
-                                        ctx.textBaseline = "middle";
-                                        ctx.fillText(`${Math.floor(progress)}%`, centerX, centerY);
-
-                                        if (progress < endProgress) {
-                                            progress += speed;
-                                            requestAnimationFrame(drawCircle);
-                                        }
-                                    }
-
-                                    drawCircle();
-                                    if(endProgress > 50){
-                                        document.getElementById("humid-lev").innerText = "조금 습해요"
-                                    }
-                                    else if(endProgress > 40){
-                                        document.getElementById("humid-lev").innerText = "뽀송해요"
-                                    }
-                                    else{
-                                        document.getElementById("humid-lev").innerText = "건조해요"
-                                    }
-                                })
-
-                                .catch(error => console.error('Error:', error));
-                        }
-
-                        // 함수 호출
-                        drawProgressCircle('humid-circle', "1115");
-
-                    </script>
                     <br>
                     <p id="humid-lev">보송해요</p>
                 </div>
             </div>
 
             <br><br>
-            <h3 class = "cleaning-title">청소 현황</h3>
+            <h3 class="cleaning-title">청소 현황</h3>
             <div class="cleaning-status">
-                <div class="cleaning-status">
-
-                    <p id="clean-status-text">청소 상태를 불러오는 중...</p>
+                <p id="clean-status-text">청소 상태를 불러오는 중...</p>
+                <div class="iot-toggle">
+                    <button class="iot-button" id="iot-control-button">IOT 제어</button>
                 </div>
-
-                <script>
-                    function fetchCleaningStatus(roomNumber) {
-                        fetch(`/room/Rooms/${roomNumber}`)
-                            .then(response => response.json())
-                            .then(data => {
-                                const statusText = data.cleaningStatus === '청소완료' ? '청소가 완료되었습니다.' : '현재 청소 중입니다.';
-                                document.getElementById("clean-status-text").innerText = statusText;
-                            })
-                            .catch(error => console.error('Error:', error));
-                    }
-                    fetchCleaningStatus("1115");
-                    setInterval(function() {
-                        fetchCleaningStatus("1115");
-                     }, 60000);
-                </script>
-                <div class ="iot-toggle">
-                    <button class = iot-button> IOT 제어</button>
-
-                </div>
-
             </div>
         </div>
     </div>
-
 </div>
-<!-- 체크인 하기 버튼 -->
+
 <!-- 체크인 하기 버튼 -->
 <div class="checkin-button">
     <button id="check-in-button" class="check-in-button">체크인 하기</button>
 </div>
 
-<script>
-    function checkIn(roomNumber) {
-        fetch(`/room/Rooms/${roomNumber}`)
-            .then(response => response.json())
-            .then(data => {
-                const cleanStatus = data.cleaningStatus;
-                if (cleanStatus === "청소완료") {
-                    // 체크인 가능 팝업
-                    const confirmCheckIn = confirm("체크인 하시겠습니까?");
-                    if (confirmCheckIn) {
-                        // 체크인 처리
-                        document.getElementById("check-in-button").innerText = "체크아웃 하기";
-                        // CIO_STATUS 업데이트
-                        fetch(`/room/ROOMS/${roomNumber}`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ status: 'Y' })
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            alert("체크인 완료되었습니다.");
-                        })
-                        .catch(error => console.error('Error:', error));
-                    }
-                } else {
-                    // 체크인 불가능 팝업
-                    alert("지금은 체크인이 불가능합니다.");
-                }
-            })
-            .catch(error => console.error('Error:', error));
-    }
-
-    document.getElementById("check-in-button").addEventListener("click", function () {
-        checkIn("1115");
-    });
-</script>
-
 </body>
-
-
 </html>
