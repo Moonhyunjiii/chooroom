@@ -6,6 +6,7 @@
   box-sizing: border-box;
   display: flex;
   font-family: "NotoSansKr", sans-serif;
+  background-color: #FAFAFA;
 }
 
 /* 사이드바 스타일 */
@@ -16,7 +17,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+
 }
 
 .sidebar-item {
@@ -25,7 +26,7 @@
   gap: 10px;
   font-size: 16px;
   color: #555;
-    background-color: white;
+    background-color: #FAFAFA;
     transition: transform 0.2s, box-shadow 0.2s;
     cursor: pointer;
 }
@@ -203,22 +204,27 @@ progress {
 
 .room-device-info-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 3개의 동일한 크기의 칸으로 나눔 */
-  flex-wrap: wrap;
+  grid-template-columns: repeat(3, 300px); /* 3개의 동일한 크기의 칸으로 나눔 */
   justify-content: center; /* 가운데 정렬 */
   gap: 20px; /* 카드 사이의 간격 */
   margin-top: 20px; /* 상단 여백 (옵션) */
 }
 
-.room-card-0 {
-    background-color: #ffffff;
-    border: 1px solid #D3D3D3; /* 연한 회색 테두리 */
-    border-radius: 10px;
-    padding: 20px;
-    max-width: 250px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+/* 카드 스타일 */
+.room-card {
+  border: 1px solid #2d60ff; /* 테두리 색상 설정 */
+  border-radius: 10px; /* 둥근 테두리 */
+  box-sizing: border-box; /* 패딩과 테두리를 박스 크기에 포함 */
+  padding: 20px; /* 카드 내부 여백 */
+  width: 100%; /* 카드가 셀을 꽉 채우도록 설정 */
+  max-width: 300px; /* 카드의 최대 너비 제한 */
+  background-color: white; /* 카드 배경색 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* 카드에 살짝 그림자 효과 */
+  font-family: "NotoSansKr", sans-serif; /* 글꼴 설정 */
+  cursor: pointer; /* 마우스 커서를 올리면 포인터로 변경 */
+  margin: 0 auto; /* 카드가 가운데 정렬되도록 설정 */
 }
+
 
 h4 {
     text-align:left;
@@ -287,6 +293,7 @@ h4 {
     justify-content: space-between;
     margin-bottom: 5px;
     font-size: 14px;
+    align-items: center;
 }
 
 .status {
@@ -295,6 +302,7 @@ h4 {
 }
 
 .status.on {
+
     color: #009dff;
 }
 

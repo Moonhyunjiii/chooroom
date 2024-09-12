@@ -40,11 +40,11 @@ function evaluateRoomStatus(room) {
     if (room.roomAirQuality > 50) poorConditionCount++;   // 공기질 > 70
 
     if (poorConditionCount == 3) {
-        return {status: '나쁨', borderColor: 'red', poorConditionCount: poorConditionCount};      // 3가지 조건 모두 나쁨
+        return {status: '나쁨', borderColor: 'red',borderRadius: '15px', poorConditionCount: poorConditionCount};      // 3가지 조건 모두 나쁨
     } else if (poorConditionCount >= 1) {
-        return {status: '보통', borderColor: 'yellow', poorConditionCount: poorConditionCount};  // 1~2가지 조건 나쁨
+        return {status: '보통', borderColor: 'orange',borderRadius: '15px', poorConditionCount: poorConditionCount};  // 1~2가지 조건 나쁨
     } else {
-        return {status: '좋음', borderColor: 'green', poorConditionCount: poorConditionCount};    // 모든 조건 좋음
+        return {status: '좋음', borderColor: 'green',borderRadius: '15px', poorConditionCount: poorConditionCount};    // 모든 조건 좋음
     }
 }
 
@@ -71,7 +71,8 @@ function renderRooms(rooms) {
         const roomCard = document.createElement('div');
         const roomStatus = evaluateRoomStatus(room);  // 방 상태 평가
         roomCard.className = 'room-card';
-        roomCard.style.border = `2px solid ${roomStatus.borderColor}`;  // 방 상태에 따른 테두리 색상 설정
+        roomCard.style.border = `2.5px solid ${roomStatus.borderColor}`;
+        roomCard.style.borderRadius = roomStatus.borderRadius;// 방 상태에 따른 테두리 색상 설정
 
         roomCard.innerHTML = `
             <h4>${room.roomNumber}<span class="room-type">${room.roomType}</span></h4>
@@ -93,7 +94,7 @@ function renderRooms(rooms) {
 
             <div class="details-section">
                 <div class="detail-item">
-                    <span>냉장고</span><span class="status on">ON</span><span>-10°C, 1°C</span>
+                    <span>냉장고</span><span class="status on">ON</span>
                 </div>
                 <div class="detail-item">
                     <span>에어컨</span><span class="status off">OFF</span>
