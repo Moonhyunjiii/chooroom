@@ -6,49 +6,25 @@
     <title>예약 확인 페이지</title>
     <link rel="stylesheet" href="css/user/userRoomInfo.css">
     <script src="js/user/userRoomInfo.js" defer></script> <!-- 분리된 JS 파일 연결 -->
+    <link rel="stylesheet" href="css/user/roomTypeIndex.css"/>
+    <link rel="stylesheet" href="css/user/hashTag.css"/>
+    <link rel="stylesheet" href="css/user/banner.css"/>
+    <link rel="stylesheet" href="css/user/calendarModal.css"/>
+    <link rel="stylesheet" href="css/user/filter.css"/>
+    <link rel="stylesheet" href="css/user/mainCommon.css"/>
+    <link rel="stylesheet" href="css/user/header.css"/>
+    <!-- jQuery 및 jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <div class="navigation-web">
-        <div class="content">
-            <div class="left">
-                <div class="logo">
-                    <div class="div">로고</div>
-                </div>
-                <div class="menu">
-                    <div class="list">
-                        <div class="menu1">
-                            <button>메뉴1</button>
-                        </div>
-                    </div>
-                    <div class="list">
-                        <div class="menu2">
-                            <button> 메뉴2 </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="right">
-                <div class="action">
-                    <div class="icon">
-                        <div class="icon-2">
-                            <img class="icon-icons" src="https://img.freepik.com/premium-vector/bell-icon-notification-bell-vector-icon_564974-1243.jpg" />
-                            <div class="interaction">
-                                <div class="interaction2"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="button">
-                    <div class="logout-button">
-                        <button class="logout_button">
-                            로그인
-                        </button>
-                    </div>
-
-                </div>
-                <div class="divider"></div>
-            </div>
-
+    <div class="header-container">
+        <div class="logo">
+            <img src="/path/to/logo.png" alt="Logo" />
+        </div>
+        <div class="nav-icons">
+            <img src="/path/to/notification-icon.png" alt="Notification" />
+            <div  class="login" id="loginButton">로그인</div>
         </div>
     </div>
 </head>
@@ -66,7 +42,7 @@
             <div class="hotel-info">
                 <div class="hotel-name">INTER CONTINENTAL</div>
                 <br><br>
-                <div id="roomname1">객실명과 예약번호를 불러오고 있어요</div>
+                <div id="roomname1">객실 명과 예약번호를 불러오고 있어요</div>
                 <div id="customer-name">고객아이디를 불러오고 있어요</div>
                 <div id="booking-info"></div>
             </div>

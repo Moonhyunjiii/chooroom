@@ -207,6 +207,21 @@ function drawProgressCircle(canvasId, roomNumber, dataField, labelId, color) {
         .catch(error => console.error('Error:', error));
 }
 
+function redirectToLogin() {
+        window.location.href = '/login';
+    }
+
+    // Add event listener to the login button
+    document.addEventListener('DOMContentLoaded', function() {
+        var loginButton = document.getElementById('loginButton');
+        if (loginButton) {
+            loginButton.addEventListener('click', redirectToLogin);
+        }
+});
+document.getElementById("loginButton").addEventListener("click", function () {
+        window.location.href = '/login'
+    });
+
 // 각 게이지에 맞춰 호출
 document.getElementById("iot-control-button").addEventListener("click", function () {
         window.location.href = '/IOT'
