@@ -54,24 +54,6 @@ function fetchRoomDetails(roomNumber) {
 }
 
 
-
-// 추가 요청사항 전송
-document.getElementById("submit-request").addEventListener("click", function () {
-    const requestText = document.getElementById("additional-requests").value;
-    fetch('/submit-request', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ request: requestText })
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert("요청사항이 전송되었습니다.");
-    })
-    .catch(error => console.error('Error:', error));
-});
-
 // 종합 청정도 업데이트
 function updateRoomStatus(roomNumber) {
     fetch(`/room/RoomCondition/${roomNumber}`)

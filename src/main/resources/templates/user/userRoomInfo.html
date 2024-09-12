@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>예약 확인 페이지</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="css/user/userRoomInfo.css">
     <script src="js/user/userRoomInfo.js" defer></script> <!-- 분리된 JS 파일 연결 -->
     <link rel="stylesheet" href="css/user/roomTypeIndex.css"/>
@@ -18,18 +19,28 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-    <div class="header-container">
-        <div class="logo">
-            <img src="/path/to/logo.png" alt="Logo" />
-        </div>
-        <div class="nav-icons">
-            <img src="/path/to/notification-icon.png" alt="Notification" />
-            <div  class="login" id="loginButton">로그인</div>
-        </div>
-    </div>
 </head>
 <body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="/img/user/츄룸로고.png" alt="Logo" />
+            </div>
+            <div class="nav-icons">
+                <div id="reservstionCheckButton" class="reservstionCheck"><i class="bi bi-person-circle fs-5"></i>예약확인</div>
+                <!-- 로그인이 되어 있을 때 로그아웃 버튼만 표시 -->
+                <div id="logoutButton" class="login" th:if="${user != null}">로그아웃</div>
 
+                <!-- 로그인이 안 되어 있을 때 로그인 버튼만 표시 -->
+                <div id="loginButton" class="login" th:if="${user == null}"> 로그인</div>
+
+            </div>
+        </div>
+    </header>
+<br>
+<br>
+<br>
+<br>
 <div class="container">
     <!-- 왼쪽: 지도 이미지와 호텔 정보 -->
     <div class="left-section">
@@ -79,57 +90,57 @@
             <h3>추가 요청사항을 적어주세요.</h3>
         </div>
 
-        <textarea id="additional-requests" placeholder="입실 이틀 전까지 요청사항을 적을 수 있습니다."></textarea>
-        <button id="submit-request" class="submit-button">전송</button>
+        <div class="input-button-container">
+            <textarea placeholder="입실 이틀 전까지 요청사항을 적을 수 있습니다."></textarea>
+            <button class="submit-button">전송</button>
+        </div>
     </div>
 
     <!-- 오른쪽: 종합 청정도 영역 -->
     <div class="right-section">
         <div class="clean-status">
-            <br><br>
-            <h3>종합 청정도</h3>
+            <h3>종합 청정도<span class="status-good" id="status">좋음</span> </h3>
+
+            <p>방이 쾌적하게 관리되고 있어요.</p>
             <br>
-            <div class="status-good" id="status">좋음</div>
-            <br><br>
-            <div class="status-info" id="status-infor">"방이 쾌적하게 관리되고 있어요."</div>
-            <br>
+        </div>
 
-            <div class="gauges">
-                <div class="gauge-container">
-                    <div class="gauge-label">미세먼지</div>
-                    <br>
-                    <canvas id="dust-circle" width="73" height="73"></canvas>
-                    <br>
-                    <p id="air-lev">청정</p>
-                </div>
-
-                <div class="gauge-container">
-                    <div class="gauge-label">온도</div>
-                    <br>
-                    <canvas id="temp-circle" width="73" height="73"></canvas>
-                    <br>
-                    <p id="temp-lev">조금 더워요</p>
-                </div>
-
-                <div class="gauge-container">
-                    <div class="gauge-label">습도</div>
-                    <br>
-                    <canvas id="humid-circle" width="73" height="73"></canvas>
-                    <br>
-                    <p id="humid-lev">보송해요</p>
-                </div>
+        <div class="gauges">
+            <div class="gauge-container">
+                <div class="gauge-label">미세먼지</div>
+                <br>
+                <canvas id="dust-circle" width="73" height="73"></canvas>
+                <br>
+                <p id="air-lev">청정</p>
             </div>
 
-            <br><br>
-            <h3 class="cleaning-title">청소 현황</h3>
-            <div class="cleaning-status">
-                <p id="clean-status-text">청소 상태를 불러오는 중...</p>
-                <div class="iot-toggle">
-                    <button class="iot-button" id="iot-control-button">IOT 제어</button>
-                </div>
+            <div class="gauge-container">
+                <div class="gauge-label">온도</div>
+                <br>
+                <canvas id="temp-circle" width="73" height="73"></canvas>
+                <br>
+                <p id="temp-lev">조금 더워요</p>
+            </div>
+
+            <div class="gauge-container">
+                <div class="gauge-label">습도</div>
+                <br>
+                <canvas id="humid-circle" width="73" height="73"></canvas>
+                <br>
+                <p id="humid-lev">보송해요</p>
+            </div>
+        </div>
+
+        <br><br>
+        <h3 class="cleaning-title">청소 현황</h3>
+        <div class="cleaning-status">
+            <p id="clean-status-text">청소 상태를 불러오는 중...</p>
+            <div class="iot-toggle">
+                <button class="iot-button" id="iot-control-button">IOT 제어</button>
             </div>
         </div>
     </div>
+</div>
 </div>
 
 <!-- 체크인 하기 버튼 -->
