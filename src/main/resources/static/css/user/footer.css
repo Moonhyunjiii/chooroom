@@ -5,38 +5,35 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-top: 1px solid #ccc !important; /* 상단 구분선 추가 */
 }
 
 .footer-container {
-    max-width: 100%;
+    max-width: 1200px; /* 최대 너비를 1200px로 제한 */
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between; /* 좌우 정렬 */
+    align-items: flex-start; /* 상단 맞춤 정렬 */
+    padding: 20px 40px;
+    box-sizing: border-box; /* 패딩 포함 */
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
     width: 100%;
-    max-width: 1200px; /* 컨텐츠의 최대 너비 */
-    padding: 20px;
+    align-items: flex-start;
+    flex-direction: row; /* 가로로 나열되도록 설정 */
 }
 
 .footer-left {
-    flex: 1 1 60%;
-}
-
-.footer-left .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
+    flex: 1;
+    text-align: left; /* 왼쪽 정렬 */
 }
 
 .footer-right {
-    flex: 1 1 30%;
-    text-align: right;
+    flex: 1;
+    text-align: right; /* 오른쪽 정렬 */
 }
 
 .footer-right h3 {
@@ -51,22 +48,17 @@ footer {
     color: #666;
     line-height: 1.8;
 }
+
 .footer-logo {
-    width: 10%;
-    max-width: 50px !important; /* 원하는 크기로 조정 */
-    height: auto !important;
-    box-sizing: content-box;
-}
-img {
-    width: 100px; /* 너비를 100px로 설정 */
-    height: auto; /* 비율을 유지하면서 높이를 자동으로 설정 */
+    max-width: 200px; /* 로고 최대 크기 */
+    height: auto; /* 비율 유지 */
+    margin-bottom: 10px;
 }
 
 /* 반응형 처리 */
 @media screen and (max-width: 768px) {
-    .footer-content {
+    .footer-container {
         flex-direction: column;
-        align-items: center;
         text-align: center;
     }
 
