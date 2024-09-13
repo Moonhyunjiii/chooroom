@@ -15,5 +15,5 @@
 - [🙇 양현(팀장, 첫째)](https://github.com/WhoingYang)
 - [🙇‍♀️️ 문현지(팀원, 둘째)](https://github.com/Moonhyunjiii)
 - [🚗 권하윤(팀원, 셋째)](https://github.com/WhoingYang)
-- [🙋‍♂️ 권민제(팀원, 넷째)](https://github.com/olaf-01)
+- [🙋‍♂️ 송민제(팀원, 넷째)](https://github.com/olaf-01)
 - [🚗 김서연(팀원, 막내)](https://github.com/tweety27)
