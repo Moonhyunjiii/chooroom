@@ -18,31 +18,36 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
+    <style>
+        #userImportantBody{
+            margin-top : 60px !important;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <div class="logo">
-                <img src="" alt="Logo" />
-            </div>
-            <div class="nav-icons">
-                <div id="reservstionCheckButton" class="reservstionCheck"><i class="bi bi-person-circle fs-5"></i>예약확인</div>
-                <!-- 로그인이 되어 있을 때 로그아웃 버튼만 표시 -->
-                <div id="logoutButton" class="login" th:if="${user != null}">로그아웃</div>
+<div id = "userImportantBody">
+<!--    <header>-->
+<!--        <div class="header-container">-->
+<!--            <div class="logo">-->
+<!--                <img src="/img/user/CHOOROOMLOGO.png" alt="Logo" />-->
+<!--            </div>-->
+<!--            <div class="nav-icons">-->
+<!--                <div id="reservstionCheckButton" class="reservstionCheck"><i class="bi bi-person-circle fs-5"></i>예약확인</div>-->
+<!--                &lt;!&ndash; 로그인이 되어 있을 때 로그아웃 버튼만 표시 &ndash;&gt;-->
+<!--                <div id="logoutButton" class="login" th:if="${user != null}">로그아웃</div>-->
 
-                <!-- 로그인이 안 되어 있을 때 로그인 버튼만 표시 -->
-                <div id="loginButton" class="login" th:if="${user == null}"> 로그인</div>
+<!--                &lt;!&ndash; 로그인이 안 되어 있을 때 로그인 버튼만 표시 &ndash;&gt;-->
+<!--                <div id="loginButton" class="login" th:if="${user == null}"> 로그인</div>-->
 
-            </div>
-        </div>
-    </header>
-<br>
-<br>
-<br>
-<br>
+<!--            </div>-->
+<!--        </div>-->
+<!--    </header>-->
+
+
 <div class="container">
+    <header th:replace="~{header :: header}"></header>
     <!-- 왼쪽: 지도 이미지와 호텔 정보 -->
+
     <div class="left-section">
         <div class="frame-10420">
             <div class="title">내 예약 확인하기</div>
@@ -136,10 +141,11 @@
         <div class="cleaning-status">
             <p id="clean-status-text">청소 상태를 불러오는 중...</p>
             <div class="iot-toggle">
-                <button class="iot-button" id="iot-control-button">IOT 제어</button>
+                <button class="iot-button" id="iotControlButton">IOT 제어</button>
             </div>
         </div>
     </div>
+
 </div>
 </div>
 
@@ -147,6 +153,6 @@
 <div class="checkin-button">
     <button id="check-in-button" class="check-in-button">체크인 하기</button>
 </div>
-
+</div>
 </body>
 </html>

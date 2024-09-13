@@ -200,14 +200,24 @@ function redirectToLogin() {
             loginButton.addEventListener('click', redirectToLogin);
         }
 });
+
+function redirectToIot(){
+    window.location.href = '/IOT';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var iotControlButton = document.getElementById('iotControlButton'); // 변수 이름 수정
+    if (iotControlButton) {
+        iotControlButton.addEventListener('click', redirectToIot);
+    }
+});
+
+
+
 document.getElementById("loginButton").addEventListener("click", function () {
         window.location.href = '/login'
     });
 
-// 각 게이지에 맞춰 호출
-document.getElementById("iot-control-button").addEventListener("click", function () {
-        window.location.href = '/IOT'
-    });
 
 fetchImageUrl(roomNumber);
 fetchRoomInfo(reservationId);

@@ -52,6 +52,10 @@ public class UserIndexViewController {
             return "user/login";
         }
     }
+    //Iot Page
+    @GetMapping("/IOT")
+    public String IOTPage(){return "user/IOT";}
+
 
     //로그아웃 처리
     @PostMapping("/logout")

@@ -13,12 +13,13 @@ header {
     margin: 0 auto; /* 좌우 중앙 정렬 */
     padding: 10px 20px; /* 상하 패딩 추가 */
     display: flex;
+    background-color: white;
     justify-content: space-between; /* 좌우에 로고와 버튼을 배치 */
     align-items: center; /* 세로 정렬 */
 }
 
 .logo {
-    max-width: 150px;
+    max-width: 200px;
 }
 
 .nav-icons {
@@ -40,6 +41,3 @@ header {
     background-color: #555;
 }
 
-.reservstionCheck {
-
-}
