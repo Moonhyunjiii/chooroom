@@ -3,6 +3,8 @@ package com.lgdx.chooroom.domain.room;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="ROOMS")
 public class  Rooms {
@@ -47,6 +49,17 @@ public class  Rooms {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="R_NUM", referencedColumnName="R_NUM")
     private RoomCondition roomCondition;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "roomNumber")
+    private List<RoomTags> tags;
+
+    public List<RoomTags> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<RoomTags> tags) {
+        this.tags = tags;
+    }
 
     public String getRoomNumber() {
         return roomNumber;

@@ -8,8 +8,7 @@ footer {
 }
 
 .footer-container {
-    background-color: white;
-    max-width: 100%px;
+    max-width: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -21,24 +20,46 @@ footer {
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
-    max-width: 800px; /* 컨텐츠의 최대 너비 */
-    flex-wrap: wrap;
+    max-width: 1200px; /* 컨텐츠의 최대 너비 */
+    padding: 20px;
 }
 
-.footer-description {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.6;
+.footer-left {
     flex: 1 1 60%;
-    padding-right: 20px;
 }
 
-.footer-title {
-    font-size: 20px;
+.footer-left .logo {
+    font-size: 24px;
     font-weight: bold;
     color: #333;
+}
+
+.footer-right {
     flex: 1 1 30%;
     text-align: right;
+}
+
+.footer-right h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.footer-right p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.8;
+}
+.footer-logo {
+    width: 10%;
+    max-width: 50px !important; /* 원하는 크기로 조정 */
+    height: auto !important;
+    box-sizing: content-box;
+}
+img {
+    width: 100px; /* 너비를 100px로 설정 */
+    height: auto; /* 비율을 유지하면서 높이를 자동으로 설정 */
 }
 
 /* 반응형 처리 */
@@ -46,10 +67,12 @@ footer {
     .footer-content {
         flex-direction: column;
         align-items: center;
+        text-align: center;
     }
 
-    .footer-description, .footer-title {
-        text-align: center;
+    .footer-left, .footer-right {
+        width: 100%;
         padding: 10px 0;
+        text-align: center;
     }
 }
