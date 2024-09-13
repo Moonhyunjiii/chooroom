@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/user/IOT.css}">
+    <link rel="stylesheet" href="/css/user/IOT.css">
     <title>Responsive App Page</title>
 
 </head>
@@ -79,7 +79,7 @@
             <div class="device-name">에어컨</div>
             <div class="aircon-control">
                 <button class="arrow-button">▲</button>
-                <span class="aircon-level">온도 : <span th:text="${roomCondition.rTemp}"></span>°C</span>
+                <span class="aircon-level">온도 : <span th:text="${roomCondition != null ? roomCondition.roomTemperature : '24'}"></span>°C</span>
                 <button class="arrow-button">▼</button>
             </div>
             <svg
@@ -127,7 +127,7 @@
         <div class="device-card">
             <div class="device-name">공기청정기</div>
             <div class="air-quality">
-                미세먼지: <span th:text="${roomCondition.roomAirQuality}"></span>&micro;m&sup3;
+                미세먼지: <span th:text="${roomCondition != null ? roomCondition.roomAirQuality : '25'}"></span>&micro;m&sup3;
             </div>
             <svg
                     class="icon"
