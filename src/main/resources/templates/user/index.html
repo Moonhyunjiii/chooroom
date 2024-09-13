@@ -32,23 +32,23 @@
 </head>
 <body>
 <div class="container">
-    <header>
+<!--    <header>
         <div class="header-container">
             <div class="logo">
                 <img src="/img/user/츄룸로고.png" alt="Logo" />
             </div>
             <div class="nav-icons">
                 <div id="reservstionCheckButton" class="reservstionCheck"><i class="bi bi-person-circle fs-5"></i>예약확인</div>
-                <!-- 로그인이 되어 있을 때 로그아웃 버튼만 표시 -->
+                &lt;!&ndash; 로그인이 되어 있을 때 로그아웃 버튼만 표시 &ndash;&gt;
                 <div id="logoutButton" class="login" th:if="${user != null}">로그아웃</div>
 
-                <!-- 로그인이 안 되어 있을 때 로그인 버튼만 표시 -->
+                &lt;!&ndash; 로그인이 안 되어 있을 때 로그인 버튼만 표시 &ndash;&gt;
                 <div id="loginButton" class="login" th:if="${user == null}"> 로그인</div>
 
             </div>
         </div>
-    </header>
-
+    </header>-->
+    <header th:replace="~{header :: header}"></header>
     <main>
         <!-- 배너 섹션 -->
         <section class="banner">
@@ -312,7 +312,8 @@
     </main>
     <!--  모달  -->
     <!-- 하단 푸터 -->
-    <footer>
+    <footer th:replace="~{footer :: footer}"></footer>
+<!--    <footer>
         <div class="footer-container">
             <div class="footer-content">
                 <div class="footer-description">
@@ -327,14 +328,11 @@
                 </div>
             </div>
         </div>
-    </footer>
-
-
+    </footer>-->
 </div>
 
-
 <script src="js/user/main.js"></script>
- <script src="js/user/room-detail.js"></script>
+<script src="js/user/room-detail.js"></script>
 <script>
     $(function() {
         $('#daterange').daterangepicker({
