@@ -344,5 +344,13 @@ document.querySelectorAll('.room-select-btn').forEach(button => {
         openModalWithRoomDetails(roomNumber);
     });
 });
-
+function redirectToUserRoomInfo() {
+        window.location.href = '/userRoomInfo';
+}
+document.addEventListener('DOMContentLoaded', function() {
+    var loginButton = document.getElementById('reservstionCheckButton');
+    if (loginButton) {
+        loginButton.addEventListener('click', redirectToLogin);
+    }
+});
 

@@ -1,7 +1,7 @@
 
-roomNumber = "1115";
-customerId = "user12";
-reservationId = "RES0040";
+roomNumber = "1205";
+customerId = "chooroom";
+reservationId = "RES0041";
 
 // 이미지 URL을 동적으로 설정
 function fetchImageUrl(roomNumber) {
