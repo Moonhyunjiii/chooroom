@@ -32,22 +32,6 @@
 </head>
 <body>
 <div class="container">
-<!--    <header>
-        <div class="header-container">
-            <div class="logo">
-                <img src="/img/user/츄룸로고.png" alt="Logo" />
-            </div>
-            <div class="nav-icons">
-                <div id="reservstionCheckButton" class="reservstionCheck"><i class="bi bi-person-circle fs-5"></i>예약확인</div>
-                &lt;!&ndash; 로그인이 되어 있을 때 로그아웃 버튼만 표시 &ndash;&gt;
-                <div id="logoutButton" class="login" th:if="${user != null}">로그아웃</div>
-
-                &lt;!&ndash; 로그인이 안 되어 있을 때 로그인 버튼만 표시 &ndash;&gt;
-                <div id="loginButton" class="login" th:if="${user == null}"> 로그인</div>
-
-            </div>
-        </div>
-    </header>-->
     <header th:replace="~{header :: header}"></header>
     <main>
         <!-- 배너 섹션 -->
@@ -163,18 +147,18 @@
             <div class="room-container">
                 <div class="room">
                     <div class="room-image">
-                        <img src="/img/user/객실화면예시.png" alt="room image" />
+                        <img src="/img/user/standardRoomMain.jpg" alt="room image" />
                     </div>
                     <div class="room-header">
                         <h3 class="room-title" id="roomTitle">스탠다드</h3>
                         <div class="room-noise">
                             <span class="noise-description">평균소음도</span>
                             <span class="noise-level noiseLevelAvg" th:text="${noiseLevelAvg} + 'db'"></span>
-                            <span class="noise-description">, 조용해요.</span>
+                            <span class="noise-description">, 약간 시끄러울 수 있어요.</span>
                         </div>
                         <div class="room-description">
-                            스탠다드 타입에 대한 간략한 설명을 작성합니다.<br />
-                            스탠다드 타입에 대한 간략한 설명을 작성합니다.
+                            모던하고 세련된 감성과 한국의 전통적 요소를 동시에 느낄 수 있는 클래식 룸은 도시 여행자를 위한 편안한 휴식 공간, 비즈니스 고객에게
+                            적합한 업무 공간을 ...
                         </div>
                     </div>
                     <div class="room-status">
@@ -213,18 +197,18 @@
             <div class="room-container">
                 <div class="room">
                     <div class="room-image">
-                        <img src="/img/user/객실화면예시.png" alt="room image" />
+                        <img src="/img/user/deluxeRoomMain.jpg" alt="room image" />
                     </div>
                     <div class="room-header">
                         <h3 class="room-title">디럭스</h3>
                         <div class="room-noise">
                             <span class="noise-description">평균소음도</span>
                             <span class="noise-level noiseLevelAvg" th:text="${noiseLevelAvg} + 'db'"></span>
-                            <span class="noise-description">, 약간 시끄러울 수 있어요.</span>
+                            <span class="noise-description">, 조용해요.</span>
                         </div>
                         <div class="room-description">
-                            디럭스 타입에 대한 간략한 설명을 작성합니다.<br />
-                            디럭스 타입에 대한 간략한 설명을 작성합니다.
+                            모던하고 세련된 감성과 한국 전통의 고즈넉한 요소를 동시에 느낄 수 있는 넓은 공간감을
+                            느낄 수 있으며 스튜디오타입의 구조입니다. 2개의 UHD 55" TV...
                         </div>
                     </div>
                     <div class="room-status">
@@ -263,18 +247,18 @@
             <div class="room-container">
                 <div class="room">
                     <div class="room-image">
-                        <img src="/img/user/객실화면예시.png" alt="room image" />
+                        <img src="/img/user/suiteRoomMain.jpg" alt="room image" />
                     </div>
                     <div class="room-header">
                         <h3 class="room-title">스위트</h3>
                         <div class="room-noise">
                             <span class="noise-description">평균소음도</span>
                             <span class="noise-level noiseLevelAvg" th:text="${noiseLevelAvg} + 'db'"></span>
-                            <span class="noise-description">, 약간 시끄러울 수 있어요.</span>
+                            <span class="noise-description">, 조용해요.</span>
                         </div>
                         <div class="room-description">
-                            스위트 타입에 대한 간략한 설명을 작성합니다.<br />
-                            스위트 타입에 대한 간략한 설명을 작성합니다.
+                            탁 트인 통창을 통하여 강남의 전경이 한눈에 보이는 단 하나의 객실로, 120㎡의 여유로운 크기와 4m의 높은 층고가 선사하는 개방적인
+                            공간감이 특징입니다. '자연으로의 회귀'를 모티프로 한 한국적인 추상화에서 영감을 얻어...
                         </div>
                     </div>
                     <div class="room-status">
@@ -313,22 +297,6 @@
     <!--  모달  -->
     <!-- 하단 푸터 -->
     <footer th:replace="~{footer :: footer}"></footer>
-<!--    <footer>
-        <div class="footer-container">
-            <div class="footer-content">
-                <div class="footer-description">
-                    직접 객실을 고를 수 있는 새로운 호텔 예약 서비스입니다.
-                    <br />
-                    E-MAIL: CHOOROOM@naver.com
-                    <br />
-                    TEL: 02-1234-5678
-                </div>
-                <div class="footer-title">
-                    CHOOROOM
-                </div>
-            </div>
-        </div>
-    </footer>-->
 </div>
 
 <script src="js/user/main.js"></script>
