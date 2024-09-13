@@ -286,7 +286,7 @@ canvas {
   position: relative;
 }
 .logo {
-  background: #424242;
+  /*background: #424242;*/
   padding: 0px 28px 0px 28px;
   display: flex;
   flex-direction: row;

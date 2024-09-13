@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             const roomItem = `
                                 <div class="room-item">
                                     <div class="room-item-image">
-                                        <img src="/img/user/객실화면예시.png" alt="Room image">
+                                        <img src="${room.roomStructure}" alt="Room image">
                                     </div>
                                     <div class="room-item-info">
                                         <div class="room-left">

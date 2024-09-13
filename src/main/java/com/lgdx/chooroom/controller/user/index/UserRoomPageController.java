@@ -42,7 +42,7 @@ public class UserRoomPageController {
 
     // 방 번호 및 예약 번호 가져오기
     @GetMapping("/reservation/Reservation/{reservationId}")
-    public Map<String, String> getRoomInfo(@PathVariable String reservationId) {
+    public Map<String, String> getRoomInfo(@PathVariable("reservationId") String reservationId) {
         Map<String, String> response = new HashMap<>();
         Reservation reservation = reservationRepository.findByReservationId(reservationId);
 
@@ -56,7 +56,7 @@ public class UserRoomPageController {
 //    // 방 상태 (청소 상태) 확인
     @GetMapping("/room/Rooms/{roomNumber}")
     @ResponseBody
-    public Map<String, String> getRoomStatus(@PathVariable String roomNumber) {
+    public Map<String, String> getRoomStatus(@PathVariable("roomNumber") String roomNumber) {
         Map<String, String> response = new HashMap<>();
         Rooms rooms = roomsRepository.findByRoomNumber(roomNumber);
 
@@ -86,7 +86,7 @@ public class UserRoomPageController {
 
     @GetMapping("/user/CustomerRequestHealth/{customerId}")
     @ResponseBody
-    public Map<String, String> getHealthStatus(@PathVariable String customerId) {
+    public Map<String, String> getHealthStatus(@PathVariable("customerId") String customerId) {
         Map<String, String> response = new HashMap<>();
 
         // cus_id로 고객의 건강 요청 정보 리스트 조회
@@ -114,7 +114,7 @@ public class UserRoomPageController {
     // 방 소음 상태 및 케어 정보
     @GetMapping("/room/RoomCondition/{roomNumber}")
     @ResponseBody
-    public Map<String, Object> getRoomDetails(@PathVariable String roomNumber) {
+    public Map<String, Object> getRoomDetails(@PathVariable("roomNumber") String roomNumber) {
         Map<String, Object> response = new HashMap<>();
 
         RoomCondition roomCondition = roomConditionRepository.findByRoomNumber(roomNumber);
