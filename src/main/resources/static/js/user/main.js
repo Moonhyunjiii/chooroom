@@ -292,7 +292,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function redirectToLogin() {
-        window.location.href = '/login';
+    window.location.href = '/login';
 }
 
 function redirectToLogout() {
@@ -303,6 +303,10 @@ function redirectToLogout() {
     document.body.appendChild(form);
     form.submit();
 }
+function redirectToRoomInfo() {
+     window.location.href = '/userRoomInfo';;
+}
+
 
     // Add event listener to the login button
 document.addEventListener('DOMContentLoaded', function() {
@@ -320,6 +324,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var reservstionCheckButton = document.getElementById('reservstionCheckButton');
+    if (reservstionCheckButton) {
+        reservstionCheckButton.addEventListener('click', redirectToRoomInfo); // 함수 호출하지 않고 전달만 함
+    }
+});
+
 //
 //function openModalWithRoomDetails(roomNumber) {
 //    // 모달을 열고 방 세부정보를 표시하는 코드

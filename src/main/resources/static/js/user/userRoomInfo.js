@@ -1,7 +1,7 @@
 
-roomNumber = "1115";
-customerId = "user12";
-reservationId = "RES0040";
+roomNumber = "1205";
+customerId = "chooroom";
+reservationId = "RES0041";
 
 // 이미지 URL을 동적으로 설정
 function fetchImageUrl(roomNumber) {
@@ -53,24 +53,6 @@ function fetchRoomDetails(roomNumber) {
         .catch(error => console.error('Error:', error));
 }
 
-
-
-// 추가 요청사항 전송
-document.getElementById("submit-request").addEventListener("click", function () {
-    const requestText = document.getElementById("additional-requests").value;
-    fetch('/submit-request', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ request: requestText })
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert("요청사항이 전송되었습니다.");
-    })
-    .catch(error => console.error('Error:', error));
-});
 
 // 종합 청정도 업데이트
 function updateRoomStatus(roomNumber) {
@@ -218,14 +200,24 @@ function redirectToLogin() {
             loginButton.addEventListener('click', redirectToLogin);
         }
 });
+
+function redirectToIot(){
+    window.location.href = '/IOT';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var iotControlButton = document.getElementById('iotControlButton'); // 변수 이름 수정
+    if (iotControlButton) {
+        iotControlButton.addEventListener('click', redirectToIot);
+    }
+});
+
+
+
 document.getElementById("loginButton").addEventListener("click", function () {
         window.location.href = '/login'
     });
 
-// 각 게이지에 맞춰 호출
-document.getElementById("iot-control-button").addEventListener("click", function () {
-        window.location.href = '/IOT'
-    });
 
 fetchImageUrl(roomNumber);
 fetchRoomInfo(reservationId);
