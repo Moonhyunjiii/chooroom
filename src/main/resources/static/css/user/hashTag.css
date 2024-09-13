@@ -25,23 +25,23 @@
 /* 해시태그 버튼 스타일 */
 .hashtag {
     padding: 5px 10px;
-    border: 1px solid #007bff;
+    border: 1px solid #A50034;
     border-radius: 30px;
     background-color: white;
-    color: #007bff;
+    color: #A50034;
     font-size: 11px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .hashtag.selected {
-    background-color: #007bff;
+    background-color: #A50034;
     color: white;
-    border-color: #007bff;
+    border-color: #A50034;
 }
 
 .hashtag:hover {
-    background-color: #007bff;
+    background-color: #A50034;
     color: white;
 }
 
