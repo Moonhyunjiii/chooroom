@@ -3,7 +3,6 @@ package com.lgdx.chooroom.service.rooms;
 
 import com.lgdx.chooroom.domain.room.Rooms;
 import com.lgdx.chooroom.repository.rooms.FilterRoomTagsRepository;
-import com.lgdx.chooroom.repository.user.RoomTagsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

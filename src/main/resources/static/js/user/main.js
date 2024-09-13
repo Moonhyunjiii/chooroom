@@ -81,8 +81,20 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.hashtag').forEach(button => {
         button.addEventListener('click', function () {
             this.classList.toggle('selected');
+            applyFilters();  // 해시태그 클릭 시 필터 적용 함수 호출
         });
     });
+
+    // 해시태그 수집
+    function getSelectedHashtags() {
+        const selectedHashtags = [];
+        document.querySelectorAll('.hashtag.selected').forEach(button => {
+            selectedHashtags.push(button.getAttribute('data-tag'));
+        });
+
+        console.log("Collected Hashtags:", selectedHashtags); // 수집된 해시태그 출력
+        return selectedHashtags;
+    }
 
     // 페이지 로드 시 서버로부터 데이터를 받아오는 함수
     function fetchFilteredRoomData(filters) {
@@ -148,14 +160,16 @@ document.addEventListener("DOMContentLoaded", function() {
         const selectedView = document.querySelector('#view-dropdown .selected')?.textContent || '';
         const selectedBed = document.querySelector('#bed-dropdown .selected')?.textContent || '';
         const selectedPrice = document.querySelector('#price-dropdown .selected')?.textContent || '';
+        const selectedHashtags = getSelectedHashtags();  // 해시태그 수집 추가
 
         const filters = {
             viewType: selectedView,
             bedType: selectedBed,
-            priceOrder: selectedPrice
+            priceOrder: selectedPrice,
+            hashtags: selectedHashtags  // 해시태그 추가
         };
 
-        console.log(filters);
+        console.log("Filters:", filters); // 필터 데이터 확인
 
         fetchFilteredRoomData(filters); // 필터에 맞는 데이터 요청
     }
@@ -227,15 +241,20 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // 초기화 버튼 클릭 이벤트 처리
-//    document.getElementById('reset-filters').addEventListener('click', function() {
-//        // 모든 필터의 'selected' 클래스 제거
-//        document.querySelectorAll('.filter-category .selected').forEach(item => {
-//            item.classList.remove('selected');
-//        });
-//
-//        // 필터 초기화 후 기본 데이터 다시 불러오기
-//        fetchFilteredRoomData({}); // 기본 필터 없이 데이터 요청
-//    });
+   document.getElementById('reset-filters').addEventListener('click', function() {
+       // 모든 필터의 'selected' 클래스 제거
+       document.querySelectorAll('.filter-category .selected').forEach(item => {
+           item.classList.remove('selected');
+       });
+
+       // 해시태그의 'selected' 클래스 제거
+       document.querySelectorAll('.hashtag.selected').forEach(button => {
+           button.classList.remove('selected');
+       });
+
+       // 필터 초기화 후 기본 데이터 다시 불러오기
+       fetchFilteredRoomData({}); // 기본 필터 없이 데이터 요청
+   });
 
     // 페이지 로드 시 기본 데이터 불러오기
     fetchFilteredRoomData({}); // 기본 필터 없이 모든 객실 데이터를 불러옴
