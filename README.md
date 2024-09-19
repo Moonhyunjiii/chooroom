@@ -114,13 +114,18 @@ Chooroom은 호텔에 설치된 LG가전 데이터로 기기를 효율적으로 
 <br>   
 
 ## 서비스 흐름도
-
+<img src="./src/main/resources/static/assets/readme/서비스 흐름도.png" width="50%" alt="로고자리">
 <br>   
 
 ## ER 다이어그램
-
+<img src="./src/main/resources/static/assets/readme/ERD.png" width="50%" alt="로고자리">
 <br>   
 
 ## 화면구성
-
+<img src="./src/main/resources/static/assets/readme/DX-화면%20설계서.png" width="50%" alt="로고자리">
+<img src="./src/main/resources/static/assets/readme/DX-화면%20설계서-1.png.png" width="50%" alt="로고자리">
+<img src="./src/main/resources/static/assets/readme/DX-화면%20설계서-2.png" width="50%" alt="로고자리">
+<img src="./src/main/resources/static/assets/readme/DX-화면%20설계서-3.png" width="50%" alt="로고자리">
+<img src="./src/main/resources/static/assets/readme/DX-화면%20설계서-4.png" width="50%" alt="로고자리">
+<img src="./src/main/resources/static/assets/readme/DX-화면%20설계서-5.png" width="50%" alt="로고자리">
 <br>   
