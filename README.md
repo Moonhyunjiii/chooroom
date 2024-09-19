@@ -32,33 +32,33 @@
 ## 👪 서비스 기획 및 개발 멤버 소개
 <table>
 	<tr>
-		<td height="140px" align="center">
+		<td height="220px" align="center">
 			<a href="https://github.com/WhoingYang">
-			<img src="./src/main/resources/static/assets/readme/양현프필.jpg" width="100%" alt="로고자리">
+			<img src="./src/main/resources/static/assets/readme/양현프필.jpg" width="120px" alt="로고자리">
 		  <br><br>
 			🤴🏻 양현(팀장, 첫째) <br>(Back-End, Front-end) </a> <br>
 		</td>
-    <td height="140px" align="center">
+    <td height="220px" align="center">
 	    <a href="https://github.com/Moonhyunjiii">
-	    <img src="./src/main/resources/static/assets/readme/현지프필.jpg" width="100%" alt="로고자리">
+	    <img src="./src/main/resources/static/assets/readme/현지프필.jpg" width="120px" alt="로고자리">
 	    <br><br>
 	    👸🏻 문현지(팀원, 둘째) <br>(Back-End, Front-end) </a> <br>
     </td>
-    <td height="140px" align="center">
+    <td height="220px" align="center">
 	    <a href="https://github.com/HayunKwon">
-	    <img src="./src/main/resources/static/assets/readme/하윤프필.jpg" width="100%" alt="로고자리">
+	    <img src="./src/main/resources/static/assets/readme/하윤프필.jpg" width="120px" alt="로고자리">
 	    <br><br>
 	    🤴🏻 권하윤(팀원, 셋째) <br>(Front-End, 기획) </a> <br>
     </td>
-    <td height="140px" align="center">
+    <td height="220px" align="center">
 	    <a href="https://github.com/olaf-01">
-	    <img src="./src/main/resources/static/assets/readme/DX-화면%20설계서.png" width="100%" alt="로고자리">
+	    <img src="./src/main/resources/static/assets/readme/민제프필.jpg" width="120px" alt="로고자리">
 	    <br><br>
 	    👸🏻 송민제(팀원, 넷째) <br>(Front-End, 기획) </a> <br>
     </td>
-    <td height="140px" align="center">
+    <td height="220px" align="center">
 	    <a href="https://github.com/tweety27">
-	    <img src="./src/main/resources/static/assets/readme/DX-화면%20설계서.png" width="100%" alt="로고자리">
+	    <img src="./src/main/resources/static/assets/readme/서연프필.jpg" width="120px" alt="로고자리">
 	    <br><br>
 	    👸🏻 김서연(팀원, 막내) <br>(Back-End, Front-end) </a> <br>
     </td>
@@ -71,6 +71,7 @@
 		<td align="center">로그인(로그아웃) 페이지, 회원 가입 페이지, 객실 상세 정보 페이지 개발, 객실 예약 버튼 구현</td>
 	</tr>
 </table>
+
 
 <br />
 
