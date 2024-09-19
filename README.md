@@ -34,31 +34,31 @@
 	<tr>
 		<td height="140px" align="center">
 			<a href="https://github.com/WhoingYang">
-			<img src="" width="140px" />
+			<img src="./src/main/resources/static/assets/readme/양현프필.jpg" width="100%" alt="로고자리">
 		  <br><br>
 			🤴🏻 양현(팀장, 첫째) <br>(Back-End, Front-end) </a> <br>
 		</td>
     <td height="140px" align="center">
 	    <a href="https://github.com/Moonhyunjiii">
-	    <img src="" width="140px" />
+	    <img src="./src/main/resources/static/assets/readme/현지프필.jpg" width="100%" alt="로고자리">
 	    <br><br>
 	    👸🏻 문현지(팀원, 둘째) <br>(Back-End, Front-end) </a> <br>
     </td>
     <td height="140px" align="center">
 	    <a href="https://github.com/HayunKwon">
-	    <img src="" width="140px" />
+	    <img src="./src/main/resources/static/assets/readme/하윤프필.jpg" width="100%" alt="로고자리">
 	    <br><br>
 	    🤴🏻 권하윤(팀원, 셋째) <br>(Front-End, 기획) </a> <br>
     </td>
     <td height="140px" align="center">
 	    <a href="https://github.com/olaf-01">
-	    <img src="" width="140px" />
+	    <img src="./src/main/resources/static/assets/readme/DX-화면%20설계서.png" width="100%" alt="로고자리">
 	    <br><br>
 	    👸🏻 송민제(팀원, 넷째) <br>(Front-End, 기획) </a> <br>
     </td>
     <td height="140px" align="center">
 	    <a href="https://github.com/tweety27">
-	    <img src="" width="140px" />
+	    <img src="./src/main/resources/static/assets/readme/DX-화면%20설계서.png" width="100%" alt="로고자리">
 	    <br><br>
 	    👸🏻 김서연(팀원, 막내) <br>(Back-End, Front-end) </a> <br>
     </td>
@@ -204,35 +204,16 @@ Chooroom은 호텔에 설치된 LG가전 데이터로 기기를 효율적으로 
 ### Front
 
 <!-- HTML5 -->
-<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/>
-
-<!-- CSS3 -->
-<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/>
-
-<!-- JavaScript -->
-<img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black"/>
-
-<!-- Figma -->
-<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"/>
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/> <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=black"/>
 
 ### Back
 
-<!-- Spring Boot -->
-<img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring%20Boot&logoColor=white"/>
-
-<!-- JPA -->
-<img src="https://img.shields.io/badge/JPA-59666C?style=for-the-badge&logo=Hibernate&logoColor=white"/>
-
-<!-- Oracle -->
-<img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Oracle&logoColor=white"/>
+<img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Spring%20Boot&logoColor=white"/> <img src="https://img.shields.io/badge/JPA-59666C?style=for-the-badge&logo=Hibernate&logoColor=white"/><img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Oracle&logoColor=white"/>
 
 ### 협업툴
 
-<!-- Notion -->
-<img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white"/>
-
-<!-- GitHub -->
-<img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
+<!-- Figma -->
+<img src="https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"/> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white"/><img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
 
 <br>   
 
@@ -274,3 +255,13 @@ Chooroom은 호텔에 설치된 LG가전 데이터로 기기를 효율적으로 
 <img src="./src/main/resources/static/assets/readme/DX-화면%20설계서-4.png" width="100%" alt="로고자리">
 <img src="./src/main/resources/static/assets/readme/DX-화면%20설계서-5.png" width="100%" alt="로고자리">
 <br>   
+
+
+## 결과물
+### CHOOROOM 유저 화면
+
+[![Watch the video](https://img.youtube.com/vi/0Mdj9tnzFKI/maxresdefault.jpg)](https://youtu.be/0Mdj9tnzFKI)
+
+### CHOOROOM 관리자ㅎ 화면
+
+[![Watch the video](https://img.youtube.com/vi/D8-uzEtCpKA/maxresdefault.jpg)](https://youtu.be/D8-uzEtCpKA)
