@@ -1,11 +1,6 @@
-# CHOOROOM Project (by. 현이와아이들)
-# 🙌 안녕하세요. CHOOROOM에 오신걸 환영합니다.
+<img src="./src/main/resources/static/assets/readme/CHOOROOMLOGO.png" width="50%" alt="로고자리">
 
-<div align="center">
-  <img src="/assets/readme/CHOOROOMLOGO.png" width="50%"/ alt="로고자리">
-</div>
-
-<br/>
+# CHOOROOM Project (by. 현이와아이들) <br><br> 🙌 안녕하세요. CHOOROOM에 오신걸 환영합니다.
 
 ## 목차
 [1. 👪 서비스 기획 및 개발 멤버 소개](#서비스-기획-및-개발-멤버-소개)
