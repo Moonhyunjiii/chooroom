@@ -32,45 +32,46 @@
 ## 👪 서비스 기획 및 개발 멤버 소개
 <table>
 	<tr>
-		<td height="140px" align="center">
+		<td width="20%" height="220px" align="center">
 			<a href="https://github.com/WhoingYang">
-			<img src="./src/main/resources/static/assets/readme/양현프필.jpg" width="100%" alt="로고자리">
+			<img src="./src/main/resources/static/assets/readme/양현프필.jpg" width="120px" alt="로고자리">
 		  <br><br>
-			🤴🏻 양현(팀장, 첫째) <br>(Back-End, Front-end) </a> <br>
+			🤴🏻 양현<br>(팀장, 첫째) <br>(Back-End, Front-end) </a> <br>
 		</td>
-    <td height="140px" align="center">
+    <td width="20%" height="220px" align="center">
 	    <a href="https://github.com/Moonhyunjiii">
-	    <img src="./src/main/resources/static/assets/readme/현지프필.jpg" width="100%" alt="로고자리">
+	    <img src="./src/main/resources/static/assets/readme/현지프필.jpg" width="120px" alt="로고자리">
 	    <br><br>
-	    👸🏻 문현지(팀원, 둘째) <br>(Back-End, Front-end) </a> <br>
+	    👸🏻 문현지<br>(팀원, 둘째) <br>(Back-End, Front-end) </a> <br>
     </td>
-    <td height="140px" align="center">
+    <td width="20%" height="220px" align="center">
 	    <a href="https://github.com/HayunKwon">
-	    <img src="./src/main/resources/static/assets/readme/하윤프필.jpg" width="100%" alt="로고자리">
+	    <img src="./src/main/resources/static/assets/readme/하윤프필.jpg" width="120px" alt="로고자리">
 	    <br><br>
-	    🤴🏻 권하윤(팀원, 셋째) <br>(Front-End, 기획) </a> <br>
+	    🤴🏻 권하윤<br>(팀원, 셋째) <br>(Front-End, 기획) </a> <br>
     </td>
-    <td height="140px" align="center">
+    <td width="20%" height="220px" align="center">
 	    <a href="https://github.com/olaf-01">
-	    <img src="./src/main/resources/static/assets/readme/DX-화면%20설계서.png" width="100%" alt="로고자리">
+	    <img src="./src/main/resources/static/assets/readme/민제프필.jpg" width="120px" alt="로고자리">
 	    <br><br>
-	    👸🏻 송민제(팀원, 넷째) <br>(Front-End, 기획) </a> <br>
+	    👸🏻 송민제<br>(팀원, 넷째) <br>(Front-End, 기획) </a> <br>
     </td>
-    <td height="140px" align="center">
+    <td width="20%" height="220px" align="center">
 	    <a href="https://github.com/tweety27">
-	    <img src="./src/main/resources/static/assets/readme/DX-화면%20설계서.png" width="100%" alt="로고자리">
+	    <img src="./src/main/resources/static/assets/readme/서연프필.jpg" width="120px" alt="로고자리">
 	    <br><br>
-	    👸🏻 김서연(팀원, 막내) <br>(Back-End, Front-end) </a> <br>
+	    👸🏻 김서연<br>(팀원, 막내) <br>(Back-End, Front-end) </a> <br>
     </td>
 	</tr> 
 	<tr>
-		<td align="center">DB 설계 제작, 사용자 예약확인 페이지 개발</td>
-		<td align="center">메인페이지, 필터, 해시태그 기능 개발</td>
-		<td align="center">관리자 대시보드 개발 , 모든 페이지 프론트 디자인(css)</td>
-		<td align="center">화면설계서 작성, UX/UI 설계 및 디자인, 관리자 대시보드, 유저 예약 확정 페이지 구현 (css)</td>
-		<td align="center">로그인(로그아웃) 페이지, 회원 가입 페이지, 객실 상세 정보 페이지 개발, 객실 예약 버튼 구현</td>
+		<td width="20%" align="center">DB 설계 제작, 사용자 예약확인 페이지 개발</td>
+		<td width="20%" align="center">메인페이지, 필터, 해시태그 기능 개발</td>
+		<td width="20%" align="center">관리자 대시보드 개발 , 모든 페이지 프론트 디자인(css)</td>
+		<td width="20%" align="center">화면설계서 작성, UX/UI 설계 및 디자인, 관리자 대시보드, 유저 예약 확정 페이지 구현 (css)</td>
+		<td width="20%" align="center">로그인(로그아웃) 페이지, 회원 가입 페이지, 객실 상세 정보 페이지 개발, 객실 예약 버튼 구현</td>
 	</tr>
 </table>
+
 
 <br />
 
