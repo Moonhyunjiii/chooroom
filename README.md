@@ -261,6 +261,6 @@ Chooroom은 호텔에 설치된 LG가전 데이터로 기기를 효율적으로 
 
 [![Watch the video](https://img.youtube.com/vi/0Mdj9tnzFKI/maxresdefault.jpg)](https://youtu.be/0Mdj9tnzFKI)
 
-### CHOOROOM 관리자ㅎ 화면
+### CHOOROOM 관리자 화면
 
 [![Watch the video](https://img.youtube.com/vi/D8-uzEtCpKA/maxresdefault.jpg)](https://youtu.be/D8-uzEtCpKA)
